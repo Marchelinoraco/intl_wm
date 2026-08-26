@@ -27,6 +27,27 @@ type Dict = {
   askOnWechat: string;
   partOf: string;
   allTours: string;
+  navHotels: string;
+  navGallery: string;
+  navBlog: string;
+  navAbout: string;
+  navContact: string;
+  hotelsHeading: string;
+  hotelsLede: string;
+  facilities: string;
+  galleryHeading: string;
+  blogHeading: string;
+  readMore: string;
+  aboutHeading: string;
+  teamHeading: string;
+  contactHeading: string;
+  contactLede: string;
+  formName: string;
+  formEmail: string;
+  formPax: string;
+  formMessage: string;
+  formSend: string;
+  formNote: string;
 };
 
 export const DICTIONARY: Record<Locale, Dict> = {
@@ -50,6 +71,27 @@ export const DICTIONARY: Record<Locale, Dict> = {
     askOnWechat: "Ask on WeChat",
     partOf: "Part of Welcome Manado",
     allTours: "All Tours",
+    navHotels: "Hotels",
+    navGallery: "Gallery",
+    navBlog: "Journal",
+    navAbout: "About",
+    navContact: "Contact",
+    hotelsHeading: "Where to stay",
+    hotelsLede: "Places we book for our own guests — on the reef, in the city, and up in the highlands.",
+    facilities: "Facilities",
+    galleryHeading: "Gallery",
+    blogHeading: "Journal",
+    readMore: "Read more",
+    aboutHeading: "About us",
+    teamHeading: "The people who run it",
+    contactHeading: "Talk to us",
+    contactLede: "Tell us roughly when you are coming and how many of you there are. We reply in your language, usually within a day.",
+    formName: "Your name",
+    formEmail: "Email",
+    formPax: "How many travellers",
+    formMessage: "What are you looking for?",
+    formSend: "Send enquiry",
+    formNote: "Not connected yet — this form is part of the site skeleton.",
   },
   ko: {
     tagline: "마나도 & 북술라웨시 투어",
@@ -71,6 +113,27 @@ export const DICTIONARY: Record<Locale, Dict> = {
     askOnWechat: "WeChat 문의",
     partOf: "Welcome Manado 운영",
     allTours: "전체 투어",
+    navHotels: "호텔",
+    navGallery: "갤러리",
+    navBlog: "저널",
+    navAbout: "소개",
+    navContact: "문의",
+    hotelsHeading: "숙소",
+    hotelsLede: "저희가 손님께 직접 예약해 드리는 곳들 — 산호초 위, 시내, 그리고 고원.",
+    facilities: "시설",
+    galleryHeading: "갤러리",
+    blogHeading: "저널",
+    readMore: "더 읽기",
+    aboutHeading: "소개",
+    teamHeading: "함께하는 사람들",
+    contactHeading: "문의하기",
+    contactLede: "대략 언제 오시는지, 몇 분이신지 알려주세요. 사용하시는 언어로, 보통 하루 안에 답변드립니다.",
+    formName: "성함",
+    formEmail: "이메일",
+    formPax: "인원",
+    formMessage: "무엇을 찾고 계신가요?",
+    formSend: "문의 보내기",
+    formNote: "아직 연결되지 않았습니다 — 이 양식은 사이트 기본 골격의 일부입니다.",
   },
   zh: {
     tagline: "美娜多与北苏拉威西旅游",
@@ -92,6 +155,27 @@ export const DICTIONARY: Record<Locale, Dict> = {
     askOnWechat: "微信咨询",
     partOf: "Welcome Manado 旗下",
     allTours: "全部行程",
+    navHotels: "住宿",
+    navGallery: "相册",
+    navBlog: "手记",
+    navAbout: "关于",
+    navContact: "联系",
+    hotelsHeading: "住在哪里",
+    hotelsLede: "我们为自家客人预订的地方 —— 珊瑚礁旁、市区之中，以及高地之上。",
+    facilities: "设施",
+    galleryHeading: "相册",
+    blogHeading: "手记",
+    readMore: "阅读全文",
+    aboutHeading: "关于我们",
+    teamHeading: "带你出行的人",
+    contactHeading: "联系我们",
+    contactLede: "告诉我们大致的出行时间和人数。我们会用您的语言回覆，通常一天之内。",
+    formName: "您的姓名",
+    formEmail: "电子邮箱",
+    formPax: "出行人数",
+    formMessage: "您在找什么样的行程？",
+    formSend: "发送咨询",
+    formNote: "尚未接通 —— 此表单属于站点骨架的一部分。",
   },
   // Lima bahasa Eropa belum punya konten; PUBLISHED_LOCALES menahannya agar
   // tidak dibangun. Entri ini menjaga tipe tetap lengkap.
