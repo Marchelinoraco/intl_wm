@@ -11,16 +11,24 @@ Per 2026-08-26, `manado.tours` masih mengarah ke `2.57.91.91` — halaman parkir
 Hostinger. VPS Anda ada di `103.172.205.136`. Selama ini belum diubah, apa pun
 yang dipasang di aaPanel tidak akan terlihat.
 
-Di **hPanel Hostinger → Domains → manado.tours → DNS / Nameservers**:
+Di **hPanel Hostinger → Domains → manado.tours → DNS/Nameserver**.
 
-| Type | Name | Points to | TTL |
+Keadaan awal (diperiksa 2026-08-26) hanya dua record:
+
+| Jenis | Nama | Konten | TTL |
 |---|---|---|---|
-| A | `@` | `103.172.205.136` | 300 |
-| A | `www` | `103.172.205.136` | 300 |
+| CNAME | `www` | `manado.tours` | 300 |
+| A | `@` | `2.57.91.91` | 50 |
 
-Hapus atau timpa A record lama yang menunjuk `2.57.91.91`. Kalau ada CNAME
-bawaan parkir untuk `www`, hapus juga — CNAME dan A tidak boleh berdampingan
-untuk nama yang sama.
+**Cukup satu yang diubah.** Klik ikon pensil di baris A `@`, ganti Value dari
+`2.57.91.91` menjadi `103.172.205.136`, simpan. TTL 50 boleh dibiarkan — makin
+pendek makin cepat menyebar.
+
+**Biarkan CNAME `www`.** Ia menunjuk ke apex, jadi otomatis ikut ke IP baru
+begitu A record diubah. Tidak perlu dibuatkan A record sendiri.
+
+**Jangan tekan "Reset DNS record".** Tombol itu mengembalikan seluruh record ke
+bawaan Hostinger, termasuk record parkir yang justru sedang kita singkirkan.
 
 Tunggu sampai perubahan menyebar sebelum lanjut ke SSL. Periksa dari laptop:
 
