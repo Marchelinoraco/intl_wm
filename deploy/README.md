@@ -12,17 +12,41 @@ dan diisi konten sungguhan.
 
 ## Langkah di VPS
 
-Jalankan dari mesin lokal, di dalam repo `intl_wm`:
+Ada dua cara mengirim berkasnya. Pilih salah satu.
+
+### Cara A — clone dari GitHub (disarankan)
+
+Sama polanya dengan cara Anda men-deploy erp_wm: repo ada di server, pembaruan
+cukup `git pull`. Di VPS:
 
 ```bash
-# 1. Kirim berkas (ganti user@host sesuai VPS Anda)
+sudo mkdir -p /srv && cd /srv
+sudo git clone -b feat/coming-soon https://github.com/Marchelinoraco/intl_wm.git
+sudo ln -s /srv/intl_wm/coming-soon /var/www/manado.tours
+```
+
+`ln -s` membuat nginx menyajikan langsung dari folder repo, sehingga pembaruan
+berikutnya cukup:
+
+```bash
+cd /srv/intl_wm && sudo git pull
+```
+
+Tidak ada langkah salin, tidak ada risiko folder di server menyimpang dari repo.
+
+### Cara B — rsync dari mesin lokal
+
+```bash
 rsync -avz --delete coming-soon/ user@VPS:/var/www/manado.tours/
 ```
 
-Lalu di VPS:
+Lebih cepat untuk sekali jalan, tapi isi server jadi salinan lepas yang tidak
+tercatat di git.
+
+### Selanjutnya, di VPS (berlaku untuk kedua cara):
 
 ```bash
-# 2. Kepemilikan berkas
+# 2. Kepemilikan berkas (untuk Cara A, arahkan ke /srv/intl_wm)
 sudo chown -R www-data:www-data /var/www/manado.tours
 
 # 3. Pasang konfigurasi nginx
@@ -61,7 +85,8 @@ membuktikan meta tag-nya terbaca crawler.
 
 1. Ganti blok `location /` di konfigurasi nginx dengan versi yang ada di bagian
    bawah `nginx-manado-tours.conf`
-2. `rsync` folder `out/` menggantikan isi `/var/www/manado.tours/`
+2. Arahkan symlink ke folder build situs sungguhan, atau `rsync` folder `out/`
+   menggantikan isi `/var/www/manado.tours/`
 3. Daftarkan sitemap di Google Search Console
 
 Header `Cache-Control: no-cache` pada HTML dipasang justru untuk momen ini —
