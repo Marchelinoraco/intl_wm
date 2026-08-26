@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "../globals.css";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,6 +12,22 @@ import {
   type Locale,
 } from "@/lib/locales";
 import { dict } from "@/lib/dictionary";
+
+/**
+ * INI root layout aplikasi — tidak ada `app/layout.tsx` di atasnya.
+ *
+ * Alasannya atribut `lang`: ia harus mengikuti bahasa halaman, dan root layout
+ * biasa tidak menerima parameter `[locale]` sehingga tidak bisa mengetahuinya.
+ * Halaman Korea dengan `lang="en"` adalah sinyal yang salah bagi mesin pencari,
+ * dan itu justru hal yang ingin diperbaiki situs ini.
+ *
+ * Dengan segmen dinamis sebagai segmen teratas, layout inilah yang memegang
+ * `<html>` dan `<body>` — memenuhi syarat Next.js sekaligus membuat `lang`
+ * benar per bahasa.
+ *
+ * Root `/` sengaja tidak punya halaman: nginx yang mengalihkannya dengan 302
+ * berdasarkan `Accept-Language`. Saat `npm run dev`, buka `/en/` langsung.
+ */
 
 /** Hanya bahasa yang sudah punya konten yang dibangun. */
 export function generateStaticParams() {

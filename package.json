@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preview": "next build && npx --yes serve out -l 3007"
   },
   "dependencies": {
     "lucide-react": "^0.417.0",
