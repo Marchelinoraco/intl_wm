@@ -21,8 +21,12 @@ Keadaan awal (diperiksa 2026-08-26) hanya dua record:
 | A | `@` | `2.57.91.91` | 50 |
 
 **Cukup satu yang diubah.** Klik ikon pensil di baris A `@`, ganti Value dari
-`2.57.91.91` menjadi `103.172.205.136`, simpan. TTL 50 boleh dibiarkan — makin
-pendek makin cepat menyebar.
+`2.57.91.91` menjadi `103.172.205.136`.
+
+**TTL harus diisi 60**, bukan dibiarkan 50. Record lamanya memang tersimpan
+dengan TTL 50, tetapi form edit hPanel menolak nilai di bawah 60 ("Value TTL
+harus di antara 60 dan 86400"). 60 adalah minimum yang diizinkan, jadi
+penyebarannya tetap secepat mungkin.
 
 **Biarkan CNAME `www`.** Ia menunjuk ke apex, jadi otomatis ikut ke IP baru
 begitu A record diubah. Tidak perlu dibuatkan A record sendiri.
