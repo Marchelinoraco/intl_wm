@@ -45,7 +45,11 @@ export function apiGetOrNull<T>(path: string): Promise<T | null> {
 async function doFetch(url: string, tolerate404: boolean): Promise<unknown> {
   let res: Response;
   try {
-    res = await fetch(url, { cache: "no-store" });
+    // `force-cache` (bukan `no-store`) wajib untuk `output: "export"` — no-store
+    // memaksa route jadi dinamis dan build statis menolaknya. Kesegaran per rilis
+    // dijamin `rm -rf .next out` sebelum tiap `npm run build` (lihat deploy/README);
+    // dalam satu build, Map memo di modul ini sudah men-dedupe.
+    res = await fetch(url, { cache: "force-cache" });
   } catch (e) {
     throw new Error(`intl API tidak dapat dihubungi: ${url}\n  ${(e as Error).message}`);
   }
