@@ -34,6 +34,11 @@ Menghasilkan folder `out/` berisi HTML statis murni — setara `dist/` pada
 Konfigurasi nginx perlu `try_files $uri $uri/ $uri.html /404.html` karena keluarannya
 berbentuk `tours/index.html`, bukan satu `index.html` seperti SPA.
 
+## Verifikasi kontrak API
+
+`npm run check-api` memanggil `/api/intl/*` production dan memeriksa bentuk
+respons masih sesuai asumsi `lib/api.ts`. Otomatis jalan sebelum `npm run build`.
+
 ## Bahasa
 
 Delapan bahasa sasaran: `en` `ko` `zh` `fr` `de` `it` `es` `nl`. Bahasa Indonesia
