@@ -157,4 +157,5 @@ def bangun(locale, inc, exc):
     json.dump(out, open(f'bullets/{locale}.json', 'w'), ensure_ascii=False, indent=1)
     print(f'bullets/{locale}.json — inclusions {len(out["inclusions"])}, exclusions {len(out["exclusions"])}')
 
-bangun('ko', INC, EXC)
+if __name__ == '__main__':
+    bangun('ko', INC, EXC)
