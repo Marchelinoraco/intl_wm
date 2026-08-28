@@ -4,3 +4,6 @@ out
 .env*.local
 next-env.d.ts
 tsconfig.tsbuildinfo
+.DS_Store
+__pycache__/
+.superpowers/
