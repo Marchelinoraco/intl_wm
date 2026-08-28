@@ -3,12 +3,7 @@ import Link from "next/link";
 import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import type { TourList } from "@/lib/api";
-
-/** Ambil teks polos singkat dari deskripsi HTML untuk ringkasan kartu. */
-function excerptFromHtml(html: string, max = 140): string {
-  const text = html.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/gi, " ").replace(/\s+/g, " ").trim();
-  return text.length > max ? `${text.slice(0, max).trimEnd()}…` : text;
-}
+import { excerptFromHtml } from "@/lib/format";
 
 export default function TourCard({ tour, locale }: { tour: TourList; locale: Locale }) {
   const t = dict(locale);
