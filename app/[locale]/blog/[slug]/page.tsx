@@ -71,10 +71,10 @@ export default async function BlogDetailPage({
     <article className="mx-auto max-w-3xl px-6 py-16 lg:px-10">
       <JsonLd data={jsonLd} />
 
-      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-red-600">
+      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">
         {[post.category?.name, post.published_at].filter(Boolean).join(" · ")}
       </p>
-      <h1 className="mt-5 text-3xl font-black uppercase leading-[1.05] tracking-tighter text-slate-900 md:text-5xl">
+      <h1 className="mt-5 text-3xl font-black uppercase leading-[1.05] tracking-tighter text-ink md:text-5xl">
         {post.title}
       </h1>
       <div className="mt-6">
@@ -82,12 +82,12 @@ export default async function BlogDetailPage({
       </div>
 
       {post.featured_image && (
-        <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[2rem] bg-slate-100">
+        <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[2rem] bg-surface-2">
           <Image src={post.featured_image} alt={post.title} fill priority sizes="100vw" className="object-cover" />
         </div>
       )}
 
-      <RichText html={post.content} className="mt-12 text-lg font-medium leading-[1.85] text-slate-600" />
+      <RichText html={post.content} className="mt-12 text-lg font-medium leading-[1.85] text-ink-2" />
     </article>
   );
 }

@@ -75,8 +75,8 @@ export default async function HotelDetailPage({
           <Image src={hotel.primary_image} alt={hotel.name} fill priority sizes="100vw" className="object-cover" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/35 to-transparent" />
-        <div className="relative mx-auto w-full max-w-7xl px-6 pb-14 lg:px-10">
-          <span className="rounded-xl bg-red-600 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white">
+        <div className="relative mx-auto w-full max-w-7xl animate-reveal-up px-6 pb-14 lg:px-10">
+          <span className="rounded-xl bg-accent px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white">
             {prettifyCategory(hotel.category)}
             {hotel.stars > 0 && ` · ${"★".repeat(hotel.stars)}`}
           </span>
@@ -93,12 +93,12 @@ export default async function HotelDetailPage({
       <div className="mx-auto grid max-w-7xl gap-14 px-6 py-16 lg:grid-cols-12 lg:px-10">
         <div className="lg:col-span-8">
           {hotel.description && (
-            <RichText html={hotel.description} className="text-lg font-medium leading-[1.8] text-slate-600" />
+            <RichText html={hotel.description} className="text-lg font-medium leading-[1.8] text-ink-2" />
           )}
           {hotel.images.length > 0 && (
             <div className="mt-12 grid gap-4 sm:grid-cols-2">
               {hotel.images.map((src) => (
-                <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-slate-100">
+                <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-surface-2">
                   <Image src={src} alt={hotel.name} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
                 </div>
               ))}
@@ -108,11 +108,11 @@ export default async function HotelDetailPage({
 
         <aside className="lg:col-span-4">
           {hotel.facilities.length > 0 && (
-            <div className="sticky top-28 rounded-[2rem] border border-slate-100 bg-white p-8 shadow-xl shadow-slate-900/5">
-              <h2 className="mb-5 text-sm font-black uppercase tracking-widest text-slate-900">{t.facilities}</h2>
+            <div className="sticky top-28 rounded-[2rem] border border-line bg-surface p-8 shadow-xl shadow-slate-900/5">
+              <h2 className="mb-5 text-sm font-black uppercase tracking-widest text-ink">{t.facilities}</h2>
               <ul className="space-y-2">
                 {hotel.facilities.map((f) => (
-                  <li key={f} className="text-sm font-medium leading-relaxed text-slate-600">{f}</li>
+                  <li key={f} className="text-sm font-medium leading-relaxed text-ink-2">{f}</li>
                 ))}
               </ul>
             </div>
