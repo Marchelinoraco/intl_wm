@@ -1,0 +1,131 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Pratinjau manado.tours</title>
+<!--
+  Pratinjau isi /api/intl/* dari production, untuk memeriksa hasil impor terjemahan.
+
+  HARUS dibuka lewat localhost, bukan klik ganda berkasnya. Origin `file://`
+  terkirim sebagai "null" dan ditolak CORS; localhost port berapa pun diizinkan
+  oleh pola di config/cors.php.
+
+      cd lib/manado-tours && python3 -m http.server 8899
+      buka http://localhost:8899/preview.html
+-->
+<style>
+  :root { --bg:#fbfaf8; --fg:#1c1b19; --dim:#6b6862; --line:#e5e1da; --accent:#0d7d6c; }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+  header { position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--line); padding:14px 20px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; z-index:5 }
+  h1 { font-size:15px; margin:0 12px 0 0; font-weight:600 }
+  button.loc { border:1px solid var(--line); background:#fff; padding:5px 12px; border-radius:99px; cursor:pointer; font:inherit; font-size:13px }
+  button.loc[aria-pressed="true"] { background:var(--accent); color:#fff; border-color:var(--accent) }
+  button.loc:disabled { opacity:.35; cursor:not-allowed }
+  #status { margin-left:auto; font-size:13px; color:var(--dim) }
+  main { max-width:900px; margin:0 auto; padding:24px 20px 80px }
+  .kartu { border:1px solid var(--line); background:#fff; border-radius:10px; padding:14px 16px; margin-bottom:10px; cursor:pointer }
+  .kartu:hover { border-color:var(--accent) }
+  .kartu h2 { font-size:16px; margin:0 0 4px }
+  .meta { font-size:13px; color:var(--dim) }
+  .kosong { border:1px dashed var(--line); border-radius:10px; padding:36px; text-align:center; color:var(--dim) }
+  dialog { border:none; border-radius:12px; padding:0; max-width:780px; width:92vw; max-height:88vh }
+  dialog::backdrop { background:rgba(0,0,0,.45) }
+  .isi { padding:26px 30px 40px; overflow:auto; max-height:88vh }
+  .tutup { position:sticky; top:0; float:right; border:none; background:#fff; font-size:22px; cursor:pointer; line-height:1 }
+  .hari { border-left:3px solid var(--accent); padding:2px 0 2px 16px; margin:22px 0 }
+  .hari h4 { margin:0 0 6px; font-size:14px; letter-spacing:.03em; text-transform:uppercase; color:var(--accent) }
+  .isi img { max-width:100%; height:auto; border-radius:8px }
+  .isi table { width:100%; border-collapse:collapse }
+  pre.err { background:#fff0ee; border:1px solid #f3c9c2; padding:12px; border-radius:8px; white-space:pre-wrap; font-size:13px }
+</style>
+
+<header>
+  <h1>Pratinjau manado.tours</h1>
+  <div id="tombol"></div>
+  <span id="status">memuat…</span>
+</header>
+<main id="daftar"></main>
+<dialog id="dlg"><div class="isi"><button class="tutup" onclick="dlg.close()">×</button><div id="detail"></div></div></dialog>
+
+<script>
+const API = 'https://api.welcomemanado.my.id/api/intl';
+const SEMUA = ['en','ko','zh','fr','de','it','es','nl'];
+const NAMA = {en:'English',ko:'한국어',zh:'中文',fr:'Français',de:'Deutsch',it:'Italiano',es:'Español',nl:'Nederlands'};
+const $ = id => document.getElementById(id);
+let aktif = 'en';
+
+const esc = s => String(s ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+async function ambil(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status} — ${url}`);
+  return r.json();
+}
+
+async function mulai() {
+  let terbit = [];
+  try {
+    terbit = (await ambil(`${API}/locales`)).data || [];
+  } catch (e) {
+    $('daftar').innerHTML = `<pre class="err">Tidak bisa menghubungi API.\n\n${esc(e.message)}\n\nKalau ini error CORS: halaman harus dibuka lewat http://localhost:PORT, bukan file://</pre>`;
+    $('status').textContent = 'gagal';
+    return;
+  }
+  $('tombol').innerHTML = SEMUA.map(l =>
+    `<button class="loc" data-l="${l}" ${terbit.includes(l) ? '' : 'disabled title="belum terbit menurut /api/intl/locales"'}>${NAMA[l]}</button>`
+  ).join(' ');
+  $('tombol').onclick = e => { const b = e.target.closest('button[data-l]'); if (b && !b.disabled) muat(b.dataset.l); };
+  muat(terbit.includes('en') ? 'en' : (terbit[0] || 'en'));
+}
+
+async function muat(loc) {
+  aktif = loc;
+  document.querySelectorAll('button[data-l]').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === loc));
+  $('status').textContent = 'memuat…';
+  $('daftar').innerHTML = '';
+  let j;
+  try { j = await ambil(`${API}/tours?locale=${loc}&per_page=100`); }
+  catch (e) { $('daftar').innerHTML = `<pre class="err">${esc(e.message)}</pre>`; $('status').textContent = 'gagal'; return; }
+
+  const t = j.data || [];
+  $('status').textContent = `${t.length} paket · ${loc}`;
+  if (!t.length) {
+    $('daftar').innerHTML = `<div class="kosong"><strong>Nol paket untuk “${NAMA[loc]}”.</strong><br><br>
+      Kalau ini terjadi tepat setelah impor SQL, kemungkinan besar bukan impornya yang gagal —
+      API men-cache hasil 1 jam dan impor lewat phpMyAdmin tidak menghapus cache itu.<br><br>
+      <code>php artisan tinker --execute='App\\Support\\Cache\\PublicCache::flush();'</code></div>`;
+    return;
+  }
+  $('daftar').innerHTML = t.map(x => `
+    <div class="kartu" data-slug="${esc(x.slug)}">
+      <h2>${esc(x.title) || '<em style="color:#b00">(judul kosong)</em>'}</h2>
+      <div class="meta">${esc(x.location || '')} ·
+        ${x.duration_days ? x.duration_days + ' hari' : (x.duration_hours ? x.duration_hours + ' jam' : '—')} ·
+        ${esc(x.category?.name || '')} · <code>${esc(x.slug)}</code></div>
+    </div>`).join('');
+  $('daftar').onclick = e => { const k = e.target.closest('.kartu'); if (k) buka(k.dataset.slug); };
+}
+
+async function buka(slug) {
+  $('detail').innerHTML = 'memuat…';
+  dlg.showModal();
+  let j;
+  try { j = await ambil(`${API}/tours/${slug}?locale=${aktif}`); }
+  catch (e) { $('detail').innerHTML = `<pre class="err">${esc(e.message)}</pre>`; return; }
+  const d = j.data || j;
+  const blok = (judul, html) => html ? `<h3>${judul}</h3>${html}` : '';
+  $('detail').innerHTML = `
+    <h2 style="margin-top:0">${esc(d.title)}</h2>
+    <p class="meta">${esc(d.location || '')} · ${esc(d.category?.name || '')} · <code>${esc(d.slug)}</code></p>
+    ${d.description || ''}
+    ${blok('Inclusions', d.inclusions)}
+    ${blok('Exclusions', d.exclusions)}
+    <h3>Itinerary (${(d.itineraries || []).length} hari)</h3>
+    ${(d.itineraries || []).map(h => `
+      <div class="hari">
+        <h4>Day ${h.day_number} — ${esc(h.title) || '<span style="color:#b00">(belum diterjemahkan)</span>'}</h4>
+        ${h.description || '<p style="color:#b00">(deskripsi belum diterjemahkan)</p>'}
+        ${h.meals_info ? `<p class="meta">Meals: ${esc(h.meals_info)}</p>` : ''}
+      </div>`).join('')}`;
+}
+mulai();
+</script>
