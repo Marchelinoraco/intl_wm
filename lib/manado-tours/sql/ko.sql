@@ -1,7 +1,7 @@
 -- manado.tours — terjemahan `ko`
 -- Dibuat build-sql.py dari source.json + translations/ko.json
--- 62 pernyataan. Aman dijalankan berulang (ON DUPLICATE KEY UPDATE).
--- Setelah impor, 18 dari 34 paket lolos gerbang terbit `ko`.
+-- 127 pernyataan. Aman dijalankan berulang (ON DUPLICATE KEY UPDATE).
+-- Setelah impor, 34 dari 34 paket lolos gerbang terbit `ko`.
 
 SET NAMES utf8mb4;
 SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';
@@ -222,6 +222,136 @@ INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `descri
 VALUES ('5019', 'ko', '일정', '<p style="text-align:justify;">참가자는 오전에 투어 가이드의 픽업으로 <strong>미나하사 고원</strong>으로 향하며, 해발 500미터에서 마나도 시내를 조망할 수 있는 <strong>티노르</strong> 지역을 지납니다. 토모혼에 도착하면 <strong>펠랑기 관광공원</strong>을 방문해 형형색색의 꽃들이 빚어내는 아름다움을 감상합니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">다음 목적지는 <strong>토모혼 익스트림 시장</strong>으로, <i><strong>파니키(박쥐), 숲쥐, 뱀 등 다양한 야생동물</strong></i> 고기를 가까이에서 보실 수 있습니다. 다른 장소에서는 <strong>쿠쭈르, 아팡 굴라 메라, 도돌</strong> 등 마나도 전통 과자를 <strong>즉석에서 만드는</strong> 과정도 지켜보실 수 있습니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이어서 인스타그램에 어울리는 포토 스폿이 있는 <strong>투우르 마세링</strong>의 <strong>아렌 야자 숲</strong>으로 향합니다. 사진 명소뿐 아니라, 아렌 나무 수액을 발효&middot;증류해 만드는 <i><strong>현지 전통주 </strong></i><strong>&lsquo;짭 티쿠스&rsquo;</strong>의 제조 과정도 함께 살펴보실 수 있습니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">중식은 <strong>톤다노 호수</strong> 인근 현지 레스토랑에서 제공됩니다. 식사 후에는 <strong>부킷 카시</strong>로 이동합니다. 활동 중인 유황 분화구와 언덕 정상으로 이어지는 계단이 있는 독특한 자연 명소로, 빼어난 조망과 함께 색다른 문화 체험을 선사합니다. 이 지역에는 천연 유황 온천도 있어 수영을 하거나 족욕으로 피로를 푸실 수 있습니다(선택 사항).&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">여정은 <strong>리노우 호수</strong>로 이어집니다. 물빛이 시시각각 변하는 것으로 유명한 유황 호수로, 아름답고 고요한 풍경 속에서 커피 또는 차가 제공됩니다. 이후 마나도 시내로 돌아옵니다. 석식은 선택 사항입니다. 식사 후 지정된 하차 장소로 이동하며 투어가 종료됩니다.</p>', NOW(), NOW())
 ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
 
+-- paket 30 hari 1 (itinerary 5156)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5156', 'ko', '마나도 도착 - 파라다이스 골프 리조트', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항에 도착하시면 저희 팀이 맞이하여 파라다이스 호텔 &amp; 골프 리조트로 곧장 모셔다 드립니다. 이동하는 길에는 북술라웨시 해안의 고요하고 상쾌한 정취가 이어집니다.</p><p style="text-align:justify;">리조트에 도착하시면 체크인 후, 남은 하루는 호텔 시설과 골프 코스의 전망을 즐기시거나 편안한 열대의 정취 속에서 휴식하며 보내실 수 있습니다. 첫날은 이튿날 아침 골프 일정을 시작하기 전 여유를 갖는 시간으로 마련되었습니다.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 30 hari 2 (itinerary 5157)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5157', 'ko', '파라다이스 골프 체험 (18홀)', '<p style="text-align:justify;">호텔에서 조식 후, 도전적인 페어웨이와 빼어난 자연 경관이 어우러진 파라다이스 골프 코스에서 라운딩을 즐기십시오.</p><p style="text-align:justify;">18홀 라운딩에는 그린피와 골프 카트, 캐디가 포함되어 경기에만 온전히 집중하실 수 있습니다. 라운딩 후에는 리조트에서 휴식을 취하시거나 호텔 주변에서 제공되는 선택 액티비티에 참여하실 수 있습니다.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 30 hari 3 (itinerary 5158)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5158', 'ko', '파라다이스 골프 체험 (18홀)', '<p style="text-align:justify;">호텔에서 조식 후 두 번째 골프 세션을 시작합니다. 오늘은 같은 코스를 다시 돌며 홀마다 다른 개성을 음미하실 기회로, 북술라웨시의 고요한 열대 환경과 맑은 공기가 함께합니다.</p><p style="text-align:justify;">라운딩 후에는 자유 시간을 즐기며 휴식을 취하거나 리조트 시설을 이용하시고, 리조트 내에서 제공되는 스노클링이나 유리바닥 보트 같은 선택 액티비티에 참여하실 수 있습니다.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 30 hari 4 (itinerary 5159)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5159', 'ko', '마나도 출발', '<p style="text-align:justify;">조식과 호텔 체크아웃을 마치신 뒤 출발 전까지 자유 시간을 가지십니다.</p><p style="text-align:justify;">정해진 시간에 저희 팀이 마나도 삼 라툴랑이 국제공항까지 모셔다 드리며, 다음 항공편에 탑승하십니다. 이번 여정을 마치며, 파라다이스 골프 리조트에서의 골프가 북술라웨시에서 보낸 시간의 좋은 추억으로 남기를 바랍니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 29 hari 1 (itinerary 5160)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5160', 'ko', '마나도 도착 - 파라다이스 골프 리조트', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항에 도착하시면 저희 팀이 맞이하여 북술라웨시 해안의 파라다이스 호텔 &amp; 골프 리조트로 모셔다 드립니다. 이동에는 약 60~90분이 소요되며, 가는 길에 아름다운 전원과 해안선이 이어집니다.</p><p style="text-align:justify;">리조트에 도착하시면 체크인 후, 남은 하루는 고요한 분위기 속에서 휴식을 취하거나 호텔 시설을 이용하시고, 바다를 마주한 골프 코스의 전망을 즐기며 보내실 수 있습니다. 첫날은 이튿날 아침 본격적인 일정을 시작하기 전 여유를 갖는 시간으로 마련되었습니다.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 29 hari 2 (itinerary 5161)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5161', 'ko', '파라다이스 골프 체험 (18홀)', '<p style="text-align:justify;">조식 후 북술라웨시에서 손꼽히는 골프 코스에서 라운딩을 즐기십시오. 도전적인 페어웨이와 상쾌한 바닷바람, 열대의 파노라마가 어우러져 라운딩 내내 즐거움을 선사합니다.</p><p style="text-align:justify;">18홀 라운딩에는 그린피와 골프 카트, 캐디가 포함되어 편안하게 플레이하실 수 있습니다. 라운딩 후에는 휴식을 취하거나 리조트 시설을 이용하시고, 고요한 열대의 정취 속에서 여유를 즐기실 수 있습니다.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 29 hari 3 (itinerary 5162)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5162', 'ko', '부나켄 섬 관광 체험', '<p style="text-align:justify;">조식 후 리조트에서 체크아웃하고 마나도 시내와 메가마스 부두로 이동합니다. 이곳에서 보트로 약 45분간 이동해 부나켄 섬으로 건너갑니다.</p><p style="text-align:justify;">부나켄에 도착하시면 새롭게 정비된 뉴 부나켄 구역을 둘러보십시오. 푸른 술라웨시 바다를 정면으로 마주하는 매력적인 장소가 여럿 있습니다. 아름다운 해변 경관과 고요한 열대의 분위기, 그리고 사진 촬영과 자연 감상에 더없이 좋은 장소가 곳곳에 있습니다.</p><p style="text-align:justify;">더 둘러보고 싶으신 분은 스노클링이나 다이빙을 선택해 세계적으로 이름난 부나켄 해양공원을 경험하실 수 있습니다. 중식은 갓 구운 생선과 마나도 명물 다부다부 삼발과 함께 제공됩니다.</p><p style="text-align:justify;">오후에는 마나도로 돌아와 시내 중심가의 선택하신 호텔로 이동해 체크인 후 휴식하십니다.</p><p style="text-align:justify;">마나도 시내 선택 호텔 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 29 hari 4 (itinerary 5163)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5163', 'ko', '마나도 출발', '<p style="text-align:justify;">호텔에서 조식 후 출발 전까지 자유 시간을 가지십니다. 정해진 시간에 저희 팀이 모시러 가 마나도 삼 라툴랑이 국제공항까지 안내해 드리며, 다음 항공편에 탑승하십니다.</p><p style="text-align:justify;">이번 여정을 마치며, 바닷가에서의 골프와 부나켄 섬의 아름다움이 북술라웨시 휴가의 좋은 추억으로 남기를 바랍니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 32 hari 1 (itinerary 5221)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5221', 'ko', '마나도 도착 – 방카 섬 이동', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항에 도착하시면 저희 팀이 맞이하여, 방카 섬으로 건너갈 부두를 향해 출발합니다. 육로와 해로를 합쳐 리조트까지 약 2시간이 소요되며, 바다와 매혹적인 열대 섬들이 내다보이는 아름다운 술라웨시 북부 해안을 따라 이동합니다.</p><p style="text-align:justify;"><strong>다이브 리조트</strong>에 도착하시면 체크인 후 자유 시간을 가지며 휴식을 취하거나 리조트를 거닐고, 고요한 해변의 정취를 즐기실 수 있습니다. 석식은 리조트에서 제공되며, 이튿날 아침 시작되는 수중 모험을 앞두고 충분히 쉬시기 바랍니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 32 hari 2 (itinerary 5222)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5222', 'ko', '방카 다이빙 체험', '<p style="text-align:justify;">조식 후 방카 군도 일대의 엄선된 다이브 사이트에서 다이빙을 즐기십시오. 형형색색의 연산호와 건강한 경산호, 그리고 놀라운 해양 생물 다양성이 어우러진 곳입니다.</p><p style="text-align:justify;">방카의 바다는 그만의 개성이 있습니다. 부나켄으로 이름난 월 다이빙과 렘베 해협의 머크 다이빙을 한자리에서 만날 수 있기 때문입니다. 다이빙 중에는 다양한 열대어와 마크로 해양 생물, 그리고 장관을 이루는 수중 지형을 만나실 수 있습니다.</p><p style="text-align:justify;">하루 다이빙을 마친 뒤에는 리조트로 돌아와 고요한 섬의 정취 속에서 자유 시간을 즐기십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 32 hari 3 (itinerary 5223)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5223', 'ko', '방카 다이빙 체험', '<p style="text-align:justify;">리조트에서 조식 후 방카의 수중 세계 탐험을 이어갑니다. 오늘은 형형색색의 산호초와 수중 피너클, 그리고 다양한 열대 해양 생물이 깃든 수중 절벽에 이르기까지 변화무쌍한 경관을 지닌 다른 다이브 사이트를 찾습니다.</p><p style="text-align:justify;">방카 군도에는 40곳이 넘는 다이브 사이트가 흩어져 있어, 초보자와 숙련된 다이버 모두에게 매번 새로운 경험을 선사합니다.</p><p style="text-align:justify;">오후에는 리조트로 돌아와 해변이나 리조트 시설에서 여유를 즐기십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 32 hari 4 (itinerary 5224)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5224', 'ko', '방카 다이빙 체험', '<p style="text-align:justify;">조식 후 다이빙 모험을 이어가며 방카 군도의 수중 절경을 더 깊이 둘러봅니다. 이 일대는 맑은 수질과 매우 잘 보존된 해양 생태계를 갖춰 북술라웨시 최고의 다이빙 목적지로 손꼽힙니다.</p><p style="text-align:justify;">풍부한 열대 해양 생물과 건강한 산호초, 그리고 방카를 인도네시아 다이버들의 숨은 보석으로 만든 수중 파노라마를 만나실 마지막 기회입니다.</p><p style="text-align:justify;">다이빙을 마친 뒤 리조트로 돌아와 여유로운 오후를 보내시고, 섬에서의 마지막 석식을 드십니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 32 hari 5 (itinerary 5225)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5225', 'ko', '방카 섬 - 출발', '<p style="text-align:justify;">조식과 체크아웃을 마치신 뒤, 보트로 본섬까지 이동하며 마나도로 돌아가는 여정이 시작됩니다. 이후 마나도 삼 라툴랑이 국제공항 또는 시내의 선택하신 호텔로 이동합니다.</p><p style="text-align:justify;">이번 여정을 마치며, 방카 군도의 수중 절경을 탐험한 시간이 잊지 못할 추억으로 남고 북술라웨시 최고의 다이빙 목적지에서 얻은 새로운 이야기가 되기를 바랍니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 33 hari 1 (itinerary 5226)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5226', 'ko', '마나도 도착 - 렘베 섬 이동', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항에 도착하시면 저희 팀이 맞이하여, 렘베 섬으로 건너갈 부두로 곧장 출발합니다. 리조트까지는 약 1시간 40분이 소요되며, 북술라웨시의 아름다운 해안선을 따라 육로 이동과 보트 이동이 이어집니다.</p><p style="text-align:justify;">리조트에 도착하시면 체크인 후 자유 시간을 가지며 휴식을 취하거나 리조트를 거닐고, 세계 최고의 다이빙 목적지로 손꼽히는 렘베 섬의 고요함을 만끽하실 수 있습니다. 석식은 리조트에서 제공되며, 이튿날 아침 시작되는 수중 모험을 앞두고 충분히 쉬시기 바랍니다.</p><p style="text-align:justify;">&nbsp;</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 33 hari 2 (itinerary 5227)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5227', 'ko', '렘베 해협 다이빙 체험', '<p style="text-align:justify;">조식 후 세계 최고의 머크 다이빙 명소로 이름난 렘베 해협의 엄선된 다이브 사이트에서 다이빙 모험이 시작됩니다. 검은 화산 모래가 만들어 낸 독특한 서식지에는 희귀하고 이국적인 해양 생물이 놀랍도록 다양하게 살아갑니다.</p><p style="text-align:justify;">다이빙 중에는 프로그피시와 갯민숭달팽이를 비롯해 다른 곳에서는 만나기 어려운 종까지, 수중 사진가들이 가장 아끼는 생물들을 만나실 수 있습니다. 오전 두 차례 다이빙을 마친 뒤 리조트로 돌아와 여유로운 오후와 석식을 즐기십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 33 hari 3 (itinerary 5228)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5228', 'ko', '렘베 마크로 다이빙 어드벤처', '<p style="text-align:justify;">리조트에서 조식 후 렘베 해협의 수중 세계 탐험을 이어갑니다. 오늘은 다른 다이브 사이트를 찾아, 렘베를 세계 다이버와 전문 사진가들 사이에서 유명하게 만든 마크로 생물을 만날 기회가 한층 커집니다.</p><p style="text-align:justify;">비교적 잔잔한 조류와 마크로 촬영에 적합한 시야 속에서 편안한 다이빙을 즐기십시오. 다이빙을 마친 뒤에는 리조트로 돌아와 고요한 섬의 정취 속에서 자유 시간을 보내십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 33 hari 4 (itinerary 5229)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5229', 'ko', '렘베 수중 탐험', '<p style="text-align:justify;">조식 후 다이빙 마지막 날을 맞아 렘베 해협의 손꼽히는 사이트를 더 둘러봅니다. 빼어난 마크로 생물뿐 아니라, 일부 구역에서는 난파선과 와이드앵글 촬영에 좋은 지점도 만나실 수 있습니다.</p><p style="text-align:justify;">세계적으로 이름난 렘베의 해양 생물 다양성을 즐기실 마지막 기회입니다. 다이빙을 마친 뒤 리조트로 돌아와 해변에서 여유로운 오후를 보내시고, 섬에서의 마지막 석식을 드십니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 33 hari 5 (itinerary 5230)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5230', 'ko', '렘베 섬 - 출발', '<p style="text-align:justify;">조식과 체크아웃을 마치신 뒤, 보트로 본섬까지 이동하며 마나도로 돌아가는 여정이 시작됩니다. 이후 마나도 삼 라툴랑이 국제공항 또는 마나도 시내의 선택하신 호텔로 이동합니다.</p><p style="text-align:justify;">이번 여정을 마치며, 렘베 해협 아래 펼쳐진 마크로 세계를 탐험한 시간이 특별한 추억으로 남고 인도네시아에서 보낸 최고의 다이빙 경험 중 하나가 되기를 바랍니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 35 hari 1 (itinerary 5236)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5236', 'ko', '마나도 도착 - 방카 섬 이동', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항에 도착하시면 저희 팀이 맞이하여, 방카 섬으로 건너갈 부두를 향해 출발합니다. 육로와 해로를 합쳐 약 2시간이 소요되며, 바다와 열대 섬들이 시원하게 펼쳐지는 술라웨시 북부 해안을 따라 이동합니다.</p><p style="text-align:justify;">다이브 리조트에 도착하시면 체크인 후 자유 시간을 가지며 해변에서 휴식을 취하거나 바다 전망을 감상하시고, 번잡함에서 멀리 떨어진 열대 섬의 고요함을 만끽하실 수 있습니다. 석식은 리조트에서 제공됩니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 35 hari 2 (itinerary 5237)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5237', 'ko', '방카 다이빙 체험', '<p style="text-align:justify;">조식 후 방카 군도 일대에서 손꼽히는 다이브 사이트를 찾아 수중 모험이 시작됩니다. 이 일대는 부나켄식 월 다이빙과 렘베식 머크 다이빙을 한자리에서 만날 수 있는 보기 드문 곳으로, 한 목적지에서 확연히 다른 다이빙을 경험하실 수 있습니다.</p><p style="text-align:justify;">형형색색의 연산호와 경산호, 장관을 이루는 수중 지형, 그리고 방카의 바다에 깃든 수많은 열대 생물을 만나 보세요. 오전 두 차례 다이빙을 마친 뒤 리조트로 돌아와 중식과 여유로운 오후를 즐기십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 35 hari 3 (itinerary 5238)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5238', 'ko', '방카 다이빙 체험', '<p style="text-align:justify;">리조트에서 조식 후 방카 군도의 수중 세계 탐험을 이어갑니다. 오늘은 매우 잘 보존된 산호초와 인상적인 수중 피너클, 그리고 방카를 북술라웨시 최고의 다이빙 목적지로 만든 풍부한 해양 생물을 만날 수 있는 다른 다이브 사이트를 찾습니다.</p><p style="text-align:justify;">다이빙을 마친 뒤에는 리조트로 돌아와 자유 시간을 즐기며 해변에서 휴식을 취하고, 방카 섬 너머로 지는 아름다운 일몰을 감상하십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 35 hari 4 (itinerary 5239)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5239', 'ko', '방카 섬 - 출발', '<p style="text-align:justify;">조식과 체크아웃을 마치신 뒤, 보트로 본섬까지 이동하며 마나도로 돌아가는 여정이 시작됩니다. 이후 육로로 마나도 삼 라툴랑이 국제공항 또는 마나도 시내의 선택하신 호텔로 이동합니다.</p><p style="text-align:justify;">이번 일정을 마치며, 방카 군도의 수중 절경을 탐험하고 열대 섬의 고요함을 누린 시간이 북술라웨시에서 보낸 잊지 못할 추억으로 남기를 바랍니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 36 hari 1 (itinerary 5252)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5252', 'ko', '마나도 도착 - 렘베 섬 이동', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항에 도착하시면 저희 팀이 맞이하여, 렘베 섬으로 향하는 부두로 곧장 이동합니다. 리조트까지는 약 1시간 40분이 소요되며, 북술라웨시의 아름다운 해안을 따라 육로 이동과 보트 이동이 이어집니다.</p><p style="text-align:justify;">다이브 리조트에 도착하시면 체크인 후 자유 시간을 가지며 이 열대 섬의 고요함 속에서 휴식을 취하십시오. 오후에는 쉬시거나, 전 세계 다이버에게 익숙한 이름인 렘베 해협의 풍경을 감상하며 보내실 수 있습니다. 석식은 리조트에서 제공됩니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 36 hari 2 (itinerary 5253)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5253', 'ko', '렘베 해협 다이빙 체험', '<p style="text-align:justify;">조식 후 렘베 해협에서 손꼽히는 사이트에서 오전 두 차례 다이빙으로 수중 모험이 시작됩니다. 이곳은 머크 다이빙과 마크로 사진 촬영의 세계적인 명소로 알려져 있으며, 검은 화산 모래가 수많은 희귀 해양 생물의 독특한 서식지를 이룹니다.</p><p style="text-align:justify;">다이빙 중에는 프로그피시와 갯민숭달팽이, 해마 같은 보기 드문 생물은 물론, 전 세계 수중 사진가들이 찾는 이국적인 피사체도 만나실 수 있습니다. 다이빙을 마친 뒤 리조트로 돌아와 중식과 자유 시간을 즐기십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 36 hari 3 (itinerary 5254)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5254', 'ko', '렘베 마크로 다이빙 어드벤처', '<p style="text-align:justify;">리조트에서 조식 후 렘베 해협의 수중 세계 탐험을 이어갑니다. 오늘은 빼어난 마크로 해양 생물을 만날 수 있고 비교적 잔잔한 조류에서 편안하게 다이빙할 수 있는 사이트를 다시 찾습니다.</p><p style="text-align:justify;">다이빙마다 새로운 생물을 발견할 기회가 있으며, 바로 이 점이 렘베를 수중 사진가와, 다른 곳에서는 좀처럼 보기 어려운 해양 생물의 이면을 만나고 싶어 하는 다이버들의 사랑을 받는 곳으로 만들었습니다. 다이빙을 마친 뒤 리조트로 돌아와 해변에서 여유로운 오후를 보내십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 36 hari 4 (itinerary 5255)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('5255', 'ko', '렘베 섬 - 출발', '<p style="text-align:justify;">조식과 체크아웃을 마치신 뒤, 보트로 본섬까지 이동하며 마나도로 돌아가는 여정이 시작됩니다. 이후 육로로 마나도 삼 라툴랑이 국제공항 또는 마나도 시내의 선택하신 호텔로 이동합니다.</p><p style="text-align:justify;">이번 여정을 마치며, 렘베 해협의 마크로 다이빙이 북술라웨시에서 보낸 가장 인상 깊은 수중 모험 중 하나로 남기를 바랍니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
 -- paket 39 hari 1 (itinerary 6223)
 INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
 VALUES ('6223', 'ko', '일정', '<p style="text-align:justify;">조식 후 저희 팀이 마나도 시내 호텔로 모시러 갑니다. 이후 북술라웨시 특유의 해안과 시골 풍경을 감상하며 세레이 리쿠팡 부두로 이동합니다. 부두에 도착하면 전용 보트를 타고 리쿠팡 일대에서 손꼽히는 스노클링 명소인 강가 섬 인근 해역으로 향합니다. 이곳에서는 원시 그대로의 산호초와 형형색색의 열대어, 시야가 탁월한 맑은 바다를 만나실 수 있습니다.</p><p style="text-align:justify;">스노클링을 마친 뒤에는 고운 백사장과 청록빛 바다로 유명한 리하가 섬으로 이동합니다. 수영을 즐기거나 해변에서 휴식을 취하고, 섬을 거닐거나 빼어난 열대 풍경을 배경으로 한 여러 포토 스폿에서 순간을 담아 보세요. 중식은 고요하고 자연스러운 분위기의 리하가 섬에서 제공됩니다.</p><p style="text-align:justify;">오후에는 보트로 세레이 리쿠팡 부두로 돌아온 뒤 육로로 마나도 시내로 향합니다. 호텔로 돌아가기 전, 마나도 기념품 센터에 들러 현지 특산 먹거리와 수공예품, 기념품을 둘러보실 수 있습니다. 이후 리쿠팡에서 가장 아름다운 두 열대 섬의 잊지 못할 경험을 안고 호텔로 모셔다 드립니다.</p><p style="text-align:justify;"><strong>투어 종료</strong></p>', NOW(), NOW())
@@ -262,6 +392,166 @@ INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `descri
 VALUES ('6894', 'ko', '공항 이동 – 출발', '<p style="text-align:justify;">호텔에서 조식 후 체크아웃합니다. 시간이 허락하면 시내에 들러 기념품 쇼핑을 하십니다. 이후 가이드가 공항까지 안내해 드립니다. 투어가 종료됩니다. 감사합니다.&nbsp;</p>', NOW(), NOW())
 ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
 
+-- paket 13 hari 1 (itinerary 6895)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6895', 'ko', '도착 – 마나도 시티 투어 – 마카테테 언덕 – 선배 마나도', '<p style="text-align:justify;">마나도 삼 라툴랑이 공항에 도착하시면 투어 가이드가 맞이하여 마나도 시티 투어를 시작합니다. 시내 중심가와 <strong>차이나타운</strong>, 그리고 18세기에 세워진 마나도에서 가장 오래된 사원 <strong>반 힌 키옹 사원</strong>(약 300년 역사)을 둘러봅니다.&nbsp;이어 네덜란드 시대에 세워진 북술라웨시 최초의 개신교 교회 <strong>센트룸 교회</strong>와, 1942년 일본군에 의한 마나도 파괴를 기리는 <strong>제2차 세계대전 기념비</strong>를 지납니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 <strong>치트라랜드</strong> 링로드 지역으로 이동해 <strong>예수 축복상</strong>을 감상합니다. 마나도 시내를 향해 앞으로 기울어진 독특한 자세로 세워진 예수상입니다.&nbsp;그다음 <strong>마카테테 언덕</strong>을 방문합니다. 해발 200미터에 자리해 마나도 시내와 <strong>마나도 투아 섬</strong>, <strong>부나켄 섬</strong>, <strong>실라덴 섬</strong>, 드넓은 바다, 그리고 북술라웨시 최고봉 <strong>클라밧산</strong>까지 이어지는 파노라마를 감상하실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">석식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 마나도의 인기 해변가 명소 <strong>선배(SunBae)</strong>를 방문해, 여러 노점의 다양한 간식과 음료와 함께 저녁 분위기를 즐기실 수 있습니다(선택 사항). 이후 호텔로 이동해 체크인 후 휴식하십니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 13 hari 2 (itinerary 6896)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6896', 'ko', '부나켄 관광 투어 – 현지 커피 생산소 – 쇼핑 투어', '<p style="text-align:justify;">호텔에서 조식 후 가이드가 참가자를 픽업해 <strong>부나켄 섬</strong>으로 향합니다. 호텔에서 메가마스 부두로 이동한 뒤 보트로 약 30분간 건너갑니다. 현재 부나켄 섬에는 새로 조성된 <strong>부나켄 관광 부두(뉴 부나켄)</strong>가 있어, 사진과 영상을 남기기에 한층 매력적인 장소가 되었습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 형형색색의 산호초와 다양한 열대 해양 생물로 이름난 <strong>부나켄 해양공원</strong>의 아름다움을 둘러봅니다. <i>선택</i><strong> 스노클링 또는 다이빙</strong>을 즐기시거나, 여유롭게 거닐며 부나켄의 해변 분위기를 만끽하실 수 있습니다.&nbsp; 중식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 스노클링&middot;다이빙을 위한 자유 시간이 추가로 주어집니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">메가마스 부두로 돌아온 뒤 <strong>현지 커피 생산소</strong>를 방문해 북술라웨시 커피 본연의 맛을 보실 수 있습니다. 이어 마나도 특산품이 다양하게 갖춰진 <strong>기념품 쇼핑 구역</strong>으로 이동합니다(또는 호텔로 먼저 돌아간 뒤 석식 전에 다시 픽업해 드립니다). 석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 13 hari 3 (itinerary 6897)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6897', 'ko', '공항 이동 – 출발', '<p style="text-align:justify;">조식 후 호텔 체크아웃을 마치면 가이드가 픽업해 공항까지 직접 모셔다 드리며, 귀국 항공편에 탑승하십니다. 투어가 종료됩니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 12 hari 1 (itinerary 6898)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6898', 'ko', '도착 – 마나도 시티 투어 – 마카테테 언덕 – 선배 마나도', '<p style="text-align:justify;">마나도 삼 라툴랑이 공항에 도착하시면 투어 가이드가 맞이하여 마나도 시티 투어를 시작합니다. 시내 중심가와 <strong>차이나타운</strong>, 그리고 18세기에 세워진 마나도에서 가장 오래된 사원 <strong>반 힌 키옹 사원</strong>(약 300년 역사)을 둘러봅니다.&nbsp;이어 네덜란드 시대에 세워진 북술라웨시 최초의 개신교 교회 <strong>센트룸 교회</strong>와, 1942년 일본군에 의한 마나도 파괴를 기리는 <strong>제2차 세계대전 기념비</strong>를 지납니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 <strong>치트라랜드</strong> 링로드 지역으로 이동해 <strong>예수 축복상</strong>을 감상합니다. 마나도 시내를 향해 앞으로 기울어진 독특한 자세로 세워진 예수상입니다.&nbsp;그다음 <strong>마카테테 언덕</strong>을 방문합니다. 해발 200미터에 자리해 마나도 시내와 <strong>마나도 투아 섬</strong>, <strong>부나켄 섬</strong>, <strong>실라덴 섬</strong>, 드넓은 바다, 그리고 북술라웨시 최고봉 <strong>클라밧산</strong>까지 이어지는 파노라마를 감상하실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">석식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 마나도의 인기 해변가 명소 <strong>선배(SunBae)</strong>를 방문해, 여러 노점의 다양한 간식과 음료와 함께 저녁 분위기를 즐기실 수 있습니다(선택 사항). 이후 호텔로 이동해 체크인 후 휴식하십니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 12 hari 2 (itinerary 6899)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6899', 'ko', '미나하사 고원 투어', '<p style="text-align:justify;">호텔에서 조식 후 투어 가이드가 픽업해 <strong>미나하사 고원</strong> 종일 투어를 시작합니다. 해발 500미터에서 마나도 시내를 조망할 수 있는 티노르 지역을 지납니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">토모혼에 도착하면 <strong>펠랑기 관광공원</strong>을 방문해 형형색색의 꽃들이 빚어내는 아름다움을 감상합니다. 이어 <strong>토모혼 익스트림 시장</strong>으로 향해 박쥐, 숲쥐, 뱀 등 다양한 야생동물 고기를 보실 수 있습니다. 다른 장소에서는 <i>쿠에 쿠쭈르</i>, <i>아팡 굴라 메라</i>, <i>도돌</i> 등 마나도 전통 간식을 <strong>즉석에서 만드는</strong> 과정도 지켜보실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">여정은 인스타그램에 어울리는 포토 스폿이 여러 곳 있는 아렌 야자 숲 <strong>투우르 마세링</strong>으로 이어집니다. 이곳에서는 아렌 나무 수액을 발효&middot;증류해 만드는 현지 전통주 <strong>&ldquo;짭 티쿠스&rdquo;</strong>의 전통 제조 과정도 살펴보실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">중식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 <strong>부킷 카시</strong>로 향합니다. 활동 중인 유황 분화구와 언덕 정상으로 이어지는 계단이 있는 독특한 자연 명소로, 빼어난 조망과 색다른 문화 체험을 선사합니다. 천연 유황 온천도 있어 수영을 하거나 족욕으로 피로를 푸실 수 있습니다(선택 사항).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이어 물빛이 시시각각 변하는 것으로 유명하고 경치가 아름다운 유황 호수 <strong>리노우 호수</strong>를 방문하며, 커피 또는 차가 제공됩니다. 이후 마나도 시내로 돌아옵니다. 석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 12 hari 3 (itinerary 6900)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6900', 'ko', '공항 이동 – 출발', '<p style="text-align:justify;">조식 후 호텔 체크아웃을 마치면 가이드가 픽업해 공항까지 직접 모셔다 드리며, 귀국 항공편에 탑승하십니다. 투어가 종료됩니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 8 hari 1 (itinerary 6901)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6901', 'ko', '도착 – 마나도 시티 투어 – 마카테테 언덕 – 선배 마나도', '<p style="text-align:justify;">마나도 삼 라툴랑이 공항에 도착하시면 투어 가이드가 맞이하여 마나도 시티 투어를 시작합니다. 시내 중심가와 <strong>차이나타운</strong>, 그리고 18세기에 세워진 마나도에서 가장 오래된 사원 <strong>반 힌 키옹 사원</strong>(약 300년 역사)을 둘러봅니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이어 네덜란드 시대에 세워진 북술라웨시 최초의 개신교 교회 <strong>센트룸 교회</strong>와, 1942년 일본군에 의한 마나도 파괴를 기리는 <strong>제2차 세계대전 기념비</strong>를 지납니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 <strong>치트라랜드</strong> 링로드 지역으로 이동해 <strong>예수 축복상</strong>을 감상합니다. 마나도 시내를 향해 앞으로 기울어진 독특한 자세로 세워진 예수상입니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">그다음 <strong>마카테테 언덕</strong>을 방문합니다. 해발 200미터에 자리해 마나도 시내와 <strong>마나도 투아 섬</strong>, <strong>부나켄 섬</strong>, <strong>실라덴 섬</strong>, 드넓은 바다, 그리고 북술라웨시 최고봉 <strong>클라밧산</strong>까지 이어지는 파노라마를 감상하실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">석식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 마나도의 인기 해변가 명소 <strong>선배(SunBae)</strong>를 방문해, 여러 노점의 다양한 간식과 음료와 함께 저녁 분위기를 즐기실 수 있습니다(선택 사항). 이후 호텔로 이동해 체크인 후 휴식하십니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 8 hari 2 (itinerary 6902)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6902', 'ko', '부나켄 관광 투어 – 현지 커피 생산소 – 쇼핑 투어', '<p style="text-align:justify;">호텔에서 조식 후 가이드가 참가자를 픽업해 <strong>부나켄 섬</strong>으로 향합니다. 호텔에서 메가마스 부두로 이동한 뒤 보트로 약 30분간 건너갑니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">현재 부나켄 섬에는 새로 조성된 <strong>부나켄 관광 부두(뉴 부나켄)</strong>가 있어, 사진과 영상을 남기기에 한층 매력적인 장소가 되었습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 형형색색의 산호초와 다양한 열대 해양 생물로 이름난 <strong>부나켄 해양공원</strong>의 아름다움을 둘러봅니다. <i>선택</i><strong> 스노클링 또는 다이빙</strong>을 즐기시거나, 여유롭게 거닐며 부나켄의 해변 분위기를 만끽하실 수 있습니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">중식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 스노클링&middot;다이빙을 위한 자유 시간이 추가로 주어집니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">메가마스 부두로 돌아온 뒤 <strong>현지 커피 생산소</strong>를 방문해 북술라웨시 커피 본연의 맛을 보실 수 있습니다. 이어 마나도 특산품이 다양하게 갖춰진 <strong>기념품 쇼핑 구역</strong>으로 이동합니다(또는 호텔로 먼저 돌아간 뒤 석식 전에 다시 픽업해 드립니다).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 8 hari 3 (itinerary 6903)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6903', 'ko', '미나하사 고원 투어', '<p style="text-align:justify;">호텔에서 조식 후 투어 가이드가 픽업해 <strong>미나하사 고원</strong> 종일 투어를 시작합니다. 해발 500미터에서 마나도 시내를 조망할 수 있는 티노르 지역을 지납니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">토모혼에 도착하면 <strong>펠랑기 관광공원</strong>을 방문해 형형색색의 꽃들이 빚어내는 아름다움을 감상합니다. 이어 <strong>토모혼 익스트림 시장</strong>으로 향해 박쥐, 숲쥐, 뱀 등 다양한 야생동물 고기를 보실 수 있습니다. 다른 장소에서는 <i>쿠에 쿠쭈르</i>, <i>아팡 굴라 메라</i>, <i>도돌</i> 등 마나도 전통 간식을 <strong>즉석에서 만드는</strong> 과정도 지켜보실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">여정은 인스타그램에 어울리는 포토 스폿이 여러 곳 있는 아렌 야자 숲 <strong>투우르 마세링</strong>으로 이어집니다. 이곳에서는 아렌 나무 수액을 발효&middot;증류해 만드는 현지 전통주 <strong>&ldquo;짭 티쿠스&rdquo;</strong>의 전통 제조 과정도 살펴보실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">중식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 <strong>부킷 카시</strong>로 향합니다. 활동 중인 유황 분화구와 언덕 정상으로 이어지는 계단이 있는 독특한 자연 명소로, 빼어난 조망과 색다른 문화 체험을 선사합니다. 천연 유황 온천도 있어 수영을 하거나 족욕으로 피로를 푸실 수 있습니다(선택 사항).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이어 물빛이 시시각각 변하는 것으로 유명하고 경치가 아름다운 유황 호수 <strong>리노우 호수</strong>를 방문하며, 커피 또는 차가 제공됩니다. 이후 마나도 시내로 돌아옵니다. 석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 8 hari 4 (itinerary 6904)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6904', 'ko', '공항 이동 – 출발', '<p style="text-align:justify;">조식 후 호텔 체크아웃을 마치면 가이드가 픽업해 공항까지 직접 모셔다 드리며, 귀국 항공편에 탑승하십니다. 투어가 종료됩니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 9 hari 1 (itinerary 6905)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6905', 'ko', '도착 – 마나도 시티 투어 – 마카테테 언덕 – 선배 마나도', '<p style="text-align:justify;">&nbsp;</p><p>석식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 마나도의 인기 해변가 명소 <strong>선배(SunBae)</strong>를 방문해, 여러 노점의 다양한 간식과 음료와 함께 저녁 분위기를 즐기실 수 있습니다(선택 사항). 이후 호텔로 이동해 체크인 후 휴식하십니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 9 hari 2 (itinerary 6906)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6906', 'ko', '부나켄 관광 투어 – 현지 커피 생산소 – 쇼핑 투어', '<p style="text-align:justify;">호텔에서 조식 후 가이드가 참가자를 픽업해 <strong>부나켄 섬</strong>으로 향합니다. 호텔에서 메가마스 부두로 이동한 뒤 보트로 약 30분간 건너갑니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">현재 부나켄 섬에는 새로 조성된 <strong>부나켄 관광 부두(뉴 부나켄)</strong>가 있어, 사진과 영상을 남기기에 한층 매력적인 장소가 되었습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 형형색색의 산호초와 다양한 열대 해양 생물로 이름난 <strong>부나켄 해양공원</strong>의 아름다움을 둘러봅니다. <i>선택</i><strong> 스노클링 또는 다이빙</strong>을 즐기시거나, 여유롭게 거닐며 부나켄의 해변 분위기를 만끽하실 수 있습니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">중식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 스노클링&middot;다이빙을 위한 자유 시간이 추가로 주어집니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">메가마스 부두로 돌아온 뒤 <strong>현지 커피 생산소</strong>를 방문해 북술라웨시 커피 본연의 맛을 보실 수 있습니다. 이어 마나도 특산품이 다양하게 갖춰진 <strong>기념품 쇼핑 구역</strong>으로 이동합니다(또는 호텔로 먼저 돌아간 뒤 석식 전에 다시 픽업해 드립니다).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 9 hari 3 (itinerary 6907)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6907', 'ko', '리하가 섬 – 부도 관광 마을', '<p style="text-align:justify;">호텔에서 조식 후 투어 가이드가 픽업해 마나도 시내 중심에서 약 1시간 20분 거리의 리쿠팡 지역으로 이동합니다. 첫 기착지는 <strong>세레이 항구</strong>이며, 도착 후 보트로 약 15분간 이동해 <strong>리하가 섬</strong>에 닿습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;"><strong>리하가 섬</strong>에서는 눈부신 백사장과 분처럼 고운 모래를 즐기고, 섬을 둘러보며 아름다운 포토 스폿에서 사진을 남기실 수 있습니다. 스노클링, 카누, 다이빙 등을 선택하실 수도 있습니다. 중식은 섬에서 제공됩니다. 식사 후에는 해변에서 여유를 즐길 자유 시간이 추가로 주어집니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">마나도로 돌아오는 길에는 <strong>부도 관광 마을</strong>에 들러 튀긴 바나나와 신선한 코코넛을 곁들이며 아름다운 일몰을 감상하실 수 있습니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 9 hari 4 (itinerary 6908)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6908', 'ko', '공항 이동 – 출발', '<p style="text-align:justify;">조식 후 호텔 체크아웃을 마치면 가이드가 픽업해 공항까지 직접 모셔다 드리며, 귀국 항공편에 탑승하십니다. 투어가 종료됩니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 11 hari 1 (itinerary 6909)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6909', 'ko', '도착 – 마나도 시티 투어 – 마카테테 언덕 – 선배 마나도', '<p style="text-align:justify;">마나도 삼 라툴랑이 공항에 도착하시면 투어 가이드가 맞이하여 마나도 시티 투어를 시작합니다. 시내 중심가와 <strong>차이나타운</strong>, 그리고 18세기에 세워진 마나도에서 가장 오래된 사원 <strong>반 힌 키옹 사원</strong>(약 300년 역사)을 둘러봅니다.&nbsp;이어 네덜란드 시대에 세워진 북술라웨시 최초의 개신교 교회 <strong>센트룸 교회</strong>와, 1942년 일본군에 의한 마나도 파괴를 기리는 <strong>제2차 세계대전 기념비</strong>를 지납니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 <strong>치트라랜드</strong> 링로드 지역으로 이동해 <strong>예수 축복상</strong>을 감상합니다. 마나도 시내를 향해 앞으로 기울어진 독특한 자세로 세워진 예수상입니다.&nbsp;그다음 <strong>마카테테 언덕</strong>을 방문합니다. 해발 200미터에 자리해 마나도 시내와 <strong>마나도 투아 섬</strong>, <strong>부나켄 섬</strong>, <strong>실라덴 섬</strong>, 드넓은 바다, 그리고 북술라웨시 최고봉 <strong>클라밧산</strong>까지 이어지는 파노라마를 감상하실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">석식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 마나도의 인기 해변가 명소 <strong>선배(SunBae)</strong>를 방문해, 여러 노점의 다양한 간식과 음료와 함께 저녁 분위기를 즐기실 수 있습니다(선택 사항). 이후 호텔로 이동해 체크인 후 휴식하십니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 11 hari 2 (itinerary 6910)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6910', 'ko', '미나하사 고원 투어', '<p style="text-align:justify;">호텔에서 조식 후 투어 가이드가 픽업해 <strong>미나하사 고원</strong> 종일 투어를 시작합니다. 해발 500미터에서 마나도 시내를 조망할 수 있는 티노르 지역을 지납니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">토모혼에 도착하면 <strong>펠랑기 관광공원</strong>을 방문해 형형색색의 꽃들이 빚어내는 아름다움을 감상합니다. 이어 <strong>토모혼 익스트림 시장</strong>으로 향해 박쥐, 숲쥐, 뱀 등 다양한 야생동물 고기를 보실 수 있습니다. 다른 장소에서는 <i>쿠에 쿠쭈르</i>, <i>아팡 굴라 메라</i>, <i>도돌</i> 등 마나도 전통 간식을 <strong>즉석에서 만드는</strong> 과정도 지켜보실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">여정은 인스타그램에 어울리는 포토 스폿이 여러 곳 있는 아렌 야자 숲 <strong>투우르 마세링</strong>으로 이어집니다. 이곳에서는 아렌 나무 수액을 발효&middot;증류해 만드는 현지 전통주 <strong>&ldquo;짭 티쿠스&rdquo;</strong>의 전통 제조 과정도 살펴보실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">중식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 <strong>부킷 카시</strong>로 향합니다. 활동 중인 유황 분화구와 언덕 정상으로 이어지는 계단이 있는 독특한 자연 명소로, 빼어난 조망과 색다른 문화 체험을 선사합니다. 천연 유황 온천도 있어 수영을 하거나 족욕으로 피로를 푸실 수 있습니다(선택 사항).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이어 물빛이 시시각각 변하는 것으로 유명하고 경치가 아름다운 유황 호수 <strong>리노우 호수</strong>를 방문하며, 커피 또는 차가 제공됩니다. 이후 마나도 시내로 돌아옵니다. 석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 11 hari 3 (itinerary 6911)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6911', 'ko', '리하가 섬 – 부도 관광 마을', '<p style="text-align:justify;">호텔에서 조식 후 투어 가이드가 픽업해 마나도 시내 중심에서 약 1시간 20분 거리의 리쿠팡 지역으로 이동합니다. 첫 기착지는 <strong>세레이 항구</strong>이며, 도착 후 보트로 약 15분간 이동해 <strong>리하가 섬</strong>에 닿습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;"><strong>리하가 섬</strong>에서는 눈부신 백사장과 분처럼 고운 모래를 즐기고, 섬을 둘러보며 아름다운 포토 스폿에서 사진을 남기실 수 있습니다. 스노클링, 카누, 다이빙 등을 선택하실 수도 있습니다. 중식은 섬에서 제공됩니다. 식사 후에는 해변에서 여유를 즐길 자유 시간이 추가로 주어집니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">마나도로 돌아오는 길에는 <strong>부도 관광 마을</strong>에 들러 튀긴 바나나와 신선한 코코넛을 곁들이며 아름다운 일몰을 감상하실 수 있습니다. 석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 11 hari 4 (itinerary 6912)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6912', 'ko', '공항 이동 – 출발', '<p style="text-align:justify;">조식 후 호텔 체크아웃을 마치면 가이드가 픽업해 공항까지 직접 모셔다 드리며, 귀국 항공편에 탑승하십니다. 투어가 종료됩니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 10 hari 1 (itinerary 6913)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6913', 'ko', '도착 – 마나도 시티 투어 – 마카테테 언덕 – 선배 마나도', '<p style="text-align:justify;">마나도 삼 라툴랑이 공항에 도착하시면 투어 가이드가 맞이하여 마나도 시티 투어를 시작합니다. 시내 중심가와 <strong>차이나타운</strong>, 그리고 18세기에 세워진 마나도에서 가장 오래된 사원 <strong>반 힌 키옹 사원</strong>(약 300년 역사)을 둘러봅니다.&nbsp;이어 네덜란드 시대에 세워진 북술라웨시 최초의 개신교 교회 <strong>센트룸 교회</strong>와, 1942년 일본군에 의한 마나도 파괴를 기리는 <strong>제2차 세계대전 기념비</strong>를 지납니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 <strong>치트라랜드</strong> 링로드 지역으로 이동해 <strong>예수 축복상</strong>을 감상합니다. 마나도 시내를 향해 앞으로 기울어진 독특한 자세로 세워진 예수상입니다.&nbsp;그다음 <strong>마카테테 언덕</strong>을 방문합니다. 해발 200미터에 자리해 마나도 시내와 <strong>마나도 투아 섬</strong>, <strong>부나켄 섬</strong>, <strong>실라덴 섬</strong>, 드넓은 바다, 그리고 북술라웨시 최고봉 <strong>클라밧산</strong>까지 이어지는 파노라마를 감상하실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">석식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 마나도의 인기 해변가 명소 <strong>선배(SunBae)</strong>를 방문해, 여러 노점의 다양한 간식과 음료와 함께 저녁 분위기를 즐기실 수 있습니다(선택 사항). 이후 호텔로 이동해 체크인 후 휴식하십니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 10 hari 2 (itinerary 6914)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6914', 'ko', '부나켄 관광 투어 – 현지 커피 생산소 – 쇼핑 투어', '<p style="text-align:justify;">호텔에서 조식 후 가이드가 참가자를 픽업해 <strong>부나켄 섬</strong>으로 향합니다. 호텔에서 메가마스 부두로 이동한 뒤 보트로 약 30분간 건너갑니다. 현재 부나켄 섬에는 새로 조성된 <strong>부나켄 관광 부두(뉴 부나켄)</strong>가 있어, 사진과 영상을 남기기에 한층 매력적인 장소가 되었습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 형형색색의 산호초와 다양한 열대 해양 생물로 이름난 <strong>부나켄 해양공원</strong>의 아름다움을 둘러봅니다. <i>선택</i><strong> 스노클링 또는 다이빙</strong>을 즐기시거나, 여유롭게 거닐며 부나켄의 해변 분위기를 만끽하실 수 있습니다.&nbsp; 중식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 스노클링&middot;다이빙을 위한 자유 시간이 추가로 주어집니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">메가마스 부두로 돌아온 뒤 <strong>현지 커피 생산소</strong>를 방문해 북술라웨시 커피 본연의 맛을 보실 수 있습니다. 이어 마나도 특산품이 다양하게 갖춰진 <strong>기념품 쇼핑 구역</strong>으로 이동합니다(또는 호텔로 먼저 돌아간 뒤 석식 전에 다시 픽업해 드립니다). 석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 10 hari 3 (itinerary 6915)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6915', 'ko', '미나하사 고원 투어', '<p style="text-align:justify;">호텔에서 조식 후 투어 가이드가 픽업해 <strong>미나하사 고원</strong> 종일 투어를 시작합니다. 해발 500미터에서 마나도 시내를 조망할 수 있는 티노르 지역을 지납니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">토모혼에 도착하면 <strong>펠랑기 관광공원</strong>을 방문해 형형색색의 꽃들이 빚어내는 아름다움을 감상합니다. 이어 <strong>토모혼 익스트림 시장</strong>으로 향해 박쥐, 숲쥐, 뱀 등 다양한 야생동물 고기를 보실 수 있습니다. 다른 장소에서는 <i>쿠에 쿠쭈르</i>, <i>아팡 굴라 메라</i>, <i>도돌</i> 등 마나도 전통 간식을 <strong>즉석에서 만드는</strong> 과정도 지켜보실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">여정은 인스타그램에 어울리는 포토 스폿이 여러 곳 있는 아렌 야자 숲 <strong>투우르 마세링</strong>으로 이어집니다. 이곳에서는 아렌 나무 수액을 발효&middot;증류해 만드는 현지 전통주 <strong>&ldquo;짭 티쿠스&rdquo;</strong>의 전통 제조 과정도 살펴보실 수 있습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">중식은 현지 레스토랑에서 선택 사항으로 제공됩니다. 식사 후에는 <strong>부킷 카시</strong>로 향합니다. 활동 중인 유황 분화구와 언덕 정상으로 이어지는 계단이 있는 독특한 자연 명소로, 빼어난 조망과 색다른 문화 체험을 선사합니다. 천연 유황 온천도 있어 수영을 하거나 족욕으로 피로를 푸실 수 있습니다(선택 사항).</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이어 물빛이 시시각각 변하는 것으로 유명하고 경치가 아름다운 유황 호수 <strong>리노우 호수</strong>를 방문하며, 커피 또는 차가 제공됩니다. 이후 마나도 시내로 돌아옵니다. 석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 10 hari 4 (itinerary 6916)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6916', 'ko', '리하가 섬 – 부도 관광 마을', '<p style="text-align:justify;">호텔에서 조식 후 투어 가이드가 픽업해 마나도 시내 중심에서 약 1시간 20분 거리의 리쿠팡 지역으로 이동합니다. 첫 기착지는 <strong>세레이 항구</strong>이며, 도착 후 보트로 약 15분간 이동해 <strong>리하가 섬</strong>에 닿습니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;"><strong>리하가 섬</strong>에서는 눈부신 백사장과 분처럼 고운 모래를 즐기고, 섬을 둘러보며 아름다운 포토 스폿에서 사진을 남기실 수 있습니다. 스노클링, 카누, 다이빙 등을 선택하실 수도 있습니다. 중식은 섬에서 제공됩니다. 식사 후에는 해변에서 여유를 즐길 자유 시간이 추가로 주어집니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">마나도로 돌아오는 길에는 <strong>부도 관광 마을</strong>에 들러 튀긴 바나나와 신선한 코코넛을 곁들이며 아름다운 일몰을 감상하실 수 있습니다. 석식은 현지 레스토랑에서 선택 사항으로 제공되며, 이후 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 10 hari 5 (itinerary 6917)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6917', 'ko', '공항 이동 – 출발', '<p style="text-align:justify;">조식 후 호텔 체크아웃을 마치면 가이드가 픽업해 공항까지 직접 모셔다 드리며, 귀국 항공편에 탑승하십니다. 투어가 종료됩니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 28 hari 1 (itinerary 6922)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6922', 'ko', '마나도 도착 - 파라다이스 골프 리조트', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항에 도착하시면 저희 팀이 맞이하여, 북술라웨시 해안을 따라 고요한 환경과 상쾌한 경관 속에 자리한 파라다이스 호텔 &amp; 골프 리조트로 곧장 모셔다 드립니다.</p><p style="text-align:justify;">리조트까지는 약 60~90분 소요됩니다. 도착 후 체크인하시고, 남은 하루는 휴식을 취하시거나 리조트 시설을 즐기며 보내실 수 있습니다. 여유로운 분위기와 맑은 공기, 그리고 아름다운 열대 풍경 위로 펼쳐진 골프 코스의 전망을 만끽하십시오.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 28 hari 2 (itinerary 6923)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6923', 'ko', '파라다이스 골프 체험 (18홀)', '<p style="text-align:justify;">호텔에서 조식 후, 북술라웨시에서 손꼽히는 골프 코스에서 라운딩을 즐기실 시간입니다.</p><p style="text-align:justify;">골프 카트와 캐디가 포함된 18홀 라운딩을 즐기십시오. 도전적인 페어웨이와 빼어난 자연 파노라마가 어우러져, 숙련된 골퍼는 물론 초보자에게도 즐거운 라운딩을 선사합니다.</p><p style="text-align:justify;">라운딩을 마친 뒤에는 리조트에서 휴식을 취하거나 주변 경관을 즐기시고, 가족 및 일행과 함께 시간을 보내실 수 있습니다.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 28 hari 3 (itinerary 6924)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6924', 'ko', '리하가 섬 백사장 휴양', '<p style="text-align:justify;">조식 후 세레이 항구로 이동해 전용 보트를 타고 리하가 섬으로 건너갑니다. 유난히 고운 백사장과 맑은 청록빛 바다로 이름난, 북술라웨시에서 가장 아름다운 열대 섬 중 하나입니다.</p><p style="text-align:justify;">해변에서 휴식을 취하고 수영과 사진 촬영을 즐기시거나, 때 묻지 않은 섬의 아름다움을 그저 만끽하셔도 좋습니다. 더 활동적인 시간을 원하신다면 스노클링, 카누, 유리바닥 보트를 선택해 섬 주변의 수중 경관을 둘러보실 수 있습니다.</p><p style="text-align:justify;">중식은 섬에서 제공되며, 북술라웨시 특선 요리인 갓 구운 생선에 마나도 명물 다부다부 삼발을 곁들입니다. 리하가 섬을 충분히 즐기신 뒤 세레이 항구로 돌아와 호텔로 이동합니다.</p><p style="text-align:justify;">오후는 자유 시간으로, 휴식을 취하며 리조트의 정취를 즐기실 수 있습니다.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 28 hari 4 (itinerary 6925)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6925', 'ko', '마나도 출발', '<p style="text-align:justify;">조식과 호텔 체크아웃을 마치신 뒤 출발 전까지 자유 시간을 가지십니다.</p><p style="text-align:justify;">정해진 시간에 저희 팀이 마나도 삼 라툴랑이 국제공항까지 모셔다 드리며, 다음 항공편에 탑승하십니다.</p><p style="text-align:justify;">이번 여정을 마치며, 골프와 리하가 섬의 아름다움이 북술라웨시 휴가의 좋은 추억으로 남기를 바랍니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 34 hari 1 (itinerary 6936)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6936', 'ko', '마나도 도착', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항에 도착하시면 저희 팀이 맞이하여 선택하신 호텔 또는 리조트로 모셔다 드리고 체크인을 도와드립니다. 숙소까지는 위치에 따라 약 30~60분이 소요됩니다.</p><p style="text-align:justify;">남은 하루는 휴식을 취하시거나 호텔 시설을 즐기시고, 북술라웨시 해안의 정취 속에서 여유를 보내며 이튿날 아침 시작되는 수중 모험을 준비하십시오.</p><p style="text-align:justify;">선택하신 호텔 또는 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 34 hari 2 (itinerary 6937)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6937', 'ko', '부나켄 다이빙 체험', '<p style="text-align:justify;">조식 후 인도네시아 최고의 다이빙 목적지로 널리 알려진 부나켄 해양공원으로 이동합니다. 다이빙 보트를 타고 엄선된 다이브 사이트를 찾아 장엄한 산호 절벽과 형형색색의 산호 정원, 그리고 생명이 넘치는 해양 생태계를 둘러봅니다.</p><p style="text-align:justify;">부나켄은 빼어난 월 다이빙과 탁월한 시야로 이름나 있으며, 푸른바다거북과 매부리바다거북, 다양한 열대 산호초 어류, 그리고 바라쿠다와 산호초 상어 같은 포식자를 만날 기회도 있습니다. 다이빙을 마친 뒤 호텔로 돌아와 중식과 자유 시간을 즐기십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 34 hari 3 (itinerary 6938)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6938', 'ko', '부나켄 다이빙 체험', '<p style="text-align:justify;">조식 후 다시 부나켄의 수중 절경을 둘러봅니다. 오늘은 산호 정원과 산호 절벽, 풍부한 해양 생물이 어우러진, 저마다 개성이 다른 다이브 사이트를 찾습니다.</p><p style="text-align:justify;">형형색색의 산호초 어류부터 산호 사이에 몸을 숨긴 작은 생물까지, 다양한 열대 해양 생물을 관찰하실 기회입니다. 다이빙 일정을 마친 뒤 호텔로 돌아와 휴식을 취하며 여유로운 오후를 보내십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 34 hari 4 (itinerary 6939)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6939', 'ko', '투난 폭포 &amp; 탕코코 야생동물 투어', '<p style="text-align:justify;">조식 후 열대림 깊숙이 숨어 있는 투난 폭포를 찾아 탈라완 지역으로 이동합니다. 약 86미터 높이에서 쏟아지는 이 폭포는 시원한 자연 경관을 선사하는 북술라웨시의 숨은 명소 중 하나입니다.</p><p style="text-align:justify;">여정은 북술라웨시에서 가장 잘 알려진 야생동물 보호구역인 탕코코 자연보호구역으로 이어집니다. 숙련된 현지 레인저와 함께 열대우림을 가볍게 트레킹하며, 야키(술라웨시 검은짧은꼬리원숭이), 안경원숭이, 코뿔새, 쿠스쿠스 등 자연 서식지에서 자유롭게 살아가는 고유종을 찾아 나섭니다.</p><p style="text-align:justify;">특별한 야생동물 체험을 마친 뒤 마나도로 돌아와 호텔로 이동합니다.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 34 hari 5 (itinerary 6940)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('6940', 'ko', '마나도 출발', '<p style="text-align:justify;">조식과 체크아웃을 마치시면 항공 일정에 맞춰 마나도 삼 라툴랑이 국제공항까지 모셔다 드립니다.</p><p style="text-align:justify;">이번 여정을 마치며, 부나켄의 수중 절경을 탐험하고 탕코코에서 술라웨시 고유 야생동물을 만난 시간이 북술라웨시에서 보낸 잊지 못할 추억으로 남기를 바랍니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
 -- paket 16 hari 1 (itinerary 6973)
 INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
 VALUES ('6973', 'ko', '일정', '<p style="text-align:justify;">전 참가자는 <strong>탈라완 마을</strong>에 위치한 <strong>투난 폭포</strong>로 이동합니다. 투난 폭포의 수원은 산에서 흘러내리는 강물로, 약 <strong>86미터 높이</strong>의 가파른 절벽을 따라 힘차게 쏟아집니다. 원시림과 자연 그대로의 주변 환경이 이 절경의 아름다움을 한층 더해 줍니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 현지 레스토랑에서 중식을 드십니다. 여정은 <strong>탕코코 자연보호구역</strong>으로 이어집니다. 인도네시아에서 손꼽히는 보호구역으로 향하는 길에 작은 마을들을 지나며 아름다운 풍경을 편안히 감상하시기 바랍니다.</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">보호구역은 <strong>비퉁에서 북서쪽으로 약 20킬로미터</strong> 떨어진 언덕과 계곡 사이에 자리합니다. 도착하시면 <strong>현지 공원 레인저</strong>가 맞이하여 자연 서식지에서 자유롭게 살아가는 여러 야생동물을 찾아 숲을 안내해 드립니다. 카메라를 준비해 두세요. <strong>술라웨시 검은짧은꼬리원숭이(야키)</strong>, <strong>안경원숭이(세계에서 가장 작은 영장류)</strong>, <strong>코뿔새</strong>, <strong>쿠스쿠스(눈이 큰 유대류)</strong>를 만나실 수 있습니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">야생동물 탐방을 마친 뒤 마나도로 돌아옵니다. 투어 종료.</p>', NOW(), NOW())
@@ -275,6 +565,41 @@ ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`descr
 -- paket 18 hari 1 (itinerary 7359)
 INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
 VALUES ('7359', 'ko', '일정', '<p style="text-align:justify;">참가자는 오전에 픽업되어 마나도 시내에서 약 1시간 15분 거리에 있는 <strong>마하우산</strong>으로 향합니다. 마하우산은 마나도를 찾는 여행자와 등산객에게 인기 있는 명소입니다. 등산로는 약 150개의 시멘트 계단으로 이루어져 있어 비교적 수월하게 오를 수 있습니다. 오르는 길에는 손잡이용 금속 난간이 마련되어 있습니다. 정상에 오르면 마나도 투아 섬과 부나켄, 마나도 시내가 한눈에 들어오는 절경을 감상하실 수 있습니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이어서 토모혼의 신흥 명소인 <strong>테테타나 언덕</strong> <strong>정상</strong>으로 이동합니다. 북술라웨시 주 네 개 지역을 조망할 수 있을 뿐 아니라, 형형색색의 꽃밭에 둘러싸인 언덕의 아름다움도 함께 즐기실 수 있습니다.&nbsp;</p><p style="text-align:justify;">&nbsp;</p><p style="text-align:justify;">이후 현지 레스토랑으로 이동해 중식을 드십니다. 식사 후 마나도 시내로 돌아와 지정된 픽업 장소에서 하차합니다. 투어 종료.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 37 hari 1 (itinerary 7474)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('7474', 'ko', '마나도 도착', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항에 도착하시면 저희 팀이 맞이하여 선택하신 호텔 또는 리조트로 모셔다 드리고 체크인을 도와드립니다.</p><p style="text-align:justify;">남은 하루는 여정의 피로를 풀며 휴식을 취하시거나 리조트 시설을 즐기시고, 북술라웨시의 열대 정취 속에서 여유를 보내실 수 있습니다. 부나켄 섬에 머무시는 분은 보트로 리조트까지 이동하신 뒤, 섬과 주변 바다의 아름다움을 즐길 자유 시간을 가지십니다.</p><p style="text-align:justify;">선택하신 호텔 또는 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 37 hari 2 (itinerary 7475)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('7475', 'ko', '부나켄 다이빙 체험', '<p style="text-align:justify;">조식 후 부나켄 해양공원에서 가장 뛰어난 다이브 사이트를 찾아 다이빙 모험이 시작됩니다. 이 일대는 장엄한 수직 산호 절벽과 형형색색의 산호 정원, 그리고 놀라운 해양 생물 다양성으로 이름나 있습니다.</p><p style="text-align:justify;">다이빙 중에는 산호 절벽에 기대어 쉬는 푸른바다거북과 매부리바다거북, 다양한 열대어, 그리고 곁을 스쳐 지나는 바라쿠다와 산호초 상어 같은 포식자를 만나실 수 있습니다. 다이빙 일정과 중식을 마친 뒤에는 리조트로 돌아와 해변에서 휴식을 취하거나 리조트 시설을 즐기십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 37 hari 3 (itinerary 7476)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('7476', 'ko', '부나켄 수중 낙원 더 깊이 만나기', '<p style="text-align:justify;">조식 후 부나켄의 수중 세계 탐험을 이어갑니다. 오늘은 결이 다른 다이브 사이트를 찾습니다. 드넓은 산호 정원과 아름다운 산호초 사면부터, 부나켄 해양공원을 대표하는 깊은 절벽까지 이어집니다.</p><p style="text-align:justify;">부나켄에는 큰 해양 생물뿐 아니라 산호 사이에 몸을 숨긴 갯민숭달팽이, 라이언피시, 해마, 새우, 쏨뱅이 등 흥미로운 작은 생물도 많이 살아갑니다. 다이빙을 마친 뒤에는 리조트로 돌아와 고요한 섬의 정취 속에서 자유 시간을 즐기십시오.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 37 hari 4 (itinerary 7477)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('7477', 'ko', '마나도 출발', '<p style="text-align:justify;">조식과 체크아웃을 마치시면 호텔 또는 리조트에서 모시러 가, 항공 일정에 맞춰 마나도 삼 라툴랑이 국제공항까지 안내해 드립니다. 부나켄 섬에 머무신 분은 먼저 보트로 마나도 본섬까지 이동하신 뒤 공항으로 향합니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 31 hari 1 (itinerary 7478)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('7478', 'ko', '마나도 도착 - 파라다이스 골프 리조트', '<p style="text-align:justify;">마나도 삼 라툴랑이 국제공항 또는 사전에 정한 픽업 장소에서 저희 팀이 맞이하여 북술라웨시 해안의 파라다이스 호텔 &amp; 골프 리조트로 모셔다 드립니다. 이동에는 약 60~90분이 소요되며, 푸른 자연과 고요한 전원 풍경이 이어집니다.</p><p style="text-align:justify;">리조트에 도착하시면 체크인 후 자유 시간을 가지며 휴식을 취하시거나 리조트 곳곳을 둘러보실 수 있습니다. 여유로운 분위기와 골프 코스의 아름다운 전망, 그리고 상쾌한 바닷바람이 어우러져 일상에서 벗어나기에 더없이 좋은 곳입니다.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 31 hari 2 (itinerary 7479)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('7479', 'ko', '파라다이스 골프 체험 (18홀)', '<p style="text-align:justify;">호텔에서 조식 후 파라다이스 골프 코스에서 라운딩을 즐기실 시간입니다. 도전적인 페어웨이와 빼어난 열대 파노라마가 어우러져, 초보자와 숙련된 골퍼 모두에게 즐거운 라운딩을 선사합니다.</p><p style="text-align:justify;">18홀 라운딩에는 그린피와 골프 카트, 캐디가 포함되어 편안하게 플레이하실 수 있습니다. 라운딩 후에는 리조트에서 휴식을 취하거나 호텔 시설을 이용하시고, 리조트 내에서 제공되는 스노클링이나 유리바닥 보트 같은 선택 액티비티에 참여하실 수 있습니다.</p><p style="text-align:justify;">늦은 오후에는 리조트의 고요함 속에서 북술라웨시 해안으로 지는 일몰을 감상하십시오.</p><p style="text-align:justify;">파라다이스 호텔 &amp; 골프 리조트 숙박.</p>', NOW(), NOW())
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
+
+-- paket 31 hari 3 (itinerary 7480)
+INSERT INTO `itinerary_translations` (`itinerary_id`, `locale`, `title`, `description`, `created_at`, `updated_at`)
+VALUES ('7480', 'ko', '마나도 출발', '<p style="text-align:justify;">호텔에서 조식 후 체크아웃 전까지 자유 시간을 즐기십니다. 출발 전 리조트의 정취를 느끼거나 주변에서 사진을 남기실 시간도 있습니다.</p><p style="text-align:justify;">정해진 시간에 저희 팀이 마나도 삼 라툴랑이 국제공항, 또는 마나도 시내의 목적지까지 모셔다 드려 다음 여정을 이어가실 수 있도록 안내해 드립니다.</p><p style="text-align:justify;">이번 일정을 마치며, 골프와 북술라웨시의 열대 정취가 즐겁고 오래 기억에 남는 경험이 되기를 바랍니다.</p><p style="text-align:justify;"><strong>일정 종료</strong></p>', NOW(), NOW())
 ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `updated_at` = NOW();
 
 -- paket 23 hari 1 (itinerary 7481)

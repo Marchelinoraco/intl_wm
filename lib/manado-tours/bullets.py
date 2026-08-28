@@ -85,3 +85,29 @@ if __name__ == '__main__':
             susun(l)
     else:
         print(__doc__)
+
+
+def sebar(locale):
+    """Menyalin terjemahan ke hari lain yang teks Inggrisnya PERSIS sama.
+
+    Lima paket memakai hari "TRANSFER OUT – DEPARTURE" yang identik kata per
+    kata. Menerjemahkannya lima kali bukan cuma boros — itu cara paling mudah
+    membuat hari yang sama berbunyi berbeda di dua paket yang dijual bersebelahan.
+    """
+    import json
+    en = json.load(open('translations/en.json'))
+    tr = json.load(open(f'translations/{locale}.json'))
+    kunci = {}
+    for i, v in en['itineraries'].items():
+        kunci.setdefault((v['title'], v['description']), []).append(i)
+    n = 0
+    for ids in kunci.values():
+        sumber = next((i for i in ids if i in tr['itineraries']), None)
+        if not sumber:
+            continue
+        for i in ids:
+            if i not in tr['itineraries']:
+                tr['itineraries'][i] = dict(tr['itineraries'][sumber])
+                n += 1
+    json.dump(tr, open(f'translations/{locale}.json', 'w'), ensure_ascii=False, indent=1)
+    print(f'{locale}: {n} hari disebar dari duplikat persis -> {len(tr["itineraries"])}/93')
