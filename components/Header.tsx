@@ -2,18 +2,24 @@ import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
+import { getAvailability, publishedLocales } from "@/lib/availability";
 
-export default function Header({ locale }: { locale: Locale }) {
+export default async function Header({ locale }: { locale: Locale }) {
   const t = dict(locale);
+  const availability = await getAvailability();
+  const published = await publishedLocales();
+  const a = availability[locale];
 
+  // Tours & Contact selalu ada di setiap bahasa terbit. Sisanya menyusul
+  // ketika jenis kontennya diterjemahkan — muncul sendiri, tanpa kode baru.
   const nav = [
-    { href: `/${locale}/tours/`, label: t.allTours },
-    { href: `/${locale}/hotels/`, label: t.navHotels },
-    { href: `/${locale}/gallery/`, label: t.navGallery },
-    { href: `/${locale}/blog/`, label: t.navBlog },
-    { href: `/${locale}/about/`, label: t.navAbout },
-    { href: `/${locale}/contact/`, label: t.navContact },
-  ];
+    { href: `/${locale}/tours/`, label: t.allTours, show: true },
+    { href: `/${locale}/hotels/`, label: t.navHotels, show: a.hotels },
+    { href: `/${locale}/gallery/`, label: t.navGallery, show: a.gallery },
+    { href: `/${locale}/blog/`, label: t.navBlog, show: a.blog },
+    { href: `/${locale}/about/`, label: t.navAbout, show: a.about },
+    { href: `/${locale}/contact/`, label: t.navContact, show: true },
+  ].filter((i) => i.show);
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur-md">
@@ -36,7 +42,7 @@ export default function Header({ locale }: { locale: Locale }) {
               </Link>
             ))}
           </nav>
-          <LanguageSwitcher current={locale} />
+          <LanguageSwitcher current={locale} availableIn={published} />
         </div>
       </div>
     </header>
