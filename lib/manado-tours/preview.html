@@ -50,10 +50,27 @@
 const API = 'https://api.welcomemanado.my.id/api/intl';
 const SEMUA = ['en','ko','zh','fr','de','it','es','nl'];
 const NAMA = {en:'English',ko:'한국어',zh:'中文',fr:'Français',de:'Deutsch',it:'Italiano',es:'Español',nl:'Nederlands'};
+// Chrome antarmuka alat ini sendiri (bukan data terjemahan) — diikutkan per bahasa
+// supaya label label tidak tampak sebagai sisa terjemahan yang terlewat.
+const LABEL = {
+  en:{inc:'Inclusions',exc:'Exclusions',itin:n=>`Itinerary (${n} day${n===1?'':'s'})`,day:'Day',days:'days',hours:'hours',meals:'Meals',empty:'(empty title)',notTr:'(not translated)',notTrDesc:'(description not translated)'},
+  ko:{inc:'포함 사항',exc:'불포함 사항',itin:n=>`일정 (${n}일)`,day:'일',days:'일',hours:'시간',meals:'식사',empty:'(제목 없음)',notTr:'(번역되지 않음)',notTrDesc:'(설명이 번역되지 않음)'},
+  zh:{inc:'包含项目',exc:'不包含项目',itin:n=>`行程（${n}天）`,day:'第',days:'天',hours:'小时',meals:'餐食',empty:'（标题为空）',notTr:'（尚未翻译）',notTrDesc:'（描述尚未翻译）'},
+  fr:{inc:'Inclusions',exc:'Exclusions',itin:n=>`Itinéraire (${n} jour${n===1?'':'s'})`,day:'Jour',days:'jours',hours:'heures',meals:'Repas',empty:'(titre vide)',notTr:'(non traduit)',notTrDesc:'(description non traduite)'},
+  de:{inc:'Enthalten',exc:'Nicht enthalten',itin:n=>`Reiseverlauf (${n} Tag${n===1?'':'e'})`,day:'Tag',days:'Tage',hours:'Stunden',meals:'Mahlzeiten',empty:'(kein Titel)',notTr:'(nicht übersetzt)',notTrDesc:'(Beschreibung nicht übersetzt)'},
+  it:{inc:'Incluso',exc:'Escluso',itin:n=>`Itinerario (${n} giorno${n===1?'':'i'})`,day:'Giorno',days:'giorni',hours:'ore',meals:'Pasti',empty:'(titolo vuoto)',notTr:'(non tradotto)',notTrDesc:'(descrizione non tradotta)'},
+  es:{inc:'Incluye',exc:'No Incluye',itin:n=>`Itinerario (${n} día${n===1?'':'s'})`,day:'Día',days:'días',hours:'horas',meals:'Comidas',empty:'(título vacío)',notTr:'(no traducido)',notTrDesc:'(descripción no traducida)'},
+  nl:{inc:'Inclusief',exc:'Exclusief',itin:n=>`Reisroute (${n} dag${n===1?'':'en'})`,day:'Dag',days:'dagen',hours:'uur',meals:'Maaltijden',empty:'(lege titel)',notTr:'(niet vertaald)',notTrDesc:'(beschrijving niet vertaald)'},
+};
 const $ = id => document.getElementById(id);
 let aktif = 'en';
 
 const esc = s => String(s ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+// Judul/lokasi/kategori datang dari database sebagai HTML tepercaya (mis. judul
+// paket sengaja berisi entitas "&amp;" agar tampil sebagai "&"). esc() hanya
+// dipakai untuk teks yang BUKAN berasal dari field terjemahan itu sendiri —
+// memakainya di judul akan meng-escape dua kali dan menampilkan "&amp;" mentah.
+const rawOr = (s, fallback) => (s && String(s).trim()) ? s : fallback;
 
 async function ambil(url) {
   const r = await fetch(url);
@@ -95,11 +112,12 @@ async function muat(loc) {
       <code>php artisan tinker --execute='App\\Support\\Cache\\PublicCache::flush();'</code></div>`;
     return;
   }
+  const L = LABEL[loc] || LABEL.en;
   $('daftar').innerHTML = t.map(x => `
     <div class="kartu" data-slug="${esc(x.slug)}">
-      <h2>${esc(x.title) || '<em style="color:#b00">(judul kosong)</em>'}</h2>
+      <h2>${rawOr(x.title, `<em style="color:#b00">${L.empty}</em>`)}</h2>
       <div class="meta">${esc(x.location || '')} ·
-        ${x.duration_days ? x.duration_days + ' hari' : (x.duration_hours ? x.duration_hours + ' jam' : '—')} ·
+        ${x.duration_days ? x.duration_days + ' ' + L.days : (x.duration_hours ? x.duration_hours + ' ' + L.hours : '—')} ·
         ${esc(x.category?.name || '')} · <code>${esc(x.slug)}</code></div>
     </div>`).join('');
   $('daftar').onclick = e => { const k = e.target.closest('.kartu'); if (k) buka(k.dataset.slug); };
@@ -112,19 +130,20 @@ async function buka(slug) {
   try { j = await ambil(`${API}/tours/${slug}?locale=${aktif}`); }
   catch (e) { $('detail').innerHTML = `<pre class="err">${esc(e.message)}</pre>`; return; }
   const d = j.data || j;
+  const L = LABEL[aktif] || LABEL.en;
   const blok = (judul, html) => html ? `<h3>${judul}</h3>${html}` : '';
   $('detail').innerHTML = `
-    <h2 style="margin-top:0">${esc(d.title)}</h2>
+    <h2 style="margin-top:0">${rawOr(d.title, `<em style="color:#b00">${L.empty}</em>`)}</h2>
     <p class="meta">${esc(d.location || '')} · ${esc(d.category?.name || '')} · <code>${esc(d.slug)}</code></p>
     ${d.description || ''}
-    ${blok('Inclusions', d.inclusions)}
-    ${blok('Exclusions', d.exclusions)}
-    <h3>Itinerary (${(d.itineraries || []).length} hari)</h3>
+    ${blok(L.inc, d.inclusions)}
+    ${blok(L.exc, d.exclusions)}
+    <h3>${L.itin((d.itineraries || []).length)}</h3>
     ${(d.itineraries || []).map(h => `
       <div class="hari">
-        <h4>Day ${h.day_number} — ${esc(h.title) || '<span style="color:#b00">(belum diterjemahkan)</span>'}</h4>
-        ${h.description || '<p style="color:#b00">(deskripsi belum diterjemahkan)</p>'}
-        ${h.meals_info ? `<p class="meta">Meals: ${esc(h.meals_info)}</p>` : ''}
+        <h4>${L.day} ${h.day_number} — ${rawOr(h.title, `<span style="color:#b00">${L.notTr}</span>`)}</h4>
+        ${h.description || `<p style="color:#b00">${L.notTrDesc}</p>`}
+        ${h.meals_info ? `<p class="meta">${L.meals}: ${esc(h.meals_info)}</p>` : ''}
       </div>`).join('')}`;
 }
 mulai();
