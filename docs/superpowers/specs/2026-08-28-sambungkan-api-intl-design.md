@@ -40,6 +40,16 @@ dicatat di sini supaya alasannya tidak hilang:
    membacanya. Menyambungkan form kontak ke endpoint ini sekarang berarti
    pesan turis asing masuk ke tempat yang tidak dipantau siapa pun.
 
+4. **`lib/dictionary.ts` kosong untuk 5 dari 8 bahasa.** Ini teks antarmuka
+   statis (label tombol, judul bagian — bukan konten database):
+   `fr`/`de`/`it`/`es`/`nl` ditulis `{} as Dict`, sekadar memaksa lolos
+   compile TypeScript. Begitu Availability membuat kelima bahasa itu ikut
+   dibangun (Tours penuh di semua 8), setiap halaman akan menampilkan
+   teks `undefined` di tombol dan judul bagian. Ini gap terpisah dari
+   temuan #2 (yang soal konten database) — chrome UI ada di repo
+   `intl_wm` sendiri, jadi ini pekerjaan frontend yang wajib masuk cakupan,
+   bukan sesuatu yang menunggu terjemahan data lain.
+
 ## Keputusan terkunci (disetujui saat brainstorming, jangan ditawar ulang tanpa alasan baru)
 
 - **Ketersediaan dihitung per (jenis konten × bahasa), bukan satu status
@@ -163,6 +173,16 @@ proses build (bukan disk) — dipakai oleh:
   locale yang tersedia — pola yang sudah ada di kerangka untuk tour
   (`getTours(locale)` per locale), diperluas ke hotel/blog, dan sekarang
   digerbangi lagi oleh `Availability` di level bahasa.
+
+## Lengkapi `lib/dictionary.ts`
+
+Sebelum apa pun lain disambungkan: isi `fr`/`de`/`it`/`es`/`nl` di
+`DICTIONARY` dengan terjemahan sungguhan untuk ke-46 string yang sudah
+ada (label nav, tombol CTA, judul bagian, dll — daftar lengkap ada di
+tipe `Dict` yang sudah didefinisikan). Ini teks pendek, statis, hidup di
+repo `intl_wm` sendiri — tidak bergantung pekerjaan terjemahan database
+manapun. Setelah diisi, hapus cast `as Dict` yang memaksa lolos compile;
+compiler sendiri yang menjamin tidak ada field terlewat.
 
 ## Perbaikan render — field HTML
 
