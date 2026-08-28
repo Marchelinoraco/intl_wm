@@ -29,10 +29,16 @@ npm run build
 ```
 
 Menghasilkan folder `out/` berisi HTML statis murni — setara `dist/` pada
-`client_wm`, dilayani nginx tanpa Node.js di belakangnya.
+`client_wm`, dilayani nginx tanpa Node.js di belakangnya. `out/` memuat kedelapan
+bahasa (`en` `ko` `zh` `fr` `de` `it` `es` `nl`): beranda + tours + contact untuk
+semua, plus hotels/gallery/blog/about hanya untuk bahasa yang kontennya sudah ada
+(`en` `ko` `zh`).
 
 Konfigurasi nginx perlu `try_files $uri $uri/ $uri.html /404.html` karena keluarannya
 berbentuk `tours/index.html`, bukan satu `index.html` seperti SPA.
+
+Prosedur rilis lengkap (build → `rsync out/` → nginx → verifikasi) ada di
+[`deploy/README.md`](deploy/README.md).
 
 ## Verifikasi kontrak API
 
