@@ -15,9 +15,9 @@ export default function TourCard({ tour, locale }: { tour: TourList; locale: Loc
   return (
     <Link
       href={`/${locale}/tours/${tour.slug}/`}
-      className="group flex flex-col overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-sm transition-shadow hover:shadow-xl"
+      className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-line bg-surface shadow-sm transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10 dark:hover:shadow-black/40"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+      <div className="relative aspect-[4/3] overflow-hidden bg-surface-2">
         {tour.cover_image && (
           <Image
             src={tour.cover_image}
@@ -28,7 +28,7 @@ export default function TourCard({ tour, locale }: { tour: TourList; locale: Loc
           />
         )}
         {tour.featured_badge && (
-          <span className="absolute left-5 top-5 rounded-lg bg-red-600 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-white">
+          <span className="absolute left-5 top-5 rounded-lg bg-accent px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-white">
             {tour.featured_badge}
           </span>
         )}
@@ -36,21 +36,21 @@ export default function TourCard({ tour, locale }: { tour: TourList; locale: Loc
 
       <div className="flex flex-1 flex-col p-7">
         {tour.category && (
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-red-600">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">
             {tour.category.name}
           </p>
         )}
-        <h3 className="mt-3 text-xl font-black uppercase leading-tight tracking-tighter text-slate-900">
+        <h3 className="mt-3 text-xl font-black uppercase leading-tight tracking-tighter text-ink">
           {tour.title}
         </h3>
-        <p className="mt-2 text-[11px] font-black uppercase tracking-widest text-slate-400">
+        <p className="mt-2 text-[11px] font-black uppercase tracking-widest text-ink-3">
           {duration} · {tour.location}
         </p>
-        <p className="mt-4 line-clamp-3 text-sm font-medium leading-relaxed text-slate-500">
+        <p className="mt-4 line-clamp-3 text-sm font-medium leading-relaxed text-ink-2">
           {excerptFromHtml(tour.description)}
         </p>
 
-        <span className="mt-auto pt-7 text-[11px] font-black uppercase tracking-widest text-red-600">
+        <span className="mt-auto pt-7 text-[11px] font-black uppercase tracking-widest text-accent">
           {t.viewDetails} →
         </span>
       </div>

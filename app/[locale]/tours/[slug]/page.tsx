@@ -91,10 +91,10 @@ export default async function TourDetailPage({
           <Image src={tour.cover_image} alt={tour.title} fill priority sizes="100vw" className="object-cover" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/35 to-transparent" />
-        <div className="relative mx-auto w-full max-w-7xl px-6 pb-16 lg:px-10 lg:pb-20">
+        <div className="relative mx-auto w-full max-w-7xl animate-reveal-up px-6 pb-16 lg:px-10 lg:pb-20">
           <div className="flex flex-wrap gap-3">
             {tour.category && (
-              <span className="rounded-xl bg-red-600 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white">
+              <span className="rounded-xl bg-accent px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white">
                 {tour.category.name}
               </span>
             )}
@@ -116,38 +116,38 @@ export default async function TourDetailPage({
         <div className="space-y-20 lg:col-span-8">
           <section>
             <div className="mb-7 flex items-center gap-4">
-              <span className="h-1 w-12 rounded-full bg-red-600" />
-              <h2 className="text-xl font-black uppercase tracking-tighter text-slate-900">
+              <span className="h-1 w-12 rounded-full bg-accent" />
+              <h2 className="text-xl font-black uppercase tracking-tighter text-ink">
                 {t.experienceDetails}
               </h2>
             </div>
-            <RichText html={tour.description} className="text-lg font-medium leading-[1.8] text-slate-600" />
+            <RichText html={tour.description} className="text-lg font-medium leading-[1.8] text-ink-2" />
           </section>
 
           {tour.itineraries.length > 0 && (
             <section>
               <div className="mb-7 flex items-center gap-4">
-                <span className="h-1 w-12 rounded-full bg-red-600" />
-                <h2 className="text-xl font-black uppercase tracking-tighter text-slate-900">
+                <span className="h-1 w-12 rounded-full bg-accent" />
+                <h2 className="text-xl font-black uppercase tracking-tighter text-ink">
                   {t.plannedItinerary}
                 </h2>
               </div>
               <ol className="space-y-6">
                 {tour.itineraries.map((day) => (
-                  <li key={day.day_number} className="rounded-[2rem] border border-slate-100 bg-white p-8 shadow-sm">
+                  <li key={day.day_number} className="rounded-[2rem] border border-line bg-surface p-8 shadow-sm">
                     <div className="flex items-baseline gap-4">
-                      <span className="rounded-xl bg-slate-900 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-white">
+                      <span className="rounded-xl bg-ink px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-canvas">
                         {t.days} {day.day_number}
                       </span>
                       {day.title && (
-                        <h3 className="text-lg font-black uppercase tracking-tight text-slate-900">{day.title}</h3>
+                        <h3 className="text-lg font-black uppercase tracking-tight text-ink">{day.title}</h3>
                       )}
                     </div>
                     {day.description && (
-                      <RichText html={day.description} className="mt-4 text-sm font-medium leading-relaxed text-slate-600" />
+                      <RichText html={day.description} className="mt-4 text-sm font-medium leading-relaxed text-ink-2" />
                     )}
                     {(day.hotel_info || day.meals_info) && (
-                      <p className="mt-5 text-[11px] font-black uppercase tracking-widest text-slate-400">
+                      <p className="mt-5 text-[11px] font-black uppercase tracking-widest text-ink-3">
                         {[day.hotel_info && `${t.accommodation}: ${day.hotel_info}`, day.meals_info].filter(Boolean).join(" · ")}
                       </p>
                     )}
@@ -160,15 +160,15 @@ export default async function TourDetailPage({
           {(tour.inclusions || tour.exclusions) && (
             <section className="grid gap-6 md:grid-cols-2">
               {tour.inclusions && (
-                <div className="rounded-[2rem] border border-emerald-100 bg-emerald-50 p-8">
-                  <h2 className="mb-5 text-sm font-black uppercase tracking-widest text-emerald-800">{t.inclusions}</h2>
-                  <RichText html={tour.inclusions} className="text-sm font-medium leading-relaxed text-emerald-900" />
+                <div className="rounded-[2rem] border border-emerald-100 bg-emerald-50 p-8 dark:border-emerald-900/50 dark:bg-emerald-950/30">
+                  <h2 className="mb-5 text-sm font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-300">{t.inclusions}</h2>
+                  <RichText html={tour.inclusions} className="text-sm font-medium leading-relaxed text-emerald-900 dark:text-emerald-200" />
                 </div>
               )}
               {tour.exclusions && (
-                <div className="rounded-[2rem] border border-red-100 bg-red-50 p-8">
-                  <h2 className="mb-5 text-sm font-black uppercase tracking-widest text-red-800">{t.exclusions}</h2>
-                  <RichText html={tour.exclusions} className="text-sm font-medium leading-relaxed text-red-900" />
+                <div className="rounded-[2rem] border border-red-100 bg-red-50 p-8 dark:border-red-900/50 dark:bg-red-950/30">
+                  <h2 className="mb-5 text-sm font-black uppercase tracking-widest text-red-800 dark:text-red-300">{t.exclusions}</h2>
+                  <RichText html={tour.exclusions} className="text-sm font-medium leading-relaxed text-red-900 dark:text-red-200" />
                 </div>
               )}
             </section>
@@ -176,16 +176,16 @@ export default async function TourDetailPage({
         </div>
 
         <aside className="lg:col-span-4">
-          <div className="sticky top-28 rounded-[2rem] border border-slate-100 bg-white p-8 shadow-xl shadow-slate-900/5">
-            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">{t.pricingInfo}</p>
-            <p className="mt-2 text-xl font-black uppercase tracking-tight text-slate-900">{t.contactInquiry}</p>
-            <p className="mt-2 text-[10px] font-black uppercase tracking-widest text-red-600">{t.bestPrice}</p>
+          <div className="sticky top-28 rounded-[2rem] border border-line bg-surface p-8 shadow-xl shadow-slate-900/5">
+            <p className="text-[10px] font-black uppercase tracking-widest text-ink-3">{t.pricingInfo}</p>
+            <p className="mt-2 text-xl font-black uppercase tracking-tight text-ink">{t.contactInquiry}</p>
+            <p className="mt-2 text-[10px] font-black uppercase tracking-widest text-accent">{t.bestPrice}</p>
 
             <a
               href={chatHref(params.locale, tour.title)}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 block rounded-xl bg-red-600 px-6 py-4 text-center text-[11px] font-black uppercase tracking-widest text-white transition-transform hover:scale-105"
+              className="mt-8 block rounded-xl bg-accent px-6 py-4 text-center text-[11px] font-black uppercase tracking-widest text-white transition-transform hover:scale-105"
             >
               {chatLabel}
             </a>
@@ -195,7 +195,7 @@ export default async function TourDetailPage({
                 href={tour.itinerary_pdf_path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 block rounded-xl border border-slate-200 px-6 py-3 text-center text-[11px] font-black uppercase tracking-widest text-slate-500 transition-colors hover:border-slate-900 hover:text-slate-900"
+                className="mt-4 block rounded-xl border border-line px-6 py-3 text-center text-[11px] font-black uppercase tracking-widest text-ink-2 transition-colors hover:border-ink hover:text-ink"
               >
                 PDF
               </a>

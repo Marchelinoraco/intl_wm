@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { LOCALE_LABELS, type Locale } from "@/lib/locales";
 
 /**
- * Menautkan ke halaman PADANANNYA di bahasa lain — menukar segmen locale,
- * mempertahankan sisa path. `availableIn` = bahasa yang halaman ini benar-benar
- * ada; bahasa di luar itu tidak ditampilkan supaya pengunjung tak pernah
- * diarahkan ke halaman yang tidak dibangun.
+ * Dropdown pemilih bahasa. Menautkan ke halaman PADANANNYA di bahasa lain —
+ * menukar segmen locale, mempertahankan sisa path. `availableIn` = bahasa yang
+ * halaman ini benar-benar dibangun; bahasa lain tidak muncul supaya pengunjung
+ * tak diarahkan ke halaman yang tidak ada.
  */
 export default function LanguageSwitcher({
   current,
@@ -20,26 +21,93 @@ export default function LanguageSwitcher({
   const pathname = usePathname() || `/${current}/`;
   const rest = pathname.split("/").slice(2).join("/");
 
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function onDoc(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
   return (
-    <div className="flex items-center gap-1">
-      {availableIn.map((locale) => {
-        const active = locale === current;
-        return (
-          <Link
-            key={locale}
-            href={`/${locale}/${rest}`}
-            hrefLang={locale}
-            aria-current={active ? "true" : undefined}
-            className={
-              active
-                ? "rounded-lg bg-red-600 px-3 py-1.5 text-[11px] font-black uppercase tracking-widest text-white"
-                : "rounded-lg px-3 py-1.5 text-[11px] font-black uppercase tracking-widest text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
-            }
-          >
-            {LOCALE_LABELS[locale]}
-          </Link>
-        );
-      })}
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-label="Change language"
+        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-black uppercase tracking-widest text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink"
+      >
+        <svg
+          className="h-4 w-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" />
+        </svg>
+        {current}
+        <svg
+          className={`h-3 w-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          role="menu"
+          className="absolute right-0 z-50 mt-2 min-w-[10rem] origin-top-right animate-menu-in overflow-hidden rounded-xl border border-line bg-surface p-1 shadow-xl shadow-slate-900/10 dark:shadow-black/50"
+        >
+          {availableIn.map((locale) => {
+            const active = locale === current;
+            return (
+              <Link
+                key={locale}
+                href={`/${locale}/${rest}`}
+                hrefLang={locale}
+                role="menuitem"
+                aria-current={active ? "true" : undefined}
+                onClick={() => setOpen(false)}
+                className={`flex items-center justify-between gap-4 rounded-lg px-3 py-2 text-sm font-bold transition-colors ${
+                  active
+                    ? "bg-accent text-white"
+                    : "text-ink-2 hover:bg-surface-2 hover:text-ink"
+                }`}
+              >
+                {LOCALE_LABELS[locale]}
+                <span className="text-[10px] font-black uppercase tracking-widest opacity-60">
+                  {locale}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

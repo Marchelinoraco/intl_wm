@@ -54,6 +54,17 @@ const TRAVEL_AGENCY_LD = {
   parentOrganization: { "@type": "Organization", name: "Welcome Manado", url: "https://welcomemanado.com" },
 };
 
+/**
+ * Set kelas tema SEBELUM paint pertama (hindari kedip). Dijalankan sinkron di
+ * <head> — baca localStorage `theme`, jatuh ke preferensi sistem.
+ */
+const THEME_SCRIPT = `
+(function(){try{
+  var s=localStorage.getItem('theme');
+  var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.classList.toggle('dark',d);
+}catch(e){}})();`;
+
 export default async function LocaleLayout({
   children,
   params,
@@ -66,6 +77,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={HREFLANG[locale]}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body>
         <JsonLd data={TRAVEL_AGENCY_LD} />
         <Header locale={locale} />

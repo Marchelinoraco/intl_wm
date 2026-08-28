@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import RichText from "@/components/RichText";
+import Reveal from "@/components/Reveal";
 import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { localesWith } from "@/lib/availability";
@@ -43,34 +44,38 @@ export default async function AboutPage({ params }: { params: { locale: Locale }
   return (
     <div className="mx-auto max-w-5xl px-6 py-20 lg:px-10">
       <section>
-        <h1 className="text-4xl font-black uppercase leading-[0.95] tracking-tighter text-slate-900 md:text-6xl">
-          {story.title_lead} <span className="text-red-600">{story.title_accent}</span>
+        <h1 className="text-4xl font-black uppercase leading-[0.95] tracking-tighter text-ink md:text-6xl">
+          {story.title_lead} <span className="text-accent">{story.title_accent}</span>
         </h1>
 
         {(story.since_text || story.pioneering_text) && (
-          <p className="mt-5 text-[11px] font-black uppercase tracking-widest text-slate-400">
+          <p className="mt-5 text-[11px] font-black uppercase tracking-widest text-ink-3">
             {[story.since_text, story.pioneering_text].filter(Boolean).join(" · ")}
           </p>
         )}
 
         <div className="mt-10 space-y-6">
-          <RichText html={story.paragraph_one} className="text-lg font-medium leading-[1.85] text-slate-600" />
-          <RichText html={story.paragraph_two} className="text-lg font-medium leading-[1.85] text-slate-600" />
+          <RichText html={story.paragraph_one} className="text-lg font-medium leading-[1.85] text-ink-2" />
+          <RichText html={story.paragraph_two} className="text-lg font-medium leading-[1.85] text-ink-2" />
         </div>
 
         {story.image_url && (
-          <div className="relative mt-12 aspect-[16/9] overflow-hidden rounded-[2rem] bg-slate-100">
+          <Reveal className="relative mt-12 block aspect-[16/9] overflow-hidden rounded-[2rem] bg-surface-2">
             <Image src={story.image_url} alt="" fill sizes="100vw" className="object-cover" />
-          </div>
+          </Reveal>
         )}
 
         {highlights.length > 0 && (
           <div className="mt-14 grid gap-6 sm:grid-cols-2">
-            {highlights.map((h) => (
-              <div key={h.label} className="rounded-[2rem] border border-slate-100 bg-slate-50 p-8">
-                <p className="text-xl font-black uppercase tracking-tight text-slate-900">{h.value}</p>
-                <p className="mt-2 text-[11px] font-black uppercase tracking-widest text-slate-400">{h.label}</p>
-              </div>
+            {highlights.map((h, i) => (
+              <Reveal
+                key={h.label}
+                delay={i * 80}
+                className="rounded-[2rem] border border-line bg-surface-2 p-8"
+              >
+                <p className="text-xl font-black uppercase tracking-tight text-ink">{h.value}</p>
+                <p className="mt-2 text-[11px] font-black uppercase tracking-widest text-ink-3">{h.label}</p>
+              </Reveal>
             ))}
           </div>
         )}
@@ -79,22 +84,22 @@ export default async function AboutPage({ params }: { params: { locale: Locale }
       {team.length > 0 && (
         <section className="mt-24">
           <div className="mb-10 flex items-center gap-4">
-            <span className="h-1 w-12 rounded-full bg-red-600" />
-            <h2 className="text-2xl font-black uppercase tracking-tighter text-slate-900">{t.teamHeading}</h2>
+            <span className="h-1 w-12 rounded-full bg-accent" />
+            <h2 className="text-2xl font-black uppercase tracking-tighter text-ink">{t.teamHeading}</h2>
           </div>
           <div className="grid gap-8 sm:grid-cols-3">
-            {team.map((member) => (
-              <div key={member.name} className="text-center">
-                <div className="relative mx-auto aspect-square w-40 overflow-hidden rounded-full bg-slate-100">
+            {team.map((member, i) => (
+              <Reveal key={member.name} delay={i * 70} className="text-center">
+                <div className="relative mx-auto aspect-square w-40 overflow-hidden rounded-full bg-surface-2">
                   {member.image_url && (
                     <Image src={member.image_url} alt={member.name} fill sizes="10rem" className="object-cover" />
                   )}
                 </div>
-                <p className="mt-5 text-base font-black uppercase tracking-tight text-slate-900">{member.name}</p>
+                <p className="mt-5 text-base font-black uppercase tracking-tight text-ink">{member.name}</p>
                 {member.position && (
-                  <p className="mt-1 text-[11px] font-black uppercase tracking-widest text-red-600">{member.position}</p>
+                  <p className="mt-1 text-[11px] font-black uppercase tracking-widest text-accent">{member.position}</p>
                 )}
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>
