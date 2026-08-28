@@ -107,3 +107,92 @@ export async function getTour(locale: Locale, slug: string): Promise<TourDetail 
   const res = await apiGetOrNull<ItemEnvelope<TourDetail>>(`/tours/${slug}?locale=${locale}`);
   return res ? res.data : null;
 }
+
+// ─── Tipe: hotel, galeri, blog, home, about ──────────────────────────────
+
+export type Hotel = {
+  slug: string;
+  name: string;
+  location: string;
+  category: string; // enum mentah, mis. "city_hotel" — dipercantik di lib/format.ts
+  stars: number;
+  facilities: string[]; // array, BUKAN string \n-terpisah
+  description: string | null; // HTML
+  primary_image: string;
+  images: string[];
+};
+
+export type GalleryItem = {
+  id: number;
+  title: string;
+  image_path: string | null; // null = entri video, disaring di halaman galeri
+  video_name: string | null;
+};
+
+export type BlogList = {
+  slug: string;
+  title: string;
+  excerpt: string | null;
+  featured_image: string;
+  author: string; // sering "admin" — tidak dirender
+  published_at: string | null; // "Y-m-d"
+  category: Category | null;
+};
+
+export type BlogDetail = BlogList & { content: string /* HTML */ };
+
+export type AboutStory = {
+  title_lead: string;
+  title_accent: string;
+  paragraph_one: string; // HTML
+  paragraph_two: string; // HTML
+  experience_value: string;
+  experience_label: string;
+  travelers_value: string;
+  travelers_label: string;
+  since_text: string;
+  pioneering_text: string;
+  image_url: string | null;
+};
+
+export type TeamMember = { name: string; position: string | null; image_url: string | null };
+
+export type HomePayload = { hero_images: string[]; featured_tours: TourList[] };
+export type AboutPayload = { story: AboutStory | null; team: TeamMember[] };
+
+// ─── Endpoint: hotel, galeri, blog, home, about ──────────────────────────
+
+export async function getHotels(locale: Locale): Promise<Hotel[]> {
+  const res = await apiGet<ListEnvelope<Hotel>>(`/hotels?locale=${locale}&per_page=100`);
+  return res.data;
+}
+
+export async function getHotel(locale: Locale, slug: string): Promise<Hotel | null> {
+  const res = await apiGetOrNull<ItemEnvelope<Hotel>>(`/hotels/${slug}?locale=${locale}`);
+  return res ? res.data : null;
+}
+
+export async function getGallery(locale: Locale): Promise<GalleryItem[]> {
+  const res = await apiGet<ListEnvelope<GalleryItem>>(`/gallery?locale=${locale}&per_page=100`);
+  return res.data;
+}
+
+export async function getBlogPosts(locale: Locale): Promise<BlogList[]> {
+  const res = await apiGet<ListEnvelope<BlogList>>(`/blog?locale=${locale}&per_page=100`);
+  return res.data;
+}
+
+export async function getBlogPost(locale: Locale, slug: string): Promise<BlogDetail | null> {
+  const res = await apiGetOrNull<ItemEnvelope<BlogDetail>>(`/blog/${slug}?locale=${locale}`);
+  return res ? res.data : null;
+}
+
+export async function getHome(locale: Locale): Promise<HomePayload> {
+  const res = await apiGet<ItemEnvelope<HomePayload>>(`/home?locale=${locale}`);
+  return res.data;
+}
+
+export async function getAbout(locale: Locale): Promise<AboutPayload> {
+  const res = await apiGet<ItemEnvelope<AboutPayload>>(`/about?locale=${locale}`);
+  return res.data;
+}

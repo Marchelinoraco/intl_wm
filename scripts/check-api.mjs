@@ -56,6 +56,42 @@ await check("GET /tours/{slug}?locale=en → detail", async () => {
   has(r.data, ["inclusions", "exclusions", "itinerary_pdf_path", "images", "prices", "itineraries"], "tour detail");
 });
 
+await check("GET /hotels?locale=en → daftar", async () => {
+  const r = await get("/hotels?locale=en&per_page=1");
+  has(r.data[0], ["slug", "name", "location", "category", "stars", "facilities", "description", "primary_image", "images"], "hotels.data[0]");
+  if (!Array.isArray(r.data[0].facilities)) throw new Error("facilities bukan array");
+});
+
+await check("GET /gallery?locale=en → item (image_path boleh null)", async () => {
+  const r = await get("/gallery?locale=en&per_page=100");
+  has(r.data[0], ["id", "title", "image_path", "video_name"], "gallery.data[0]");
+  if (!r.data.some((g) => g.image_path)) throw new Error("tidak ada item galeri dengan image_path");
+});
+
+await check("GET /blog?locale=en + detail", async () => {
+  const r = await get("/blog?locale=en&per_page=1");
+  has(r.data[0], ["slug", "title", "excerpt", "featured_image", "author", "published_at", "category"], "blog.data[0]");
+  const d = await get(`/blog/${r.data[0].slug}?locale=en`);
+  has(d.data, ["content"], "blog detail");
+});
+
+await check("GET /home?locale=en → hero_images + featured_tours", async () => {
+  const r = await get("/home?locale=en");
+  has(r.data, ["hero_images", "featured_tours"], "home");
+  if (!Array.isArray(r.data.hero_images) || !r.data.hero_images.length) throw new Error("hero_images kosong");
+});
+
+await check("GET /about?locale=en → story + team", async () => {
+  const r = await get("/about?locale=en");
+  has(r.data, ["story", "team"], "about");
+  has(r.data.story, ["title_lead", "title_accent", "paragraph_one", "paragraph_two", "since_text", "pioneering_text"], "about.story");
+});
+
+await check("GET /about?locale=fr → story null (jenis konten belum diterjemahkan)", async () => {
+  const r = await get("/about?locale=fr");
+  if (r.data.story !== null) console.warn("    catatan: about.story fr TIDAK lagi null — ketersediaan berubah, tinjau availability matrix");
+});
+
 if (failed) {
   console.error(`\n${failed} pemeriksaan gagal — lib/api.ts mungkin perlu disesuaikan.`);
   process.exit(1);
