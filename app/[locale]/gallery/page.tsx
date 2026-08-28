@@ -4,6 +4,7 @@ import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { localesWith } from "@/lib/availability";
 import { getGallery } from "@/lib/api";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return (await localesWith("gallery")).map((locale) => ({ locale }));
@@ -11,8 +12,11 @@ export async function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export function generateMetadata({ params }: { params: { locale: Locale } }): Metadata {
-  return { title: dict(params.locale).galleryHeading };
+export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
+  return {
+    title: dict(params.locale).galleryHeading,
+    alternates: pageAlternates(params.locale, "gallery/", await localesWith("gallery")),
+  };
 }
 
 export default async function GalleryPage({ params }: { params: { locale: Locale } }) {

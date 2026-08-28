@@ -3,6 +3,7 @@ import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { publishedLocales } from "@/lib/availability";
 import { chatHref, chatLabelKey } from "@/lib/contact";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return (await publishedLocales()).map((locale) => ({ locale }));
@@ -10,9 +11,13 @@ export async function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export function generateMetadata({ params }: { params: { locale: Locale } }): Metadata {
+export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
   const t = dict(params.locale);
-  return { title: t.contactHeading, description: t.contactLede };
+  return {
+    title: t.contactHeading,
+    description: t.contactLede,
+    alternates: pageAlternates(params.locale, "contact/", await publishedLocales()),
+  };
 }
 
 export default function ContactPage({ params }: { params: { locale: Locale } }) {

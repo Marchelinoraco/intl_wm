@@ -6,6 +6,7 @@ import type { Locale } from "@/lib/locales";
 import { localesWith } from "@/lib/availability";
 import { getHotels } from "@/lib/api";
 import { excerptFromHtml, prettifyCategory } from "@/lib/format";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return (await localesWith("hotels")).map((locale) => ({ locale }));
@@ -13,9 +14,13 @@ export async function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export function generateMetadata({ params }: { params: { locale: Locale } }): Metadata {
+export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
   const t = dict(params.locale);
-  return { title: t.hotelsHeading, description: t.hotelsLede };
+  return {
+    title: t.hotelsHeading,
+    description: t.hotelsLede,
+    alternates: pageAlternates(params.locale, "hotels/", await localesWith("hotels")),
+  };
 }
 
 export default async function HotelsPage({ params }: { params: { locale: Locale } }) {
@@ -51,7 +56,8 @@ export default async function HotelsPage({ params }: { params: { locale: Locale 
             </div>
             <div className="flex flex-1 flex-col p-7">
               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-red-600">
-                {prettifyCategory(hotel.category)} · {"★".repeat(hotel.stars)}
+                {prettifyCategory(hotel.category)}
+                {hotel.stars > 0 && ` · ${"★".repeat(hotel.stars)}`}
               </p>
               <h2 className="mt-3 text-xl font-black uppercase leading-tight tracking-tighter text-slate-900">
                 {hotel.name}

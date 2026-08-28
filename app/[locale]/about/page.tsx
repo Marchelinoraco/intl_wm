@@ -5,6 +5,7 @@ import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { localesWith } from "@/lib/availability";
 import { getAbout } from "@/lib/api";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return (await localesWith("about")).map((locale) => ({ locale }));
@@ -17,7 +18,11 @@ export async function generateMetadata({ params }: { params: { locale: Locale } 
   const description = story
     ? story.paragraph_one.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
     : undefined;
-  return { title: dict(params.locale).aboutHeading, description };
+  return {
+    title: dict(params.locale).aboutHeading,
+    description,
+    alternates: pageAlternates(params.locale, "about/", await localesWith("about")),
+  };
 }
 
 export default async function AboutPage({ params }: { params: { locale: Locale } }) {

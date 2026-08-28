@@ -5,6 +5,7 @@ import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { localesWith } from "@/lib/availability";
 import { getBlogPosts } from "@/lib/api";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return (await localesWith("blog")).map((locale) => ({ locale }));
@@ -12,8 +13,11 @@ export async function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export function generateMetadata({ params }: { params: { locale: Locale } }): Metadata {
-  return { title: dict(params.locale).blogHeading };
+export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
+  return {
+    title: dict(params.locale).blogHeading,
+    alternates: pageAlternates(params.locale, "blog/", await localesWith("blog")),
+  };
 }
 
 export default async function BlogPage({ params }: { params: { locale: Locale } }) {

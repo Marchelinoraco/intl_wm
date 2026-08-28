@@ -4,6 +4,7 @@ import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { publishedLocales } from "@/lib/availability";
 import { getTours } from "@/lib/api";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return (await publishedLocales()).map((locale) => ({ locale }));
@@ -11,9 +12,13 @@ export async function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export function generateMetadata({ params }: { params: { locale: Locale } }): Metadata {
+export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
   const t = dict(params.locale);
-  return { title: t.allTours, description: t.heroSubtitle };
+  return {
+    title: t.allTours,
+    description: t.heroSubtitle,
+    alternates: pageAlternates(params.locale, "tours/", await publishedLocales()),
+  };
 }
 
 export default async function ToursPage({ params }: { params: { locale: Locale } }) {

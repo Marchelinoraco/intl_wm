@@ -61,7 +61,8 @@ export default async function HotelDetailPage({
     "@type": "LodgingBusiness",
     name: hotel.name,
     address: hotel.location,
-    starRating: { "@type": "Rating", ratingValue: hotel.stars },
+    // ratingValue: 0 tidak sah di schema.org — hanya sertakan bila ada bintang.
+    ...(hotel.stars > 0 ? { starRating: { "@type": "Rating", ratingValue: hotel.stars } } : {}),
     ...(hotel.primary_image ? { image: hotel.primary_image } : {}),
   };
 
@@ -76,7 +77,8 @@ export default async function HotelDetailPage({
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/35 to-transparent" />
         <div className="relative mx-auto w-full max-w-7xl px-6 pb-14 lg:px-10">
           <span className="rounded-xl bg-red-600 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white">
-            {prettifyCategory(hotel.category)} · {"★".repeat(hotel.stars)}
+            {prettifyCategory(hotel.category)}
+            {hotel.stars > 0 && ` · ${"★".repeat(hotel.stars)}`}
           </span>
           <h1 className="mt-6 text-3xl font-black uppercase leading-[0.95] tracking-tighter text-white md:text-5xl">
             {hotel.name}
