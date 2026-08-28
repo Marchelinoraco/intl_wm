@@ -12,8 +12,7 @@ const nextConfig = {
   images: {
     // Optimasi gambar Next butuh server, yang tidak ada pada static export.
     unoptimized: true,
-    // KERANGKA: nanti diganti host storage api_wm.
-    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+    remotePatterns: [{ protocol: "https", hostname: "api.welcomemanado.my.id" }],
   },
   // nginx melayani `tours/index.html` untuk `/en/tours/`.
   trailingSlash: true,

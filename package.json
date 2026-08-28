@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "preview": "next build && npx --yes serve out -l 3007"
+    "preview": "next build && npx --yes serve out -l 3007",
+    "check-api": "node scripts/check-api.mjs",
+    "prebuild": "node scripts/check-api.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.417.0",

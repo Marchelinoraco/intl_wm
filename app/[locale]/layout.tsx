@@ -3,38 +3,23 @@ import "../globals.css";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import {
-  DEFAULT_LOCALE,
-  HREFLANG,
-  PUBLISHED_LOCALES,
-  SITE_URL,
-  isPublished,
-  type Locale,
-} from "@/lib/locales";
+import JsonLd from "@/components/JsonLd";
+import { DEFAULT_LOCALE, HREFLANG, SITE_URL, isLocale, type Locale } from "@/lib/locales";
+import { publishedLocales } from "@/lib/availability";
 import { dict } from "@/lib/dictionary";
 
 /**
- * INI root layout aplikasi — tidak ada `app/layout.tsx` di atasnya.
+ * INI root layout aplikasi — tidak ada app/layout.tsx di atasnya. Segmen
+ * dinamis [locale] sebagai segmen teratas berarti layout inilah yang memegang
+ * <html>/<body>, sehingga atribut `lang` bisa benar per bahasa.
  *
- * Alasannya atribut `lang`: ia harus mengikuti bahasa halaman, dan root layout
- * biasa tidak menerima parameter `[locale]` sehingga tidak bisa mengetahuinya.
- * Halaman Korea dengan `lang="en"` adalah sinyal yang salah bagi mesin pencari,
- * dan itu justru hal yang ingin diperbaiki situs ini.
- *
- * Dengan segmen dinamis sebagai segmen teratas, layout inilah yang memegang
- * `<html>` dan `<body>` — memenuhi syarat Next.js sekaligus membuat `lang`
- * benar per bahasa.
- *
- * Root `/` sengaja tidak punya halaman: nginx yang mengalihkannya dengan 302
- * berdasarkan `Accept-Language`. Saat `npm run dev`, buka `/en/` langsung.
+ * Root `/` sengaja tidak punya halaman: nginx yang mengalihkannya (302) sesuai
+ * Accept-Language. Saat `npm run dev`, buka `/en/` langsung.
  */
-
-/** Hanya bahasa yang sudah punya konten yang dibangun. */
-export function generateStaticParams() {
-  return PUBLISHED_LOCALES.map((locale) => ({ locale }));
+export async function generateStaticParams() {
+  return (await publishedLocales()).map((locale) => ({ locale }));
 }
 
-/** Locale di luar daftar terbit menghasilkan 404, bukan halaman kosong. */
 export const dynamicParams = false;
 
 export async function generateMetadata({
@@ -42,46 +27,47 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  if (!isPublished(params.locale)) return {};
-  const locale = params.locale as Locale;
+  if (!isLocale(params.locale)) return {};
+  const locale = params.locale;
   const t = dict(locale);
+  const published = await publishedLocales();
 
-  // hreflang hanya menunjuk bahasa yang benar-benar terbit; menunjuk halaman
-  // yang tidak ada adalah error yang dilaporkan Search Console.
   const languages: Record<string, string> = {};
-  for (const l of PUBLISHED_LOCALES) {
-    languages[HREFLANG[l]] = `${SITE_URL}/${l}/`;
-  }
+  for (const l of published) languages[HREFLANG[l]] = `${SITE_URL}/${l}/`;
   languages["x-default"] = `${SITE_URL}/${DEFAULT_LOCALE}/`;
 
   return {
-    title: {
-      default: `Welcome Manado — ${t.tagline}`,
-      template: `%s | manado.tours`,
-    },
+    metadataBase: new URL(SITE_URL),
+    title: { default: `Welcome Manado — ${t.tagline}`, template: `%s | manado.tours` },
     description: t.heroSubtitle,
     alternates: { canonical: `${SITE_URL}/${locale}/`, languages },
-    openGraph: {
-      siteName: "Welcome Manado",
-      locale: HREFLANG[locale],
-      type: "website",
-    },
+    openGraph: { siteName: "Welcome Manado", locale: HREFLANG[locale], type: "website" },
   };
 }
 
-export default function LocaleLayout({
+const TRAVEL_AGENCY_LD = {
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  name: "Welcome Manado",
+  url: SITE_URL,
+  areaServed: "North Sulawesi, Indonesia",
+  parentOrganization: { "@type": "Organization", name: "Welcome Manado", url: "https://welcomemanado.com" },
+};
+
+export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  if (!isPublished(params.locale)) notFound();
-  const locale = params.locale as Locale;
+  if (!isLocale(params.locale)) notFound();
+  const locale: Locale = params.locale;
 
   return (
     <html lang={HREFLANG[locale]}>
       <body>
+        <JsonLd data={TRAVEL_AGENCY_LD} />
         <Header locale={locale} />
         <main>{children}</main>
         <Footer locale={locale} />

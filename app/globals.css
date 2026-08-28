@@ -9,3 +9,22 @@
 body {
   @apply bg-white text-slate-900 antialiased;
 }
+
+/* Konten HTML dari /api/intl/* (deskripsi, itinerary, inclusions, blog, dll).
+   Pola sama seperti .tour-rich-content di client_wm — bukan plugin typography. */
+.rich-text > :first-child { margin-top: 0; }
+.rich-text > :last-child { margin-bottom: 0; }
+.rich-text p { margin: 0 0 1rem; }
+.rich-text ul, .rich-text ol { margin: 0 0 1rem 1.5rem; }
+.rich-text ul { list-style-type: disc; }
+.rich-text ol { list-style-type: decimal; }
+.rich-text li { margin-bottom: 0.5rem; }
+.rich-text li > p { margin: 0; }
+.rich-text h1, .rich-text h2, .rich-text h3, .rich-text h4 {
+  color: rgb(15 23 42);
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 1.5rem 0 0.75rem;
+}
+.rich-text strong { font-weight: 700; color: rgb(15 23 42); }
+.rich-text a { color: rgb(220 38 38); text-decoration: underline; }
