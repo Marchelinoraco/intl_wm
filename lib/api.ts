@@ -42,20 +42,82 @@ export function apiGetOrNull<T>(path: string): Promise<T | null> {
   return hit as Promise<T | null>;
 }
 
+/**
+ * Gerbang konkurensi + coba-ulang. `getAvailability()` menembakkan ~40 request
+ * sekaligus dan `next build` menjalankan beberapa worker paralel — server API
+ * menjatuhkan 5-10% koneksi di bawah burst itu (terukur: 2 dari 40 gagal).
+ * Batasi in-flight ke 6 dan ulangi error jaringan sesaat / 5xx dengan backoff
+ * sebelum menyerah. Build tetap GAGAL KERAS bila API benar-benar mati —
+ * tidak ada fallback ke data basi.
+ */
+const MAX_INFLIGHT = 6;
+let inFlight = 0;
+const waiters: Array<() => void> = [];
+
+function acquire(): Promise<void> {
+  return new Promise((resolve) => {
+    const run = () => {
+      if (inFlight < MAX_INFLIGHT) {
+        inFlight += 1;
+        resolve();
+      } else {
+        waiters.push(run);
+      }
+    };
+    run();
+  });
+}
+
+function release(): void {
+  inFlight -= 1;
+  waiters.shift()?.();
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+function isTransientNetworkError(e: unknown): boolean {
+  const msg = String((e as Error)?.message ?? e);
+  const code = String((e as { cause?: { code?: string } })?.cause?.code ?? "");
+  return /fetch failed|socket hang up|network|und_err|econnreset|etimedout|eai_again|econnrefused/i.test(
+    `${msg} ${code}`,
+  );
+}
+
+/** Jeda antar percobaan (ms). Panjang array = jumlah retry; total percobaan = panjang + 1. */
+const RETRY_DELAYS_MS = [400, 1200, 3000];
+
 async function doFetch(url: string, tolerate404: boolean): Promise<unknown> {
-  let res: Response;
-  try {
-    // `force-cache` (bukan `no-store`) wajib untuk `output: "export"` — no-store
-    // memaksa route jadi dinamis dan build statis menolaknya. Kesegaran per rilis
-    // dijamin `rm -rf .next out` sebelum tiap `npm run build` (lihat deploy/README);
-    // dalam satu build, Map memo di modul ini sudah men-dedupe.
-    res = await fetch(url, { cache: "force-cache" });
-  } catch (e) {
-    throw new Error(`intl API tidak dapat dihubungi: ${url}\n  ${(e as Error).message}`);
+  for (let attempt = 0; ; attempt += 1) {
+    await acquire();
+    let res: Response;
+    try {
+      // `force-cache` (bukan `no-store`) wajib untuk `output: "export"` — no-store
+      // memaksa route jadi dinamis dan build statis menolaknya. Kesegaran per rilis
+      // dijamin `rm -rf .next out` sebelum tiap `npm run build` (lihat deploy/README);
+      // dalam satu build, Map memo di modul ini sudah men-dedupe.
+      res = await fetch(url, { cache: "force-cache" });
+    } catch (e) {
+      release();
+      if (isTransientNetworkError(e) && attempt < RETRY_DELAYS_MS.length) {
+        await sleep(RETRY_DELAYS_MS[attempt] + Math.floor(Math.random() * 300));
+        continue;
+      }
+      throw new Error(
+        `intl API tidak dapat dihubungi setelah ${attempt + 1} percobaan: ${url}\n  ${(e as Error).message}`,
+      );
+    }
+    release();
+
+    if (tolerate404 && res.status === 404) return null;
+    if (res.status >= 500 && attempt < RETRY_DELAYS_MS.length) {
+      await sleep(RETRY_DELAYS_MS[attempt] + Math.floor(Math.random() * 300));
+      continue;
+    }
+    if (!res.ok) throw new Error(`intl API ${res.status} ${res.statusText}: ${url}`);
+    return res.json();
   }
-  if (tolerate404 && res.status === 404) return null;
-  if (!res.ok) throw new Error(`intl API ${res.status} ${res.statusText}: ${url}`);
-  return res.json();
 }
 
 type ListEnvelope<T> = { success: boolean; data: T[]; meta: { page: number; per_page: number; total: number; last_page: number } };

@@ -9,10 +9,24 @@
 const API = "https://api.welcomemanado.my.id/api/intl";
 let failed = 0;
 
+// Coba-ulang error jaringan sesaat (backoff) — server API kadang menjatuhkan
+// satu koneksi di bawah burst, dan gerbang prebuild tak boleh gagal karenanya.
 async function get(path) {
-  const res = await fetch(`${API}${path}`);
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText} — ${path}`);
-  return res.json();
+  const delays = [400, 1200, 3000];
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const res = await fetch(`${API}${path}`);
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText} — ${path}`);
+      return res.json();
+    } catch (e) {
+      const transient = /fetch failed|socket hang up|und_err|econnreset|etimedout|eai_again/i.test(String(e.message || e));
+      if (transient && attempt < delays.length) {
+        await new Promise((r) => setTimeout(r, delays[attempt]));
+        continue;
+      }
+      throw e;
+    }
+  }
 }
 
 function has(obj, keys, label) {
