@@ -27,16 +27,16 @@ export default function ContactPage({ params }: { params: { locale: Locale } }) 
   return (
     <section className="mx-auto max-w-3xl px-6 py-20 lg:px-10">
       <div className="mb-4 flex items-center gap-4">
-        <span className="h-1 w-12 rounded-full bg-red-600" />
-        <h1 className="text-3xl font-black uppercase tracking-tighter text-slate-900">{t.contactHeading}</h1>
+        <span className="h-1 w-12 rounded-full bg-accent" />
+        <h1 className="text-3xl font-black uppercase tracking-tighter text-ink">{t.contactHeading}</h1>
       </div>
-      <p className="max-w-2xl text-base font-medium leading-relaxed text-slate-500">{t.contactLede}</p>
+      <p className="max-w-2xl text-base font-medium leading-relaxed text-ink-2">{t.contactLede}</p>
 
       <a
         href={chatHref(params.locale)}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-8 inline-block rounded-xl bg-red-600 px-8 py-4 text-[11px] font-black uppercase tracking-widest text-white shadow-xl shadow-red-600/20 transition-transform hover:scale-105"
+        className="mt-8 inline-block rounded-xl bg-accent px-8 py-4 text-[11px] font-black uppercase tracking-widest text-white shadow-xl shadow-red-600/20 transition-transform hover:scale-105"
       >
         {label}
       </a>

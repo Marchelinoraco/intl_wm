@@ -2,29 +2,121 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Token warna (light) ─────────────────────────────────────────────────
+   Nilai = warna slate lama, jadi light mode identik dengan sebelumnya. */
 :root {
+  --canvas: 255 255 255; /* white */
+  --surface: 255 255 255; /* white */
+  --surface-2: 248 250 252; /* slate-50 */
+  --line: 241 245 249; /* slate-100 */
+  --ink: 15 23 42; /* slate-900 */
+  --ink-2: 71 85 105; /* slate-600 */
+  --ink-3: 148 163 184; /* slate-400 */
+  --accent: 220 38 38; /* red-600 */
   color-scheme: light;
 }
 
+.dark {
+  --canvas: 2 6 23; /* slate-950 */
+  --surface: 15 23 42; /* slate-900 */
+  --surface-2: 30 41 59; /* slate-800 */
+  --line: 30 41 59; /* slate-800 */
+  --ink: 241 245 249; /* slate-100 */
+  --ink-2: 203 213 225; /* slate-300 */
+  --ink-3: 100 116 139; /* slate-500 */
+  --accent: 239 68 68; /* red-500 */
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @apply bg-white text-slate-900 antialiased;
+  @apply bg-canvas text-ink antialiased;
+}
+
+/* Transisi halus SAAT tombol tema ditekan. ThemeToggle memasang `theme-anim`
+   di <html> sesaat lalu melepasnya, jadi hover biasa tidak ikut melambat dan
+   muat pertama tidak ber-transisi. */
+.theme-anim,
+.theme-anim * {
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.3s ease, fill 0.3s ease !important;
+}
+
+/* ── Scroll reveal ───────────────────────────────────────────────────────
+   <Reveal> memulai dengan .reveal (tersembunyi), IntersectionObserver
+   menambah .reveal-show. Tanpa JS (atau reduced-motion) elemen tetap terlihat. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.reveal-show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Konten HTML dari /api/intl/* (deskripsi, itinerary, inclusions, blog, dll).
    Pola sama seperti .tour-rich-content di client_wm — bukan plugin typography. */
-.rich-text > :first-child { margin-top: 0; }
-.rich-text > :last-child { margin-bottom: 0; }
-.rich-text p { margin: 0 0 1rem; }
-.rich-text ul, .rich-text ol { margin: 0 0 1rem 1.5rem; }
-.rich-text ul { list-style-type: disc; }
-.rich-text ol { list-style-type: decimal; }
-.rich-text li { margin-bottom: 0.5rem; }
-.rich-text li > p { margin: 0; }
-.rich-text h1, .rich-text h2, .rich-text h3, .rich-text h4 {
-  color: rgb(15 23 42);
+.rich-text > :first-child {
+  margin-top: 0;
+}
+.rich-text > :last-child {
+  margin-bottom: 0;
+}
+.rich-text p {
+  margin: 0 0 1rem;
+}
+.rich-text ul,
+.rich-text ol {
+  margin: 0 0 1rem 1.5rem;
+}
+.rich-text ul {
+  list-style-type: disc;
+}
+.rich-text ol {
+  list-style-type: decimal;
+}
+.rich-text li {
+  margin-bottom: 0.5rem;
+}
+.rich-text li > p {
+  margin: 0;
+}
+.rich-text h1,
+.rich-text h2,
+.rich-text h3,
+.rich-text h4 {
+  color: rgb(var(--ink));
   font-weight: 900;
   line-height: 1.2;
   margin: 1.5rem 0 0.75rem;
 }
-.rich-text strong { font-weight: 700; color: rgb(15 23 42); }
-.rich-text a { color: rgb(220 38 38); text-decoration: underline; }
+.rich-text strong {
+  font-weight: 700;
+  color: rgb(var(--ink));
+}
+.rich-text a {
+  color: rgb(var(--accent));
+  text-decoration: underline;
+}

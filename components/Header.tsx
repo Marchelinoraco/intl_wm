@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { getAvailability, publishedLocales } from "@/lib/availability";
@@ -22,27 +23,30 @@ export default async function Header({ locale }: { locale: Locale }) {
   ].filter((i) => i.show);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-line bg-surface/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-3 px-6 py-4 lg:px-10">
         <Link href={`/${locale}/`} className="flex items-baseline gap-2">
-          <span className="text-xl font-black uppercase tracking-tighter text-slate-900">
-            manado<span className="text-red-600">.tours</span>
+          <span className="text-xl font-black uppercase tracking-tighter text-ink">
+            manado<span className="text-accent">.tours</span>
           </span>
         </Link>
 
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <nav className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[11px] font-black uppercase tracking-widest text-slate-500 transition-colors hover:text-red-600"
+                className="text-[11px] font-black uppercase tracking-widest text-ink-2 transition-colors hover:text-accent"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <LanguageSwitcher current={locale} availableIn={published} />
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <LanguageSwitcher current={locale} availableIn={published} />
+          </div>
         </div>
       </div>
     </header>
