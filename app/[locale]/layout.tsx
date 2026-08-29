@@ -42,6 +42,7 @@ export async function generateMetadata({
     description: t.heroSubtitle,
     alternates: { canonical: `${SITE_URL}/${locale}/`, languages },
     openGraph: { siteName: "Welcome Manado", locale: HREFLANG[locale], type: "website" },
+    verification: { google: "HNioFXY28AzfSQn6P0l2VOBu8oUO1lFslxOzKNKKDMw" },
   };
 }
 
