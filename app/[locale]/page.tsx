@@ -2,6 +2,7 @@ import Hero from "@/components/home/Hero";
 import FeaturedTours from "@/components/home/FeaturedTours";
 import WhyUs from "@/components/home/WhyUs";
 import CinematicBand from "@/components/home/CinematicBand";
+import GalleryStrip from "@/components/home/GalleryStrip";
 import type { Locale } from "@/lib/locales";
 import { getAvailability, publishedLocales } from "@/lib/availability";
 import { getHome, getAbout, getGallery, getBlogPosts } from "@/lib/api";
@@ -24,11 +25,13 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       getAvailability(),
     ]);
 
-  // Referensi dipakai task-task bagian berikutnya (GalleryStrip, dst.).
-  void gallery;
+  // Referensi dipakai task bagian berikutnya (blog, dst.).
   void posts;
 
   const bandImage = about.story?.image_url ?? hero_images[0] ?? null;
+  const galleryImages = gallery.filter(
+    (g): g is typeof g & { image_path: string } => Boolean(g.image_path),
+  );
 
   return (
     <>
@@ -43,6 +46,10 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       )}
 
       {bandImage && <CinematicBand locale={locale} image={bandImage} />}
+
+      {availability[locale].gallery && galleryImages.length >= 3 && (
+        <GalleryStrip locale={locale} items={galleryImages.slice(0, 6)} />
+      )}
     </>
   );
 }
