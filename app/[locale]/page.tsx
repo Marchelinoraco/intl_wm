@@ -1,6 +1,7 @@
 import Hero from "@/components/home/Hero";
 import FeaturedTours from "@/components/home/FeaturedTours";
 import WhyUs from "@/components/home/WhyUs";
+import CinematicBand from "@/components/home/CinematicBand";
 import type { Locale } from "@/lib/locales";
 import { getAvailability, publishedLocales } from "@/lib/availability";
 import { getHome, getAbout, getGallery, getBlogPosts } from "@/lib/api";
@@ -27,6 +28,8 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
   void gallery;
   void posts;
 
+  const bandImage = about.story?.image_url ?? hero_images[0] ?? null;
+
   return (
     <>
       <Hero locale={locale} images={hero_images} />
@@ -38,6 +41,8 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       {availability[locale].about && about.story && (
         <WhyUs locale={locale} story={about.story} />
       )}
+
+      {bandImage && <CinematicBand locale={locale} image={bandImage} />}
     </>
   );
 }
