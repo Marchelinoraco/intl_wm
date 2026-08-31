@@ -1,5 +1,6 @@
 import Hero from "@/components/home/Hero";
 import FeaturedTours from "@/components/home/FeaturedTours";
+import WhyUs from "@/components/home/WhyUs";
 import type { Locale } from "@/lib/locales";
 import { getAvailability, publishedLocales } from "@/lib/availability";
 import { getHome, getAbout, getGallery, getBlogPosts } from "@/lib/api";
@@ -22,11 +23,9 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       getAvailability(),
     ]);
 
-  // Referensi dipakai task-task bagian berikutnya (WhyUs, GalleryStrip, dst.).
-  void about;
+  // Referensi dipakai task-task bagian berikutnya (GalleryStrip, dst.).
   void gallery;
   void posts;
-  void availability;
 
   return (
     <>
@@ -34,6 +33,10 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
 
       {featured_tours.length > 0 && (
         <FeaturedTours locale={locale} tours={featured_tours} />
+      )}
+
+      {availability[locale].about && about.story && (
+        <WhyUs locale={locale} story={about.story} />
       )}
     </>
   );
