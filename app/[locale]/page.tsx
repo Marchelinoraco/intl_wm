@@ -5,6 +5,7 @@ import CinematicBand from "@/components/home/CinematicBand";
 import GalleryStrip from "@/components/home/GalleryStrip";
 import Reviews from "@/components/home/Reviews";
 import JournalTeaser from "@/components/home/JournalTeaser";
+import HomeCta from "@/components/home/HomeCta";
 import type { Locale } from "@/lib/locales";
 import { getAvailability, publishedLocales } from "@/lib/availability";
 import { getHome, getAbout, getGallery, getBlogPosts } from "@/lib/api";
@@ -27,34 +28,28 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       getAvailability(),
     ]);
 
-  const bandImage = about.story?.image_url ?? hero_images[0] ?? null;
+  const a = availability[locale];
   const galleryImages = gallery.filter(
     (g): g is typeof g & { image_path: string } => Boolean(g.image_path),
   );
+  const bandImage = about.story?.image_url ?? hero_images[0] ?? null;
 
   return (
     <>
       <Hero locale={locale} images={hero_images} />
-
       {featured_tours.length > 0 && (
         <FeaturedTours locale={locale} tours={featured_tours} />
       )}
-
-      {availability[locale].about && about.story && (
-        <WhyUs locale={locale} story={about.story} />
-      )}
-
+      {a.about && about.story && <WhyUs locale={locale} story={about.story} />}
       {bandImage && <CinematicBand locale={locale} image={bandImage} />}
-
-      {availability[locale].gallery && galleryImages.length >= 3 && (
+      {a.gallery && galleryImages.length >= 3 && (
         <GalleryStrip locale={locale} items={galleryImages.slice(0, 6)} />
       )}
-
       <Reviews locale={locale} />
-
-      {availability[locale].blog && posts.length > 0 && (
+      {a.blog && posts.length > 0 && (
         <JournalTeaser locale={locale} posts={posts.slice(0, 3)} />
       )}
+      <HomeCta locale={locale} />
     </>
   );
 }
