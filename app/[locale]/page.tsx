@@ -3,6 +3,7 @@ import FeaturedTours from "@/components/home/FeaturedTours";
 import WhyUs from "@/components/home/WhyUs";
 import CinematicBand from "@/components/home/CinematicBand";
 import GalleryStrip from "@/components/home/GalleryStrip";
+import Reviews from "@/components/home/Reviews";
 import type { Locale } from "@/lib/locales";
 import { getAvailability, publishedLocales } from "@/lib/availability";
 import { getHome, getAbout, getGallery, getBlogPosts } from "@/lib/api";
@@ -50,6 +51,8 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       {availability[locale].gallery && galleryImages.length >= 3 && (
         <GalleryStrip locale={locale} items={galleryImages.slice(0, 6)} />
       )}
+
+      <Reviews locale={locale} />
     </>
   );
 }
