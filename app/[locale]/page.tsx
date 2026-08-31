@@ -1,11 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
+import Hero from "@/components/home/Hero";
 import TourCard from "@/components/TourCard";
 import Reveal from "@/components/Reveal";
 import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
-import { publishedLocales } from "@/lib/availability";
-import { getHome } from "@/lib/api";
+import { getAvailability, publishedLocales } from "@/lib/availability";
+import { getHome, getAbout, getGallery, getBlogPosts } from "@/lib/api";
 
 export async function generateStaticParams() {
   return (await publishedLocales()).map((locale) => ({ locale }));
@@ -16,33 +15,25 @@ export const dynamicParams = false;
 export default async function HomePage({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
   const t = dict(locale);
-  const { hero_images, featured_tours } = await getHome(locale);
-  const hero = hero_images[0] ?? null;
+
+  const [{ hero_images, featured_tours }, about, gallery, posts, availability] =
+    await Promise.all([
+      getHome(locale),
+      getAbout(locale),
+      getGallery(locale),
+      getBlogPosts(locale),
+      getAvailability(),
+    ]);
+
+  // Referensi dipakai task-task bagian berikutnya (WhyUs, GalleryStrip, dst.).
+  void about;
+  void gallery;
+  void posts;
+  void availability;
 
   return (
     <>
-      <section className="relative flex min-h-[78vh] items-end overflow-hidden bg-slate-900">
-        {hero && (
-          <Image src={hero} alt="" fill priority sizes="100vw" className="object-cover" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/45 to-transparent" />
-
-        <div className="relative mx-auto w-full max-w-7xl animate-reveal-up px-6 pb-20 lg:px-10 lg:pb-28">
-          <p className="text-[11px] font-black uppercase tracking-[0.3em] text-red-400">{t.tagline}</p>
-          <h1 className="mt-6 max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-tighter text-white md:text-6xl lg:text-7xl">
-            {t.heroTitle}
-          </h1>
-          <p className="mt-7 max-w-2xl text-base font-medium leading-relaxed text-white/75 md:text-lg">
-            {t.heroSubtitle}
-          </p>
-          <Link
-            href={`/${locale}/tours/`}
-            className="mt-10 inline-block rounded-xl bg-accent px-9 py-4 text-[11px] font-black uppercase tracking-widest text-white shadow-xl shadow-red-600/25 transition-transform hover:scale-105"
-          >
-            {t.exploreTours}
-          </Link>
-        </div>
-      </section>
+      <Hero locale={locale} images={hero_images} />
 
       {featured_tours.length > 0 && (
         <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
