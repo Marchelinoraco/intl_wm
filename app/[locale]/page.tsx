@@ -4,6 +4,7 @@ import WhyUs from "@/components/home/WhyUs";
 import CinematicBand from "@/components/home/CinematicBand";
 import GalleryStrip from "@/components/home/GalleryStrip";
 import Reviews from "@/components/home/Reviews";
+import JournalTeaser from "@/components/home/JournalTeaser";
 import type { Locale } from "@/lib/locales";
 import { getAvailability, publishedLocales } from "@/lib/availability";
 import { getHome, getAbout, getGallery, getBlogPosts } from "@/lib/api";
@@ -25,9 +26,6 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       getBlogPosts(locale),
       getAvailability(),
     ]);
-
-  // Referensi dipakai task bagian berikutnya (blog, dst.).
-  void posts;
 
   const bandImage = about.story?.image_url ?? hero_images[0] ?? null;
   const galleryImages = gallery.filter(
@@ -53,6 +51,10 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       )}
 
       <Reviews locale={locale} />
+
+      {availability[locale].blog && posts.length > 0 && (
+        <JournalTeaser locale={locale} posts={posts.slice(0, 3)} />
+      )}
     </>
   );
 }
