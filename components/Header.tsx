@@ -1,5 +1,4 @@
 import Link from "next/link";
-import HeaderShell from "./HeaderShell";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 import { dict } from "@/lib/dictionary";
@@ -24,10 +23,10 @@ export default async function Header({ locale }: { locale: Locale }) {
   ].filter((i) => i.show);
 
   return (
-    <HeaderShell locale={locale}>
+    <header className="sticky top-0 z-40 border-b border-line bg-surface/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-3 px-6 py-4 lg:px-10">
         <Link href={`/${locale}/`} className="flex items-baseline gap-2">
-          <span className="text-xl font-black uppercase tracking-tighter text-ink brand-mark">
+          <span className="text-xl font-black uppercase tracking-tighter text-ink">
             manado<span className="text-accent">.tours</span>
           </span>
         </Link>
@@ -38,18 +37,18 @@ export default async function Header({ locale }: { locale: Locale }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="nav-link text-[11px] font-black uppercase tracking-widest text-ink-2 transition-colors hover:text-accent"
+                className="text-[11px] font-black uppercase tracking-widest text-ink-2 transition-colors hover:text-accent"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <div className="header-controls flex items-center gap-1">
+          <div className="flex items-center gap-1">
             <ThemeToggle />
             <LanguageSwitcher current={locale} availableIn={published} />
           </div>
         </div>
       </div>
-    </HeaderShell>
+    </header>
   );
 }
