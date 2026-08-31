@@ -1,11 +1,14 @@
-import Image from "next/image";
-import Link from "next/link";
-import TourCard from "@/components/TourCard";
-import Reveal from "@/components/Reveal";
-import { dict } from "@/lib/dictionary";
+import Hero from "@/components/home/Hero";
+import FeaturedTours from "@/components/home/FeaturedTours";
+import WhyUs from "@/components/home/WhyUs";
+import CinematicBand from "@/components/home/CinematicBand";
+import GalleryStrip from "@/components/home/GalleryStrip";
+import Reviews from "@/components/home/Reviews";
+import JournalTeaser from "@/components/home/JournalTeaser";
+import HomeCta from "@/components/home/HomeCta";
 import type { Locale } from "@/lib/locales";
-import { publishedLocales } from "@/lib/availability";
-import { getHome } from "@/lib/api";
+import { getAvailability, publishedLocales } from "@/lib/availability";
+import { getHome, getAbout, getGallery, getBlogPosts } from "@/lib/api";
 
 export async function generateStaticParams() {
   return (await publishedLocales()).map((locale) => ({ locale }));
@@ -15,52 +18,38 @@ export const dynamicParams = false;
 
 export default async function HomePage({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
-  const t = dict(locale);
-  const { hero_images, featured_tours } = await getHome(locale);
-  const hero = hero_images[0] ?? null;
+
+  const [{ hero_images, featured_tours }, about, gallery, posts, availability] =
+    await Promise.all([
+      getHome(locale),
+      getAbout(locale),
+      getGallery(locale),
+      getBlogPosts(locale),
+      getAvailability(),
+    ]);
+
+  const a = availability[locale];
+  const galleryImages = gallery.filter(
+    (g): g is typeof g & { image_path: string } => Boolean(g.image_path),
+  );
+  const bandImage = about.story?.image_url ?? hero_images[0] ?? null;
 
   return (
     <>
-      <section className="relative flex min-h-[78vh] items-end overflow-hidden bg-slate-900">
-        {hero && (
-          <Image src={hero} alt="" fill priority sizes="100vw" className="object-cover" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/45 to-transparent" />
-
-        <div className="relative mx-auto w-full max-w-7xl animate-reveal-up px-6 pb-20 lg:px-10 lg:pb-28">
-          <p className="text-[11px] font-black uppercase tracking-[0.3em] text-red-400">{t.tagline}</p>
-          <h1 className="mt-6 max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-tighter text-white md:text-6xl lg:text-7xl">
-            {t.heroTitle}
-          </h1>
-          <p className="mt-7 max-w-2xl text-base font-medium leading-relaxed text-white/75 md:text-lg">
-            {t.heroSubtitle}
-          </p>
-          <Link
-            href={`/${locale}/tours/`}
-            className="mt-10 inline-block rounded-xl bg-accent px-9 py-4 text-[11px] font-black uppercase tracking-widest text-white shadow-xl shadow-red-600/25 transition-transform hover:scale-105"
-          >
-            {t.exploreTours}
-          </Link>
-        </div>
-      </section>
-
+      <Hero locale={locale} images={hero_images} />
       {featured_tours.length > 0 && (
-        <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <Reveal className="mb-12 flex items-center gap-4">
-            <span className="h-1 w-12 rounded-full bg-accent" />
-            <h2 className="text-2xl font-black uppercase tracking-tighter text-ink">
-              {t.featuredTours}
-            </h2>
-          </Reveal>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {featured_tours.map((tour, i) => (
-              <Reveal key={tour.slug} delay={Math.min(i, 5) * 70} className="h-full">
-                <TourCard tour={tour} locale={locale} />
-              </Reveal>
-            ))}
-          </div>
-        </section>
+        <FeaturedTours locale={locale} tours={featured_tours} />
       )}
+      {a.about && about.story && <WhyUs locale={locale} story={about.story} />}
+      {bandImage && <CinematicBand locale={locale} image={bandImage} />}
+      {a.gallery && galleryImages.length >= 3 && (
+        <GalleryStrip locale={locale} items={galleryImages.slice(0, 6)} />
+      )}
+      <Reviews locale={locale} />
+      {a.blog && posts.length > 0 && (
+        <JournalTeaser locale={locale} posts={posts.slice(0, 3)} />
+      )}
+      <HomeCta locale={locale} />
     </>
   );
 }

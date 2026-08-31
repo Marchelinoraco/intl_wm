@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import TourCard from "@/components/TourCard";
 import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
 import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { publishedLocales } from "@/lib/availability";
@@ -29,10 +30,7 @@ export default async function ToursPage({ params }: { params: { locale: Locale }
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-      <div className="mb-12 flex items-center gap-4">
-        <span className="h-1 w-12 rounded-full bg-accent" />
-        <h1 className="text-3xl font-black uppercase tracking-tighter text-ink">{t.allTours}</h1>
-      </div>
+      <SectionHeading badge={t.tagline} title={t.allTours} headingLevel={1} />
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {tours.map((tour, i) => (
           <Reveal key={tour.slug} delay={Math.min(i, 5) * 60} className="h-full">

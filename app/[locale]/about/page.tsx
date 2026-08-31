@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import RichText from "@/components/RichText";
 import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
 import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { localesWith } from "@/lib/availability";
@@ -83,10 +84,7 @@ export default async function AboutPage({ params }: { params: { locale: Locale }
 
       {team.length > 0 && (
         <section className="mt-24">
-          <div className="mb-10 flex items-center gap-4">
-            <span className="h-1 w-12 rounded-full bg-accent" />
-            <h2 className="text-2xl font-black uppercase tracking-tighter text-ink">{t.teamHeading}</h2>
-          </div>
+          <SectionHeading title={t.teamHeading} />
           <div className="grid gap-8 sm:grid-cols-3">
             {team.map((member, i) => (
               <Reveal key={member.name} delay={i * 70} className="text-center">
