@@ -32,10 +32,20 @@ const config: Config = {
           from: { opacity: "0", transform: "translateY(-6px) scale(0.98)" },
           to: { opacity: "1", transform: "translateY(0) scale(1)" },
         },
+        "ken-burns": {
+          from: { transform: "scale(1.12)" },
+          to: { transform: "scale(1)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
       },
       animation: {
         "reveal-up": "reveal-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both",
         "menu-in": "menu-in 0.16s ease-out both",
+        "ken-burns": "ken-burns 8s ease-out both",
+        float: "float 6s ease-in-out infinite",
       },
     },
   },
