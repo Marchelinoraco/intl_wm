@@ -129,3 +129,19 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Header transparan di atas hero: putihkan teks & kontrol. */
+header[data-transparent] .brand-mark,
+header[data-transparent] .nav-link {
+  color: #fff;
+}
+header[data-transparent] .nav-link:hover {
+  color: rgb(var(--accent));
+}
+header[data-transparent] .header-controls button {
+  color: #fff;
+}
+header[data-transparent] .header-controls button:hover {
+  background-color: rgb(255 255 255 / 0.12);
+  color: #fff;
+}
