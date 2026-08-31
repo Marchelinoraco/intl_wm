@@ -8,10 +8,12 @@ export default function ReviewScroller({
   reviews,
   readMore,
   showLess,
+  label,
 }: {
   reviews: Review[];
   readMore: string;
   showLess: string;
+  label: string;
 }) {
   const scroller = useRef<HTMLDivElement>(null);
   const scroll = (dir: number) =>
@@ -21,10 +23,18 @@ export default function ReviewScroller({
     <div className="relative">
       <div
         ref={scroller}
-        className="hide-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4"
+        tabIndex={0}
+        role="region"
+        aria-label={label}
+        className="hide-scrollbar flex snap-x snap-mandatory items-start gap-6 overflow-x-auto pb-4"
       >
-        {reviews.map((r, i) => (
-          <ReviewCard key={i} review={r} readMore={readMore} showLess={showLess} />
+        {reviews.map((r) => (
+          <ReviewCard
+            key={`${r.name}-${r.time}`}
+            review={r}
+            readMore={readMore}
+            showLess={showLess}
+          />
         ))}
       </div>
 
@@ -34,15 +44,15 @@ export default function ReviewScroller({
         aria-label="Previous reviews"
         className="absolute left-0 top-1/2 hidden h-11 w-11 -translate-x-4 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-surface text-ink-2 shadow-lg transition-colors hover:text-accent md:flex"
       >
-        <ChevronLeft className="h-5 w-5" />
+        <ChevronLeft className="h-5 w-5" aria-hidden="true" />
       </button>
       <button
         type="button"
         onClick={() => scroll(1)}
-        aria-label="More reviews"
+        aria-label="Next reviews"
         className="absolute right-0 top-1/2 hidden h-11 w-11 translate-x-4 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-surface text-ink-2 shadow-lg transition-colors hover:text-accent md:flex"
       >
-        <ChevronRight className="h-5 w-5" />
+        <ChevronRight className="h-5 w-5" aria-hidden="true" />
       </button>
     </div>
   );
@@ -80,13 +90,21 @@ function ReviewCard({
         </div>
       </div>
 
-      <div className="mb-3 flex items-center gap-1">
+      <div
+        className="mb-3 flex items-center gap-1"
+        role="img"
+        aria-label={`${review.stars} / 5`}
+      >
         {review.source === "tripadvisor"
           ? Array.from({ length: review.stars }).map((_, i) => (
               <span key={i} className="h-3.5 w-3.5 rounded-full bg-[#00AA6C]" />
             ))
           : Array.from({ length: review.stars }).map((_, i) => (
-              <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+              <Star
+                key={i}
+                className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                aria-hidden="true"
+              />
             ))}
       </div>
 

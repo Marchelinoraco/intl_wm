@@ -42,11 +42,11 @@ export default function TourCard({ tour, locale }: { tour: TourList; locale: Loc
         </h3>
         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-black uppercase tracking-widest text-ink-3">
           <span className="inline-flex items-center gap-1.5">
-            <Clock className="h-3.5 w-3.5" />
+            <Clock className="h-3.5 w-3.5" aria-hidden="true" />
             {duration}
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5" />
+            <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
             {tour.location}
           </span>
         </div>

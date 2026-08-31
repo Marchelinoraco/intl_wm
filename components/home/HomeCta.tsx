@@ -30,7 +30,7 @@ export default function HomeCta({ locale }: { locale: Locale }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-red-700 px-9 py-4 text-[11px] font-black uppercase tracking-widest text-white transition-colors hover:bg-red-800"
             >
-              <MessageCircle className="h-4 w-4" />
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
               {t[chatLabelKey(locale)]}
             </a>
           </div>

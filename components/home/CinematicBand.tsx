@@ -15,7 +15,7 @@ export default function CinematicBand({
     <section className="relative isolate overflow-hidden bg-slate-950 py-28 text-white lg:py-36">
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center lg:bg-fixed"
-        style={{ backgroundImage: `url("${image}")` }}
+        style={{ backgroundImage: `url("${encodeURI(image)}")` }}
       />
       <div className="absolute inset-0 -z-10 bg-slate-950/70" />
       <div className="pointer-events-none absolute -right-32 top-0 -z-10 h-[36rem] w-[36rem] rounded-full bg-accent/15 blur-[140px]" />

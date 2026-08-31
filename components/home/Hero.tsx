@@ -26,7 +26,10 @@ export default function Hero({
 
       <div className="relative z-10 mx-auto w-full max-w-5xl animate-reveal-up px-6 py-28 text-center">
         <p className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
-          <span className="h-2 w-2 rounded-full bg-accent motion-safe:animate-ping" />
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 motion-safe:animate-ping" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+          </span>
           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white">
             {t.heroBadge}
           </span>
@@ -46,7 +49,7 @@ export default function Hero({
             className="inline-flex items-center gap-2 rounded-xl bg-accent px-9 py-4 text-[11px] font-black uppercase tracking-widest text-white shadow-xl shadow-red-600/25 transition-transform hover:scale-105"
           >
             {t.exploreTours}
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
           <a
             href={chatHref(locale)}

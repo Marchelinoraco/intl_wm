@@ -60,7 +60,10 @@ export default function SectionHeading({
           className="group inline-flex shrink-0 items-center gap-2 self-start rounded-xl bg-ink px-7 py-3.5 text-[11px] font-black uppercase tracking-widest text-canvas transition-colors hover:bg-accent hover:text-white lg:self-auto"
         >
           {action.label}
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          <ArrowRight
+            className="h-4 w-4 transition-transform group-hover:translate-x-1"
+            aria-hidden="true"
+          />
         </Link>
       )}
     </div>

@@ -30,9 +30,17 @@ export default function Reviews({ locale }: { locale: Locale }) {
               </div>
               <div className="mt-3 flex items-center gap-3">
                 <span className="text-4xl font-black text-ink">{GOOGLE_RATING.value}</span>
-                <div className="flex gap-0.5">
+                <div
+                  className="flex gap-0.5"
+                  role="img"
+                  aria-label={`${GOOGLE_RATING.value} / 5`}
+                >
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-[#FBBC05] text-[#FBBC05]" />
+                    <Star
+                      key={i}
+                      className="h-5 w-5 fill-[#FBBC05] text-[#FBBC05]"
+                      aria-hidden="true"
+                    />
                   ))}
                 </div>
               </div>
@@ -76,6 +84,7 @@ export default function Reviews({ locale }: { locale: Locale }) {
           reviews={HOME_REVIEWS}
           readMore={t.readMore}
           showLess={t.showLess}
+          label={t.reviewsHeading}
         />
       </div>
     </section>

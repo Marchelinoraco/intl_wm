@@ -25,6 +25,7 @@ export default async function Footer({ locale }: { locale: Locale }) {
             manado<span className="text-accent">.tours</span>
           </p>
           <p className="mt-3 max-w-xs text-sm font-medium text-ink-2">{t.tagline}</p>
+          {/* Tautan balik ke situs induk: memperkuat kedua domain di mata Google, menegaskan ini perusahaan yang sama. Sengaja buka di tab yang sama. */}
           <a
             href="https://welcomemanado.com"
             className="mt-6 inline-block text-[11px] font-black uppercase tracking-widest text-ink-3 transition-colors hover:text-accent"

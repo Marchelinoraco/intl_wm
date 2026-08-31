@@ -14,6 +14,7 @@ function formatDate(iso: string | null, locale: Locale): string {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "UTC",
   }).format(d);
 }
 
@@ -38,7 +39,7 @@ export default function JournalTeaser({
           <Reveal key={post.slug} delay={Math.min(i, 3) * 70} className="h-full">
             <Link
               href={`/${locale}/blog/${post.slug}/`}
-              className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-line bg-surface transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10 dark:hover:shadow-black/40"
+              className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-line bg-surface transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-red-900/10 dark:hover:shadow-black/40"
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-surface-2">
                 {post.featured_image && (

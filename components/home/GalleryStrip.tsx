@@ -26,8 +26,13 @@ export default function GalleryStrip({
           <Link
             key={item.id}
             href={`/${locale}/gallery/`}
+            aria-label={item.title || t.viewFullGallery}
             className={`group relative overflow-hidden rounded-[1.5rem] bg-surface-2 ${
               i === 0 ? "col-span-2 row-span-2" : ""
+            } ${
+              i === items.length - 1 && items.length >= 5
+                ? "col-span-2 md:col-span-4"
+                : ""
             }`}
           >
             <Image
