@@ -14,9 +14,11 @@ import { LOCALE_LABELS, type Locale } from "@/lib/locales";
 export default function LanguageSwitcher({
   current,
   availableIn,
+  onDark = false,
 }: {
   current: Locale;
   availableIn: Locale[];
+  onDark?: boolean;
 }) {
   const pathname = usePathname() || `/${current}/`;
   const rest = pathname.split("/").slice(2).join("/");
@@ -48,7 +50,11 @@ export default function LanguageSwitcher({
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label="Change language"
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-black uppercase tracking-widest text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink"
+        className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors ${
+          onDark
+            ? "text-white hover:bg-white/10"
+            : "text-ink-2 hover:bg-surface-2 hover:text-ink"
+        }`}
       >
         <svg
           className="h-4 w-4"

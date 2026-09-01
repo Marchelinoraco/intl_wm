@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
  * kedip) — komponen ini hanya menyinkronkan ikon lalu meng-toggle kelas
  * `.dark` di <html> + menyimpan pilihan ke localStorage.
  */
-export default function ThemeToggle() {
+export default function ThemeToggle({ onDark = false }: { onDark?: boolean }) {
   const [dark, setDark] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -34,7 +34,11 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex h-9 w-9 items-center justify-center rounded-lg text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink"
+      className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors ${
+        onDark
+          ? "text-white hover:bg-white/10"
+          : "text-ink-2 hover:bg-surface-2 hover:text-ink"
+      }`}
     >
       {/* Ikon di-swap CSS-only supaya tak ada kedip sebelum useEffect jalan:
           .dark → tampil bulan, selain itu → matahari. */}
