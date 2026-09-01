@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import HeroCarousel from "./HeroCarousel";
+import HeroVideo from "./HeroVideo";
 import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { chatHref, chatLabelKey } from "@/lib/contact";
@@ -16,10 +16,15 @@ export default function Hero({
 
   return (
     <section className="relative -mt-20 flex min-h-[100svh] items-center overflow-hidden bg-slate-950 lg:-mt-24">
-      {images.length > 0 && <HeroCarousel images={images} />}
+      <HeroVideo
+        src="/hero/luminosa.mp4"
+        poster="/hero/luminosa-poster.jpg"
+        fallback={images[0] ?? null}
+      />
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/85" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent" />
 
       <div className="pointer-events-none absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-accent/20 blur-[120px] motion-safe:animate-float" />
       <div className="pointer-events-none absolute -right-20 bottom-1/4 h-96 w-96 rounded-full bg-accent/10 blur-[120px] motion-safe:animate-float [animation-delay:3s]" />
