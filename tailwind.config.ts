@@ -40,12 +40,17 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "reveal-up": "reveal-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both",
         "menu-in": "menu-in 0.16s ease-out both",
         "ken-burns": "ken-burns 8s ease-out both",
         float: "float 6s ease-in-out infinite",
+        marquee: "marquee 60s linear infinite",
       },
     },
   },
