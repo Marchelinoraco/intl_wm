@@ -58,6 +58,9 @@ type Dict = {
   showLess: string;
   ctaTitle: string;
   ctaText: string;
+  exploreByCategory: string;
+  viewCategory: string;
+  toursInCategory: string;
   aboutHeading: string;
   teamHeading: string;
   contactHeading: string;
@@ -117,6 +120,9 @@ export const DICTIONARY: Record<Locale, Dict> = {
     showLess: "Show less",
     ctaTitle: "Planning a trip to North Sulawesi?",
     ctaText: "Tell us roughly when and how many — we reply in your language, usually within a day.",
+    exploreByCategory: "Choose a category to explore.",
+    viewCategory: "View category",
+    toursInCategory: "tours",
     aboutHeading: "About us",
     teamHeading: "The people who run it",
     contactHeading: "Talk to us",
@@ -174,6 +180,9 @@ export const DICTIONARY: Record<Locale, Dict> = {
     showLess: "간략히",
     ctaTitle: "북술라웨시 여행을 계획 중이신가요?",
     ctaText: "대략 언제, 몇 분인지 알려주세요 — 사용하시는 언어로, 보통 하루 안에 답장드립니다.",
+    exploreByCategory: "둘러볼 카테고리를 선택하세요.",
+    viewCategory: "카테고리 보기",
+    toursInCategory: "개 투어",
     aboutHeading: "소개",
     teamHeading: "함께하는 사람들",
     contactHeading: "문의하기",
@@ -231,6 +240,9 @@ export const DICTIONARY: Record<Locale, Dict> = {
     showLess: "收起",
     ctaTitle: "正在计划北苏拉威西之旅？",
     ctaText: "告诉我们大致的时间和人数 —— 我们会用您的语言回覆，通常一天之内。",
+    exploreByCategory: "选择一个分类开始探索。",
+    viewCategory: "查看分类",
+    toursInCategory: "个行程",
     aboutHeading: "关于我们",
     teamHeading: "带你出行的人",
     contactHeading: "联系我们",
@@ -288,6 +300,9 @@ export const DICTIONARY: Record<Locale, Dict> = {
     showLess: "Voir moins",
     ctaTitle: "Vous préparez un voyage dans le Nord de Sulawesi ?",
     ctaText: "Dites-nous à peu près quand et combien vous êtes — nous répondons dans votre langue, en général sous 24 heures.",
+    exploreByCategory: "Choisissez une catégorie à explorer.",
+    viewCategory: "Voir la catégorie",
+    toursInCategory: "circuits",
     aboutHeading: "À propos de nous",
     teamHeading: "Ceux qui font vivre l'agence",
     contactHeading: "Parlez-nous",
@@ -346,6 +361,9 @@ export const DICTIONARY: Record<Locale, Dict> = {
     showLess: "Weniger anzeigen",
     ctaTitle: "Planen Sie eine Reise nach Nord-Sulawesi?",
     ctaText: "Sagen Sie uns ungefähr wann und wie viele — wir antworten in Ihrer Sprache, meist innerhalb eines Tages.",
+    exploreByCategory: "Wählen Sie eine Kategorie zum Entdecken.",
+    viewCategory: "Kategorie ansehen",
+    toursInCategory: "Touren",
     aboutHeading: "Über uns",
     teamHeading: "Die Menschen dahinter",
     contactHeading: "Sprechen Sie mit uns",
@@ -404,6 +422,9 @@ export const DICTIONARY: Record<Locale, Dict> = {
     showLess: "Mostra meno",
     ctaTitle: "Stai organizzando un viaggio nel Nord Sulawesi?",
     ctaText: "Diteci più o meno quando e in quanti — rispondiamo nella vostra lingua, di solito entro un giorno.",
+    exploreByCategory: "Scegli una categoria da esplorare.",
+    viewCategory: "Vedi la categoria",
+    toursInCategory: "tour",
     aboutHeading: "Chi siamo",
     teamHeading: "Le persone che la gestiscono",
     contactHeading: "Parla con noi",
@@ -462,6 +483,9 @@ export const DICTIONARY: Record<Locale, Dict> = {
     showLess: "Ver menos",
     ctaTitle: "¿Planeas un viaje al norte de Célebes?",
     ctaText: "Cuéntanos aproximadamente cuándo y cuántos sois — respondemos en tu idioma, normalmente en menos de un día.",
+    exploreByCategory: "Elige una categoría para explorar.",
+    viewCategory: "Ver categoría",
+    toursInCategory: "tours",
     aboutHeading: "Sobre nosotros",
     teamHeading: "Las personas que lo hacen posible",
     contactHeading: "Habla con nosotros",
@@ -520,6 +544,9 @@ export const DICTIONARY: Record<Locale, Dict> = {
     showLess: "Minder tonen",
     ctaTitle: "Plan je een reis naar Noord-Sulawesi?",
     ctaText: "Vertel ons ongeveer wanneer en met hoeveel — we antwoorden in je eigen taal, meestal binnen een dag.",
+    exploreByCategory: "Kies een categorie om te ontdekken.",
+    viewCategory: "Categorie bekijken",
+    toursInCategory: "tours",
     aboutHeading: "Over ons",
     teamHeading: "De mensen erachter",
     contactHeading: "Praat met ons",

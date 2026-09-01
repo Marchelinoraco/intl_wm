@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import RichText from "@/components/RichText";
+import TourGallery from "@/components/TourGallery";
 import JsonLd from "@/components/JsonLd";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { dict } from "@/lib/dictionary";
@@ -81,6 +82,10 @@ export default async function TourDetailPage({
   };
 
   const chatLabel = t[chatLabelKey(params.locale)];
+  // Foto untuk carousel: cover di depan, lalu sisanya tanpa duplikat.
+  const gallery = tour.cover_image
+    ? [tour.cover_image, ...tour.images.filter((src) => src !== tour.cover_image)]
+    : tour.images;
 
   return (
     <article>
@@ -111,6 +116,8 @@ export default async function TourDetailPage({
           </div>
         </div>
       </header>
+
+      {gallery.length > 1 && <TourGallery images={gallery} title={tour.title} />}
 
       <div className="mx-auto grid max-w-7xl gap-16 px-6 py-20 lg:grid-cols-12 lg:px-10">
         <div className="space-y-20 lg:col-span-8">
