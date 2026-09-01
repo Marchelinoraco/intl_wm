@@ -15,7 +15,7 @@ export default function Hero({
   const t = dict(locale);
 
   return (
-    <section className="relative -mt-20 flex min-h-[100svh] items-center overflow-hidden bg-slate-950 lg:-mt-24">
+    <section className="relative isolate -mt-20 flex min-h-[100svh] items-center overflow-hidden bg-slate-950 lg:-mt-24">
       <HeroVideo
         src="/hero/luminosa.mp4"
         poster="/hero/luminosa-poster.jpg"
