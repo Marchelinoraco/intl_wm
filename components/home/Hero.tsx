@@ -15,7 +15,7 @@ export default function Hero({
   const t = dict(locale);
 
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-slate-950">
+    <section className="relative -mt-20 flex min-h-[100svh] items-center overflow-hidden bg-slate-950 lg:-mt-24">
       {images.length > 0 && <HeroCarousel images={images} />}
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/85" />
