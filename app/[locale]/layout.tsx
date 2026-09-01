@@ -84,7 +84,9 @@ export default async function LocaleLayout({
       <body>
         <JsonLd data={TRAVEL_AGENCY_LD} />
         <Header locale={locale} />
-        <main>{children}</main>
+        {/* Header adalah pill `fixed` yang melayang; beri ruang di atas. Hero
+            beranda menetralkannya dengan `-mt` yang sepadan agar tetap full-bleed. */}
+        <main className="pt-20 lg:pt-24">{children}</main>
         <Footer locale={locale} />
       </body>
     </html>
