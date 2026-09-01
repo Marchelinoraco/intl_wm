@@ -45,37 +45,39 @@ export default function HeroVideo({
   if (staticOnly || failed) {
     const img = failed ? fallback ?? poster : poster;
     return (
-      <div className="absolute inset-0 -z-10 bg-slate-950">
+      <div className="absolute inset-0 z-0 bg-slate-950">
         <Image src={img} alt="" fill priority sizes="100vw" className="object-cover" />
       </div>
     );
   }
 
   return (
-    <div className="absolute inset-0 -z-10 bg-slate-950">
-      <video
-        ref={ref}
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster={poster}
-        preload="metadata"
-        onError={() => setFailed(true)}
-        className="h-full w-full object-cover"
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+    <>
+      <div className="absolute inset-0 z-0 bg-slate-950">
+        <video
+          ref={ref}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={poster}
+          preload="metadata"
+          onError={() => setFailed(true)}
+          className="h-full w-full object-cover"
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      </div>
 
       <button
         type="button"
         onClick={toggleSound}
         aria-label={muted ? "Unmute video" : "Mute video"}
         aria-pressed={!muted}
-        className="absolute bottom-6 right-5 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-colors hover:bg-black/60 lg:right-8"
+        className="absolute bottom-6 right-5 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-colors hover:bg-black/60 lg:right-8"
       >
         {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
       </button>
-    </div>
+    </>
   );
 }
