@@ -61,8 +61,8 @@ export default async function AboutPage({ params }: { params: { locale: Locale }
         </div>
 
         {story.image_url && (
-          <Reveal className="relative mt-12 block aspect-[16/9] overflow-hidden rounded-[2rem] bg-surface-2">
-            <Image src={story.image_url} alt="" fill sizes="100vw" className="object-cover" />
+          <Reveal className="relative mx-auto mt-12 block aspect-[3/4] max-w-md overflow-hidden rounded-[2rem] bg-surface-2">
+            <Image src={story.image_url} alt="" fill sizes="(min-width: 768px) 28rem, 90vw" className="object-contain" />
           </Reveal>
         )}
 
