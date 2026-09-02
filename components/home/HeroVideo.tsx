@@ -74,7 +74,9 @@ export default function HeroVideo({
         onClick={toggleSound}
         aria-label={muted ? "Unmute video" : "Mute video"}
         aria-pressed={!muted}
-        className="absolute bottom-6 right-5 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-colors hover:bg-black/60 lg:right-8"
+        /* Sudut kanan bawah sekarang milik tombol obrolan mengambang di setiap
+           halaman, jadi pengatur suara pindah ke kiri agar tidak tertimpa. */
+        className="absolute bottom-6 left-5 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-colors hover:bg-black/60 lg:left-8"
       >
         {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
       </button>
