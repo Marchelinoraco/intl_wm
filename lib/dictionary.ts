@@ -65,6 +65,23 @@ type Dict = {
   teamHeading: string;
   contactHeading: string;
   contactLede: string;
+  // Footer & widget obrolan — dicerminkan dari client_wm/src/locales.
+  footerDescription: string;
+  quickLinks: string;
+  getInTouch: string;
+  rights: string;
+  chatMenuTitle: string;
+  chatClose: string;
+  wechatTitle: string;
+  wechatScan: string;
+  wechatDescription: string;
+  wechatCopy: string;
+  wechatCopied: string;
+  kakaoTitle: string;
+  kakaoScan: string;
+  kakaoDescription: string;
+  kakaoCopy: string;
+  kakaoCopied: string;
 };
 
 export const DICTIONARY: Record<Locale, Dict> = {
@@ -128,6 +145,23 @@ export const DICTIONARY: Record<Locale, Dict> = {
     contactHeading: "Talk to us",
     contactLede:
       "Tell us roughly when you are coming and how many of you there are. We reply in your language, usually within a day.",
+    footerDescription:
+      "Your premier gateway to the unparalleled beauty of North Sulawesi and beyond. We provide high-quality travel experiences with professional service and local expertise.",
+    quickLinks: "Quick Links",
+    getInTouch: "Get in Touch",
+    rights: "All rights reserved.",
+    chatMenuTitle: "Contact Us",
+    chatClose: "Close",
+    wechatTitle: "WeChat",
+    wechatScan: "Scan the QR code to add us.",
+    wechatDescription: "Or add us with the WeChat ID above.",
+    wechatCopy: "Copy ID",
+    wechatCopied: "Copied!",
+    kakaoTitle: "KakaoTalk",
+    kakaoScan: "Scan the QR code to add us.",
+    kakaoDescription: "Or add us on KakaoTalk using the number or email above.",
+    kakaoCopy: "Copy Number",
+    kakaoCopied: "Copied!",
   },
   ko: {
     tagline: "마나도 & 북술라웨시 투어",
@@ -188,6 +222,23 @@ export const DICTIONARY: Record<Locale, Dict> = {
     contactHeading: "문의하기",
     contactLede:
       "대략 언제 오시는지, 몇 분이신지 알려주세요. 사용하시는 언어로, 보통 하루 안에 답변드립니다.",
+    footerDescription:
+      "북술라웨시와 그 너머의 비할 데 없는 아름다움으로 향하는 최고의 관문입니다. 우리는 전문적인 서비스와 현지 지식을 바탕으로 고품질의 여행 경험을 제공합니다.",
+    quickLinks: "빠른 링크",
+    getInTouch: "연락하기",
+    rights: "모든 권리 보유.",
+    chatMenuTitle: "문의하기",
+    chatClose: "닫기",
+    wechatTitle: "위챗",
+    wechatScan: "QR 코드를 스캔해 저희를 추가하세요.",
+    wechatDescription: "또는 위 위챗 아이디로 추가해 주세요.",
+    wechatCopy: "아이디 복사",
+    wechatCopied: "복사됨!",
+    kakaoTitle: "카카오톡",
+    kakaoScan: "QR 코드를 스캔해 저희를 추가하세요.",
+    kakaoDescription: "또는 위 번호나 이메일로 카카오톡에서 추가해 주세요.",
+    kakaoCopy: "번호 복사",
+    kakaoCopied: "복사됨!",
   },
   zh: {
     tagline: "美娜多与北苏拉威西旅游",
@@ -247,6 +298,22 @@ export const DICTIONARY: Record<Locale, Dict> = {
     teamHeading: "带你出行的人",
     contactHeading: "联系我们",
     contactLede: "告诉我们大致的出行时间和人数。我们会用您的语言回覆，通常一天之内。",
+    footerDescription: "您前往北苏拉威西及其他地区无与伦比美景的首选门户。我们以专业的服务和当地的专业知识提供高品质的旅游体验。",
+    quickLinks: "快速链接",
+    getInTouch: "保持联系",
+    rights: "版权所有。",
+    chatMenuTitle: "联系我们",
+    chatClose: "关闭",
+    wechatTitle: "微信",
+    wechatScan: "扫描二维码添加我们。",
+    wechatDescription: "或使用以上微信号添加我们。",
+    wechatCopy: "复制微信号",
+    wechatCopied: "已复制！",
+    kakaoTitle: "KakaoTalk",
+    kakaoScan: "扫描二维码添加我们。",
+    kakaoDescription: "或通过以上号码或邮箱在 KakaoTalk 上添加我们。",
+    kakaoCopy: "复制号码",
+    kakaoCopied: "已复制！",
   },
   fr: {
     tagline: "Circuits à Manado et dans le Nord de Sulawesi",
@@ -308,6 +375,23 @@ export const DICTIONARY: Record<Locale, Dict> = {
     contactHeading: "Parlez-nous",
     contactLede:
       "Dites-nous à peu près quand vous venez et combien vous êtes. Nous répondons dans votre langue, généralement sous 24 heures.",
+    footerDescription:
+      "Votre porte d’entrée privilégiée vers la beauté incomparable du Nord de Sulawesi et au-delà. Nous proposons des expériences de voyage de grande qualité, avec un service professionnel et une expertise locale.",
+    quickLinks: "Liens rapides",
+    getInTouch: "Nous contacter",
+    rights: "Tous droits réservés.",
+    chatMenuTitle: "Nous contacter",
+    chatClose: "Fermer",
+    wechatTitle: "WeChat",
+    wechatScan: "Scannez le QR code pour nous ajouter.",
+    wechatDescription: "Ou ajoutez-nous avec l’identifiant WeChat ci-dessus.",
+    wechatCopy: "Copier l’identifiant",
+    wechatCopied: "Copié !",
+    kakaoTitle: "KakaoTalk",
+    kakaoScan: "Scannez le QR code pour nous ajouter.",
+    kakaoDescription: "Ou ajoutez-nous sur KakaoTalk avec le numéro ou l’e-mail ci-dessus.",
+    kakaoCopy: "Copier le numéro",
+    kakaoCopied: "Copié !",
   },
   de: {
     tagline: "Touren in Manado und Nord-Sulawesi",
@@ -369,6 +453,23 @@ export const DICTIONARY: Record<Locale, Dict> = {
     contactHeading: "Sprechen Sie mit uns",
     contactLede:
       "Sagen Sie uns ungefähr, wann Sie kommen und wie viele Sie sind. Wir antworten in Ihrer Sprache, meist innerhalb eines Tages.",
+    footerDescription:
+      "Ihr erstklassiges Tor zur unvergleichlichen Schönheit von Nord-Sulawesi und darüber hinaus. Wir bieten hochwertige Reiseerlebnisse mit professionellem Service und lokaler Expertise.",
+    quickLinks: "Schnellzugriff",
+    getInTouch: "Kontakt",
+    rights: "Alle Rechte vorbehalten.",
+    chatMenuTitle: "Kontakt aufnehmen",
+    chatClose: "Schließen",
+    wechatTitle: "WeChat",
+    wechatScan: "Scannen Sie den QR-Code, um uns hinzuzufügen.",
+    wechatDescription: "Oder fügen Sie uns über die WeChat-ID oben hinzu.",
+    wechatCopy: "ID kopieren",
+    wechatCopied: "Kopiert!",
+    kakaoTitle: "KakaoTalk",
+    kakaoScan: "Scannen Sie den QR-Code, um uns hinzuzufügen.",
+    kakaoDescription: "Oder fügen Sie uns bei KakaoTalk über die Nummer oder E-Mail oben hinzu.",
+    kakaoCopy: "Nummer kopieren",
+    kakaoCopied: "Kopiert!",
   },
   it: {
     tagline: "Tour a Manado e nel Nord Sulawesi",
@@ -430,6 +531,23 @@ export const DICTIONARY: Record<Locale, Dict> = {
     contactHeading: "Parla con noi",
     contactLede:
       "Diteci più o meno quando arrivate e in quanti siete. Rispondiamo nella vostra lingua, di solito entro un giorno.",
+    footerDescription:
+      "La vostra porta d’accesso privilegiata alla bellezza impareggiabile del Nord Sulawesi e oltre. Offriamo esperienze di viaggio di alta qualità, con servizio professionale e competenza locale.",
+    quickLinks: "Link rapidi",
+    getInTouch: "Contatti",
+    rights: "Tutti i diritti riservati.",
+    chatMenuTitle: "Contattaci",
+    chatClose: "Chiudi",
+    wechatTitle: "WeChat",
+    wechatScan: "Scansiona il codice QR per aggiungerci.",
+    wechatDescription: "Oppure aggiungici con l’ID WeChat qui sopra.",
+    wechatCopy: "Copia ID",
+    wechatCopied: "Copiato!",
+    kakaoTitle: "KakaoTalk",
+    kakaoScan: "Scansiona il codice QR per aggiungerci.",
+    kakaoDescription: "Oppure aggiungici su KakaoTalk con il numero o l’email qui sopra.",
+    kakaoCopy: "Copia numero",
+    kakaoCopied: "Copiato!",
   },
   es: {
     tagline: "Tours en Manado y el norte de Célebes",
@@ -491,6 +609,23 @@ export const DICTIONARY: Record<Locale, Dict> = {
     contactHeading: "Habla con nosotros",
     contactLede:
       "Cuéntanos aproximadamente cuándo vienes y cuántos sois. Respondemos en tu idioma, normalmente en menos de un día.",
+    footerDescription:
+      "Su puerta de entrada privilegiada a la belleza incomparable del norte de Célebes y más allá. Ofrecemos experiencias de viaje de alta calidad, con servicio profesional y conocimiento local.",
+    quickLinks: "Enlaces rápidos",
+    getInTouch: "Contacto",
+    rights: "Todos los derechos reservados.",
+    chatMenuTitle: "Contáctanos",
+    chatClose: "Cerrar",
+    wechatTitle: "WeChat",
+    wechatScan: "Escanea el código QR para añadirnos.",
+    wechatDescription: "O añádenos con el ID de WeChat de arriba.",
+    wechatCopy: "Copiar ID",
+    wechatCopied: "¡Copiado!",
+    kakaoTitle: "KakaoTalk",
+    kakaoScan: "Escanea el código QR para añadirnos.",
+    kakaoDescription: "O añádenos en KakaoTalk con el número o el correo de arriba.",
+    kakaoCopy: "Copiar número",
+    kakaoCopied: "¡Copiado!",
   },
   nl: {
     tagline: "Tours in Manado en Noord-Sulawesi",
@@ -552,6 +687,23 @@ export const DICTIONARY: Record<Locale, Dict> = {
     contactHeading: "Praat met ons",
     contactLede:
       "Vertel ons ongeveer wanneer je komt en met hoeveel jullie zijn. We antwoorden in je eigen taal, meestal binnen een dag.",
+    footerDescription:
+      "Uw eerste toegangspoort tot de ongeëvenaarde schoonheid van Noord-Sulawesi en daarbuiten. Wij bieden hoogwaardige reiservaringen met professionele service en lokale kennis.",
+    quickLinks: "Snelle links",
+    getInTouch: "Contact",
+    rights: "Alle rechten voorbehouden.",
+    chatMenuTitle: "Neem contact op",
+    chatClose: "Sluiten",
+    wechatTitle: "WeChat",
+    wechatScan: "Scan de QR-code om ons toe te voegen.",
+    wechatDescription: "Of voeg ons toe met de WeChat-ID hierboven.",
+    wechatCopy: "ID kopiëren",
+    wechatCopied: "Gekopieerd!",
+    kakaoTitle: "KakaoTalk",
+    kakaoScan: "Scan de QR-code om ons toe te voegen.",
+    kakaoDescription: "Of voeg ons toe op KakaoTalk via het nummer of e-mailadres hierboven.",
+    kakaoCopy: "Nummer kopiëren",
+    kakaoCopied: "Gekopieerd!",
   },
 };
 

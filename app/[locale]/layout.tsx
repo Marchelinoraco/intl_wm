@@ -4,9 +4,12 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import FloatingChat from "@/components/FloatingChat";
+import { ChatWidgetProvider } from "@/components/ChatWidget";
 import { DEFAULT_LOCALE, HREFLANG, SITE_URL, isLocale, type Locale } from "@/lib/locales";
 import { publishedLocales } from "@/lib/availability";
 import { dict } from "@/lib/dictionary";
+import { EMAILS, MAPS_URL, PHONE_TEL, chatHref } from "@/lib/contact";
 
 /**
  * INI root layout aplikasi — tidak ada app/layout.tsx di atasnya. Segmen
@@ -52,6 +55,18 @@ const TRAVEL_AGENCY_LD = {
   name: "Welcome Manado",
   url: SITE_URL,
   areaServed: "North Sulawesi, Indonesia",
+  // Uraian berkomponen dari `OFFICE_ADDRESS` di lib/contact.ts. Schema.org
+  // menuntut bagian-bagiannya terpisah; kalau alamat itu berubah, ubah di sini juga.
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Grha Merdeka, Jl. A. A. Maramis No. 17, Kairagi Dua",
+    addressLocality: "Manado",
+    addressRegion: "North Sulawesi",
+    addressCountry: "ID",
+  },
+  telephone: PHONE_TEL,
+  email: EMAILS[0],
+  hasMap: MAPS_URL,
   parentOrganization: { "@type": "Organization", name: "Welcome Manado", url: "https://welcomemanado.com" },
 };
 
@@ -75,6 +90,28 @@ export default async function LocaleLayout({
 }) {
   if (!isLocale(params.locale)) notFound();
   const locale: Locale = params.locale;
+  const t = dict(locale);
+
+  // Widget obrolan berjalan di klien, sedangkan kamus dibaca di server —
+  // jadi teksnya diterjemahkan di sini lalu dioper sebagai prop.
+  const chatStrings = {
+    menuTitle: t.chatMenuTitle,
+    close: t.chatClose,
+    wechat: {
+      title: t.wechatTitle,
+      scan: t.wechatScan,
+      description: t.wechatDescription,
+      copy: t.wechatCopy,
+      copied: t.wechatCopied,
+    },
+    kakao: {
+      title: t.kakaoTitle,
+      scan: t.kakaoScan,
+      description: t.kakaoDescription,
+      copy: t.kakaoCopy,
+      copied: t.kakaoCopied,
+    },
+  };
 
   return (
     <html lang={HREFLANG[locale]}>
@@ -83,11 +120,16 @@ export default async function LocaleLayout({
       </head>
       <body>
         <JsonLd data={TRAVEL_AGENCY_LD} />
-        <Header locale={locale} />
-        {/* Header adalah pill `fixed` yang melayang; beri ruang di atas. Hero
-            beranda menetralkannya dengan `-mt` yang sepadan agar tetap full-bleed. */}
-        <main className="pt-20 lg:pt-24">{children}</main>
-        <Footer locale={locale} />
+        {/* Footer dan tombol mengambang berbagi satu status: ikon WeChat/Kakao
+            di footer memunculkan kartu QR milik <FloatingChat>. */}
+        <ChatWidgetProvider>
+          <Header locale={locale} />
+          {/* Header adalah pill `fixed` yang melayang; beri ruang di atas. Hero
+              beranda menetralkannya dengan `-mt` yang sepadan agar tetap full-bleed. */}
+          <main className="pt-20 lg:pt-24">{children}</main>
+          <Footer locale={locale} />
+          <FloatingChat strings={chatStrings} whatsappHref={chatHref(locale)} />
+        </ChatWidgetProvider>
       </body>
     </html>
   );
