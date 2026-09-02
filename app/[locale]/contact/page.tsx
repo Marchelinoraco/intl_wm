@@ -3,6 +3,7 @@ import { dict } from "@/lib/dictionary";
 import type { Locale } from "@/lib/locales";
 import { publishedLocales } from "@/lib/availability";
 import { chatHref, chatLabelKey } from "@/lib/contact";
+import ContactDetails from "@/components/ContactDetails";
 import { pageAlternates } from "@/lib/seo";
 
 export async function generateStaticParams() {
@@ -40,6 +41,16 @@ export default function ContactPage({ params }: { params: { locale: Locale } }) 
       >
         {label}
       </a>
+
+      {/* Obrolan menang untuk kebanyakan orang, tapi alamat kantor dan nomor
+          yang bisa ditelepon harus tetap ada — sebagian tamu memang mencarinya,
+          dan Google membacanya untuk kartu bisnis. */}
+      <div className="mt-14 border-t border-line pt-10">
+        <h2 className="mb-8 text-sm font-black uppercase tracking-[0.2em] text-ink">
+          {t.getInTouch}
+        </h2>
+        <ContactDetails />
+      </div>
     </section>
   );
 }
