@@ -138,7 +138,9 @@ export default function HeaderShell({
               ))}
             </nav>
             <div className="mt-2 flex items-center justify-between gap-3 border-t border-line px-2 pt-3">
-              <LanguageSwitcher current={locale} availableIn={published} />
+              {/* Pemilih bahasa duduk di pojok kiri panel — panelnya harus
+                  melebar ke kanan, bukan ke kiri keluar layar. */}
+              <LanguageSwitcher current={locale} availableIn={published} align="left" />
               {cta}
             </div>
           </div>

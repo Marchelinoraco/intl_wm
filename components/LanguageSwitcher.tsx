@@ -15,10 +15,17 @@ export default function LanguageSwitcher({
   current,
   availableIn,
   onDark = false,
+  align = "right",
 }: {
   current: Locale;
   availableIn: Locale[];
   onDark?: boolean;
+  /**
+   * Sisi tombol tempat panel disandarkan. Di header desktop tombolnya menempel
+   * kanan, jadi `right` benar. Di menu mobile tombolnya di pojok KIRI panel —
+   * disandarkan ke kanan, panel melebar ke kiri dan terpotong keluar layar.
+   */
+  align?: "left" | "right";
 }) {
   const pathname = usePathname() || `/${current}/`;
   const rest = pathname.split("/").slice(2).join("/");
@@ -87,7 +94,11 @@ export default function LanguageSwitcher({
       {open && (
         <div
           role="menu"
-          className="absolute right-0 z-50 mt-2 min-w-[10rem] origin-top-right animate-menu-in overflow-hidden rounded-xl border border-line bg-surface p-1 shadow-xl shadow-slate-900/10 dark:shadow-black/50"
+          /* `max-h` + gulir: delapan bahasa lebih tinggi dari layar HP kecil
+             saat menu mobile sudah memakai ruang di atasnya. */
+          className={`absolute z-50 mt-2 max-h-[min(20rem,55vh)] min-w-[10rem] animate-menu-in overflow-y-auto overflow-x-hidden rounded-xl border border-line bg-surface p-1 shadow-xl shadow-slate-900/10 dark:shadow-black/50 ${
+            align === "left" ? "left-0 origin-top-left" : "right-0 origin-top-right"
+          }`}
         >
           {availableIn.map((locale) => {
             const active = locale === current;
