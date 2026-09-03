@@ -9,7 +9,7 @@ import { ChatWidgetProvider } from "@/components/ChatWidget";
 import { DEFAULT_LOCALE, HREFLANG, SITE_URL, isLocale, type Locale } from "@/lib/locales";
 import { publishedLocales } from "@/lib/availability";
 import { dict } from "@/lib/dictionary";
-import { EMAILS, MAPS_URL, PHONE_TEL, chatHref } from "@/lib/contact";
+import { EMAILS, MAPS_URL, PHONE_TEL, SOCIAL_LINKS, chatHref } from "@/lib/contact";
 
 /**
  * INI root layout aplikasi — tidak ada app/layout.tsx di atasnya. Segmen
@@ -49,12 +49,26 @@ export async function generateMetadata({
   };
 }
 
+const ORG_ID = `${SITE_URL}/#organization`;
+
+// Profil publik yang benar-benar milik perusahaan (bukan tautan kontak seperti
+// wa.me) — dipetik dari SOCIAL_LINKS + situs induk, untuk `sameAs`.
+const SAME_AS = [
+  ...SOCIAL_LINKS.filter((s) => s.icon !== "whatsapp").map((s) => s.href),
+  "https://welcomemanado.com",
+];
+
 const TRAVEL_AGENCY_LD = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  name: "Welcome Manado",
+  "@id": ORG_ID,
+  name: "Welcome Manado Tours",
+  alternateName: "Welcome Manado",
   url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  image: `${SITE_URL}/logo.png`,
   areaServed: "North Sulawesi, Indonesia",
+  sameAs: SAME_AS,
   // Uraian berkomponen dari `OFFICE_ADDRESS` di lib/contact.ts. Schema.org
   // menuntut bagian-bagiannya terpisah; kalau alamat itu berubah, ubah di sini juga.
   address: {
@@ -68,6 +82,16 @@ const TRAVEL_AGENCY_LD = {
   email: EMAILS[0],
   hasMap: MAPS_URL,
   parentOrganization: { "@type": "Organization", name: "Welcome Manado", url: "https://welcomemanado.com" },
+};
+
+const WEBSITE_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: "Welcome Manado Tours",
+  inLanguage: ["en", "ko", "zh", "fr", "de", "it", "es", "nl"],
+  publisher: { "@id": ORG_ID },
 };
 
 /**
@@ -120,6 +144,7 @@ export default async function LocaleLayout({
       </head>
       <body>
         <JsonLd data={TRAVEL_AGENCY_LD} />
+        <JsonLd data={WEBSITE_LD} />
         {/* Footer dan tombol mengambang berbagi satu status: ikon WeChat/Kakao
             di footer memunculkan kartu QR milik <FloatingChat>. */}
         <ChatWidgetProvider>
