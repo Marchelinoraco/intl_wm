@@ -9,6 +9,7 @@ import type { Locale } from "@/lib/locales";
 import { publishedLocales } from "@/lib/availability";
 import { getTours, type TourList } from "@/lib/api";
 import { pageAlternates } from "@/lib/seo";
+import { SHORE_EXCURSIONS } from "@/lib/content/shore-excursions";
 
 export async function generateStaticParams() {
   return (await publishedLocales()).map((locale) => ({ locale }));
@@ -43,6 +44,7 @@ export default async function ToursPage({ params }: { params: { locale: Locale }
   const { locale } = params;
   const t = dict(locale);
   const cats = groupByCategory(await getTours(locale));
+  const se = SHORE_EXCURSIONS[locale];
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
@@ -52,6 +54,25 @@ export default async function ToursPage({ params }: { params: { locale: Locale }
         lede={t.exploreByCategory}
         headingLevel={1}
       />
+
+      <Link
+        href={`/${locale}/tours/shore-excursions/`}
+        className="group mb-6 flex flex-col gap-4 overflow-hidden rounded-[2rem] border border-line bg-slate-950 p-7 text-white sm:flex-row sm:items-center sm:justify-between lg:p-9"
+      >
+        <div className="max-w-xl">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">
+            {se.badge}
+          </p>
+          <h2 className="mt-2 text-2xl font-black uppercase leading-tight tracking-tighter md:text-3xl">
+            {se.landingTeaser}
+          </h2>
+          <p className="mt-2 text-sm font-medium leading-relaxed text-white/70">{se.pickLede}</p>
+        </div>
+        <span className="inline-flex shrink-0 items-center gap-2 self-start rounded-xl bg-accent px-6 py-3.5 text-[11px] font-black uppercase tracking-widest text-white sm:self-auto">
+          {se.landingCta}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+        </span>
+      </Link>
 
       <div className="grid gap-6 md:grid-cols-2">
         {cats.map((c, i) => {

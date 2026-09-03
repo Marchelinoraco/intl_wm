@@ -27,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Halaman statis
   push(published, () => "");
   push(published, () => "tours/");
+  push(published, () => "tours/shore-excursions/");
   push(published, () => "contact/");
   push(hotelLocales, () => "hotels/");
   push(galleryLocales, () => "gallery/");
@@ -41,6 +42,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
   // forEach (bukan for..of Map) supaya lolos tanpa flag downlevelIteration
   tourSlugLocales.forEach((locales, slug) => push(locales, () => `tours/${slug}/`));
+
+  // Halaman kategori tur — slug diambil dari daftar tur per bahasa, sama
+  // seperti generateStaticParams di tours/category/[slug]/page.tsx.
+  const catSlugLocales = new Map<string, Locale[]>();
+  published.forEach((l, i) => {
+    const seen = new Set<string>();
+    for (const t of tourLists[i]) {
+      const slug = t.category?.slug;
+      if (slug && !seen.has(slug)) {
+        seen.add(slug);
+        catSlugLocales.set(slug, [...(catSlugLocales.get(slug) ?? []), l]);
+      }
+    }
+  });
+  catSlugLocales.forEach((locales, slug) => push(locales, () => `tours/category/${slug}/`));
 
   const hotelLists = await Promise.all(hotelLocales.map((l) => getHotels(l)));
   const hotelSlugLocales = new Map<string, Locale[]>();
