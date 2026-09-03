@@ -27,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Halaman statis
   push(published, () => "");
   push(published, () => "tours/");
+  push(published, () => "tours/shore-excursions/");
   push(published, () => "contact/");
   push(hotelLocales, () => "hotels/");
   push(galleryLocales, () => "gallery/");
